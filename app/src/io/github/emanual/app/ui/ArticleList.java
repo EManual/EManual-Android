@@ -1,5 +1,10 @@
 package io.github.emanual.app.ui;
 
+import io.github.emanual.app.R;
+import io.github.emanual.app.adapter.ArticleListAdapter;
+import io.github.emanual.app.api.JavaAPI;
+import io.github.emanual.app.api.RestClient;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,22 +13,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.SimpleListAdapter;
-import io.github.emanual.app.api.JavaAPI;
-import io.github.emanual.app.utils.ParseUtils;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ArticleList extends BaseActivity implements OnRefreshListener,
 		OnItemClickListener, OnScrollListener {
@@ -32,7 +35,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	ListView lv;
 	String kind = null, topic = null;
 	List<String> data;
-	SimpleListAdapter adapter;
+	ArticleListAdapter adapter;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
 	boolean hasMore = true;
@@ -53,7 +56,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			throw new NullPointerException("You need a `kind` and `topic`");
 		}
 		data = new ArrayList<String>();
-		adapter = new SimpleListAdapter(this, data);
+		adapter = new ArticleListAdapter(this, data);
 	}
 
 	@Override
@@ -91,9 +94,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 												.getJSONArray("result");
 										ArrayList<String> _topics = new ArrayList<String>();
 										for (int i = 0; i < array.length(); i++) {
-											_topics.add(ParseUtils
-													.getArticleName(array
-															.getString(i)));
+											_topics.add(array.getString(i));
 										}
 
 										data.addAll(_topics);
@@ -148,8 +149,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 							JSONArray array = response.getJSONArray("result");
 							ArrayList<String> _topics = new ArrayList<String>();
 							for (int i = 0; i < array.length(); i++) {
-								_topics.add(ParseUtils.getArticleName(array
-										.getString(i)));
+								_topics.add(array.getString(i));
 							}
 
 							data.addAll(_topics);
@@ -178,7 +178,10 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-
+		Intent intent  = new Intent(getContext(),Detail.class);
+		Log.i("debug",RestClient.URL_Preview+"?"+JavaAPI.getArticleParam(kind, topic, data.get(position))); 
+ 		intent.putExtra("url", RestClient.URL_Preview+"?"+JavaAPI.getArticleParam(kind, topic, data.get(position)));
+ 		startActivity(intent);
 	}
 
 	@Override

@@ -12,7 +12,7 @@ public class RestClient {
 //	public static final String BASE_URL = "http://192.168.0.105:8080"; // main 
 //	public static final String BASE_URL ="http://192.168.199.221:8081";
 	//http://jayin.github.io/EManual
-	public static final String BASE_URL ="http://emanual.github.io/";
+	public static final String BASE_URL ="http://emanual.github.io";
 	public static final String URL_Preview =BASE_URL+"/assets/preview.html";
 	private static int HTTP_Timeout = 12 * 1000;
 	public static Context context;

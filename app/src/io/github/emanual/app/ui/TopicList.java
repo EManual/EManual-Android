@@ -1,7 +1,7 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.SimpleListAdapter;
+import io.github.emanual.app.adapter.TopicListAdapter;
 import io.github.emanual.app.api.JavaAPI;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 	ListView lv;
 	String kind = null,title = null;
 	List<String> data;
-	SimpleListAdapter adapter;
+	TopicListAdapter adapter;
 	long last_motify = 0;
 
 	@Override
@@ -49,7 +49,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 			throw new NullPointerException("You need a `kind` and `title`");
 		}
 		data = new ArrayList<String>();
-		adapter = new SimpleListAdapter(this, data);
+		adapter = new TopicListAdapter(this, data);
 	}
 
 	@Override

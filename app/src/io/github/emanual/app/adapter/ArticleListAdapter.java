@@ -1,6 +1,7 @@
 package io.github.emanual.app.adapter;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.utils.ParseUtils;
 
 import java.util.List;
 
@@ -11,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class SimpleListAdapter extends BaseAdapter {
+public class ArticleListAdapter extends BaseAdapter {
 	List<String> data;
 	Context context;
-	public SimpleListAdapter(Context context,List<String> data){
+	public ArticleListAdapter(Context context,List<String> data){
 		this.data = data;
 		this.context = context;
 	}
@@ -39,13 +40,13 @@ public class SimpleListAdapter extends BaseAdapter {
 		ViewHolder h =  null;
 		if(convertView == null){
 			h = new ViewHolder();
-			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_simplelist, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_topiclist, null);
 			h.title = (TextView)convertView.findViewById(R.id.tv_title);
 			convertView.setTag(h);
 		}else{
 			h =(ViewHolder)convertView.getTag();
 		}
-		h.title.setText(data.get(position));
+		h.title.setText(ParseUtils.getArticleName(data.get(position)));
 		return convertView;
 	}
 	
