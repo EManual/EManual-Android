@@ -12,7 +12,7 @@
 
         <LinearLayout style="@style/Linerlayout.list_horizontal" >
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_basic">
 
                 <TextView
                     style="@style/TextView.item_main"

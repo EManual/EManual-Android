@@ -48,7 +48,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 		View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
 		lv = (ListView) v.findViewById(R.id.lv_newfeeds);
 		swipeRefreshLayout = (SwipeRefreshLayout) v
-				.findViewById(R.id.swipeRefresh_newfeeds);
+				.findViewById(R.id.swipeRefreshLayout);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,
