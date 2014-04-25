@@ -1,0 +1,56 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+
+    <style name="Linerlayout"></style>
+
+    <style name="Linerlayout.list_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Linerlayout.list_vertical" parent="Linerlayout.list_horizontal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/main_item_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btn_item_whit2grey</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="RelativeLayout"></style>
+
+    <style name="RelativeLayout.item_main">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/main_item_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/btn_item_whit2grey</item>
+    </style>
+
+    <style name="ImageView">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="TextView" />
+
+    <style name="TextView.base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">null</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+    </style>
+
+    <style name="TextView.item_main" parent="TextView.base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+</resources>

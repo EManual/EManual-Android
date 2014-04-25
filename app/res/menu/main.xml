@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_action_more"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/action_more">
+        <menu>
+            <item
+                android:id="@+id/action_share"
+                android:icon="@drawable/ic_action_social_share"
+                android:showAsAction="always|withText"
+                android:title="分    享">
+            </item>
+            <item
+                android:id="@+id/action_settings"
+                android:icon="@drawable/ic_action_settings"
+                android:showAsAction="always|withText"
+                android:title="设    置">
+            </item>
+        </menu>
+    </item>
+
+</menu>

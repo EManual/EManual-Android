@@ -1,0 +1,6 @@
+<resources>
+
+
+   <dimen name="main_item_height">120dp</dimen>
+ <dimen name="fragment_main_webview_height">120dp</dimen>
+</resources>
