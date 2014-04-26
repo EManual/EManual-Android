@@ -30,12 +30,13 @@ import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-public class NewFeeds extends BaseFragment implements OnRefreshListener {
+public class NewFeeds extends BaseFragment implements OnRefreshListener,
+		OnScrollListener {
 	ListView lv;
 	SwipeRefreshLayout swipeRefreshLayout;
 	String[] strs = new String[] { "one", "two", "three", "four", "five",
 			"six", "seven", "eight", "nine", "ten" };
-	boolean hasMore = true;
+	boolean hasMore = true, isloading = false;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
 	NewFeedsAPI api = new NewFeedsAPI();
@@ -62,7 +63,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				
+
 			}
 
 			@Override
@@ -80,9 +81,9 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				Intent intent = new Intent(getActivity(),Detail.class);
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(getActivity(), Detail.class);
 				intent.putExtra("url", RestClient.URL_Preview);
 				startActivity(intent);
 			}
@@ -90,43 +91,9 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 		return v;
 	}
 
-	public void onLoadMore() {
-		if (page + 1 <= maxPage) {
-			api.getNewFeeds(page + 1, new JsonHttpResponseHandler() {
-				@Override
-				public void onStart() {
-					swipeRefreshLayout.setRefreshing(true);
-				}
-
-				@Override
-				public void onSuccess(int statusCode, Header[] headers,
-						JSONObject response) {
-					try {
-						JSONArray array = response.getJSONArray("result");
-						ArrayList<String> names = new ArrayList<String>();
-						for (int i = 0; i < array.length(); i++) {
-							names.add(array.getString(i));
-						}
-						data.addAll(names);
-						adapter.notifyDataSetChanged();
-						if (page + 1 >= maxPage)
-							hasMore = false;
-					} catch (JSONException e) {
-						e.printStackTrace();
-						toast("parse error!");
-					}
-				}
-
-				@Override
-				public void onFinish() {
-					swipeRefreshLayout.setRefreshing(false);
-				}
-			});
-		}
-	}
-
 	@Override
 	public void onRefresh() {
+		isloading = true;
 		api.getInfo(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -151,6 +118,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 								data.addAll(names);
 								adapter.notifyDataSetChanged();
 								hasMore = true;
+								page=1;
 							} catch (JSONException e) {
 								e.printStackTrace();
 								toast("parse error!");
@@ -166,6 +134,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 						@Override
 						public void onFinish() {
 							swipeRefreshLayout.setRefreshing(false);
+							isloading = false;
 						}
 					});
 				} catch (JSONException e) {
@@ -177,12 +146,76 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
 				toast("get info error:" + arg0);
+			}
+			
+			@Override
+			public void onFinish() {
 				swipeRefreshLayout.setRefreshing(false);
+				isloading = false;
+			}
+
+		});
+	}
+	
+	public void onLoadMore() {
+		Log.i("debug", "page+1=" + (page + 1) + "  maxPage=" + maxPage);
+		api.getNewFeeds(page + 1, new JsonHttpResponseHandler() {
+			@Override
+			public void onStart() {
+				swipeRefreshLayout.setRefreshing(true);
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,
+					JSONObject response) {
+				try {
+					JSONArray array = response.getJSONArray("result");
+					ArrayList<String> names = new ArrayList<String>();
+					for (int i = 0; i < array.length(); i++) {
+						names.add(array.getString(i));
+					}
+					data.addAll(names);
+					adapter.notifyDataSetChanged();
+					page += 1;
+					if (page >= maxPage)
+						hasMore = false;
+				} catch (JSONException e) {
+					e.printStackTrace();
+					toast("parse error!");
+				}
+			}
+
+			@Override
+			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
+					Throwable arg3) {
+				toast("get NewFeed list error.ErrorCode=" + arg0);
 			}
 
 			@Override
 			public void onFinish() {
+				swipeRefreshLayout.setRefreshing(false);
+				isloading = false;
 			}
 		});
+
+	}
+
+	@Override
+	public void onScroll(AbsListView view, int firstVisibleItem,
+			int visibleItemCount, int totalItemCount) {
+		if (swipeRefreshLayout.isRefreshing() || isloading)
+			return;
+
+		if (firstVisibleItem + visibleItemCount >= totalItemCount
+				&& totalItemCount != 0 && hasMore) {
+			isloading = false;
+			onLoadMore();
+		}
+
+	}
+
+	@Override
+	public void onScrollStateChanged(AbsListView view, int scrollState) {
+
 	}
 }

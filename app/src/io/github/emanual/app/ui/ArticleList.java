@@ -38,7 +38,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	ArticleListAdapter adapter;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
-	boolean hasMore = true;
+	boolean hasMore = true,isloading = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +77,8 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 
 	@Override
 	public void onRefresh() {
+		isloading = true;
+		Log.i("debug","onRefresh");
 		JavaAPI.getTopicInfo(kind, topic, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -87,24 +89,29 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 					JavaAPI.getArticleList(1, kind, topic,
 							new JsonHttpResponseHandler() {
 								@Override
+								public void onStart() {
+									Log.i("debug", "isRefresg-->"
+											+ swipeRefreshLayout.isRefreshing());
+								}
+
+								@Override
 								public void onSuccess(int statusCode,
 										Header[] headers, JSONObject response) {
 									try {
 										JSONArray array = response
 												.getJSONArray("result");
-										ArrayList<String> _topics = new ArrayList<String>();
+										ArrayList<String> _articles = new ArrayList<String>();
 										for (int i = 0; i < array.length(); i++) {
-											_topics.add(array.getString(i));
+											_articles.add(array.getString(i));
 										}
-
-										data.addAll(_topics);
+										data.clear();
+										data.addAll(_articles);
 										adapter.notifyDataSetChanged();
 										hasMore = true;
 										page = 1;
 									} catch (JSONException e) {
 										e.printStackTrace();
 										toast("parse error!");
-										swipeRefreshLayout.setRefreshing(false);
 									}
 								}
 
@@ -118,12 +125,12 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 								@Override
 								public void onFinish() {
 									swipeRefreshLayout.setRefreshing(false);
+									isloading = false;
 								}
 							});
 				} catch (JSONException e) {
 					e.printStackTrace();
 					toast("parse error!");
-					swipeRefreshLayout.setRefreshing(false);
 				}
 			}
 
@@ -131,35 +138,44 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
 				toast("get topic info error!");
+			}
+			
+			@Override
+			public void onFinish() {
 				swipeRefreshLayout.setRefreshing(false);
+				isloading = false;
 			}
 		});
 
 	}
 
 	public void onLoadMore() {
-		if (page + 1 > maxPage)
-			return;
+		Log.i("debug", "page+1=" + (page + 1) + "  maxPage=" + maxPage);
 		JavaAPI.getArticleList(page + 1, kind, topic,
 				new JsonHttpResponseHandler() {
+					@Override
+					public void onStart() {
+						swipeRefreshLayout.setRefreshing(true);
+					}
+
 					@Override
 					public void onSuccess(int statusCode, Header[] headers,
 							JSONObject response) {
 						try {
 							JSONArray array = response.getJSONArray("result");
-							ArrayList<String> _topics = new ArrayList<String>();
+							ArrayList<String> _articles = new ArrayList<String>();
 							for (int i = 0; i < array.length(); i++) {
-								_topics.add(array.getString(i));
+								_articles.add(array.getString(i));
 							}
-
-							data.addAll(_topics);
+							data.addAll(_articles);
 							adapter.notifyDataSetChanged();
 							hasMore = true;
 							page += 1;
+							if (page >= maxPage)
+								hasMore = false;
 						} catch (JSONException e) {
 							e.printStackTrace();
 							toast("parse error!");
-							swipeRefreshLayout.setRefreshing(false);
 						}
 					}
 
@@ -172,27 +188,39 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 					@Override
 					public void onFinish() {
 						swipeRefreshLayout.setRefreshing(false);
+						isloading = false;
 					}
 				});
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-		Intent intent  = new Intent(getContext(),Detail.class);
-		Log.i("debug",RestClient.URL_Preview+"?"+JavaAPI.getArticleParam(kind, topic, data.get(position))); 
- 		intent.putExtra("url", RestClient.URL_Preview+"?"+JavaAPI.getArticleParam(kind, topic, data.get(position)));
- 		startActivity(intent);
+		Intent intent = new Intent(getContext(), Detail.class);
+		Log.i("debug",
+				RestClient.URL_Preview
+						+ "?"
+						+ JavaAPI.getArticleParam(kind, topic,
+								data.get(position)));
+		intent.putExtra(
+				"url",
+				RestClient.URL_Preview
+						+ "?"
+						+ JavaAPI.getArticleParam(kind, topic,
+								data.get(position)));
+		startActivity(intent);
 	}
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
-		if (!swipeRefreshLayout.isRefreshing()) {
+		    if(swipeRefreshLayout.isRefreshing()|| isloading)
+		    	return;
+		    
 			if (firstVisibleItem + visibleItemCount >= totalItemCount
 					&& totalItemCount != 0 && hasMore) {
+				isloading = true;
 				onLoadMore();
 			}
-		}
 	}
 
 	@Override

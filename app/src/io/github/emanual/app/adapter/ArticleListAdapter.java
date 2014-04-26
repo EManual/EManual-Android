@@ -1,11 +1,9 @@
 package io.github.emanual.app.adapter;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.utils.ParseUtils;
-
 import java.util.List;
-
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,13 +38,16 @@ public class ArticleListAdapter extends BaseAdapter {
 		ViewHolder h =  null;
 		if(convertView == null){
 			h = new ViewHolder();
-			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_topiclist, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_articlelist, null);
 			h.title = (TextView)convertView.findViewById(R.id.tv_title);
 			convertView.setTag(h);
 		}else{
 			h =(ViewHolder)convertView.getTag();
+			
 		}
-		h.title.setText(ParseUtils.getArticleName(data.get(position)));
+//		h.title.setText(ParseUtils.getArticleName(data.get(position)));
+		h.title.setText(data.get(position));
+		Log.i("debug", data.get(position));
 		return convertView;
 	}
 	

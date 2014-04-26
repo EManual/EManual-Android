@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="60dp"
     android:background="@drawable/btn_item_whit2grey"
     android:orientation="vertical"
-    android:padding="6dp" >
+     >
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/TextView.item_main"
         android:layout_gravity="left"
         android:text="Java 基础"
+        android:textSize="18sp"
+        android:layout_margin="14dp"
      />
 
 </LinearLayout>
