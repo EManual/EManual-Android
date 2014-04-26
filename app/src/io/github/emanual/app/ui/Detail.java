@@ -1,16 +1,12 @@
 package io.github.emanual.app.ui;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLEncoder;
-
-import org.apache.http.client.utils.URLEncodedUtils;
-
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.ParseUtils;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -60,10 +56,12 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		webview.loadUrl(url);
 		webview.setWebChromeClient(new MyWebChromeClient());
 		webview.setWebViewClient(new MyWebViewClient());
+		
 
 		swipeRefreshLayout.setRefreshing(true);
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
+		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
 	}
 
 	@Override
@@ -83,7 +81,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		}).start();
 
 	}
-
+//ParseUtils.encodeArticleURL(url)
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -97,7 +95,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 					.setText(
 							"我发现了一篇很不错的文章<<"
 									+ ParseUtils.getArticleNameByUrl(url)
-									+ ">> " + ParseUtils.encodeArticleURL(url))
+									+ ">> " + webview.getUrl()) 
 					.setChooserTitle("分享到").startChooser();
 			return true;
 		case android.R.id.home:
@@ -152,8 +150,10 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
-			// TODO Auto-generated method stub
-			return super.shouldOverrideUrlLoading(view, url);
+			Uri uri = Uri.parse(url);
+			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(intent);
+			return true;
 		}
 
 	}

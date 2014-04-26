@@ -33,8 +33,6 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 		OnScrollListener {
 	ListView lv;
 	SwipeRefreshLayout swipeRefreshLayout;
-	String[] strs = new String[] { "one", "two", "three", "four", "five",
-			"six", "seven", "eight", "nine", "ten" };
 	boolean hasMore = true, isloading = false;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
@@ -83,12 +81,15 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
-				intent.putExtra("url", RestClient.URL_Preview);
+				intent.putExtra("url", RestClient.URL_Preview+NewFeedsAPI.getNewFeedsParam(data.get(position)));
 				startActivity(intent);
 			}
 		});
+		onRefresh();
 		return v;
 	}
+	
+	
 
 	@Override
 	public void onRefresh() {

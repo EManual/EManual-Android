@@ -15,5 +15,10 @@ public class NewFeedsAPI {
 	public void getNewFeeds(int page,AsyncHttpResponseHandler responseHandler){
 		RestClient.get("/java-newfeeds/article/"+page+".json", null, responseHandler);
 	}
+	
+	public static String getNewFeedsParam(String filename){
+		return "?path=java-newfeeds/article/"+filename;
+	}
+	
 
 }
