@@ -9,6 +9,7 @@
     <TextView
         android:id="@+id/tv_title"
         style="@style/TextView.item_main"
+           android:gravity="left"
      />
 
     <TextView

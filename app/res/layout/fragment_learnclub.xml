@@ -16,7 +16,7 @@
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
+                    android:drawableTop="@drawable/ic_icon_1"
                     android:text="基  础" />
             </LinearLayout>
 
@@ -25,11 +25,11 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3" />
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_advance">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
+                    android:drawableTop="@drawable/ic_icon_10"
                     android:text="进  阶" />
             </LinearLayout>
 
@@ -38,11 +38,11 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3" />
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_pattern">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
+                    android:drawableTop="@drawable/ic_icon_1"
                     android:text="设计模式" />
             </LinearLayout>
         </LinearLayout>
@@ -54,11 +54,11 @@
 
         <LinearLayout style="@style/Linerlayout.list_horizontal" >
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_database">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
+                    android:drawableTop="@drawable/ic_icon_8"
                     android:text="数据库" />
             </LinearLayout>
 
@@ -67,12 +67,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3" />
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_web">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
-                    android:text="Java Web" />
+                    android:drawableTop="@drawable/ic_icon_2"
+                    android:text="Web" />
             </LinearLayout>
 
             <View
@@ -80,12 +80,12 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3" />
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_webframework">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
-                    android:text="全站会员" />
+                    android:drawableTop="@drawable/ic_icon_6"
+                    android:text="Web框架" />
             </LinearLayout>
         </LinearLayout>
 
@@ -96,12 +96,12 @@
 
         <LinearLayout style="@style/Linerlayout.list_horizontal" >
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_arithmetic">
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
-                    android:text="全站会员" />
+                    android:drawableTop="@drawable/ic_icon_9"
+                    android:text="算法实践" />
             </LinearLayout>
 
             <View
@@ -110,24 +110,9 @@
                 android:background="@drawable/ic_line_3" />
 
             <LinearLayout style="@style/Linerlayout.list_vertical" >
-
-                <TextView
-                    style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
-                    android:text="全站会员" />
             </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
-
             <LinearLayout style="@style/Linerlayout.list_vertical" >
-
-                <TextView
-                    style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_launcher"
-                    android:text="全站会员" />
             </LinearLayout>
         </LinearLayout>
 

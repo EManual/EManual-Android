@@ -1,7 +1,5 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-
 import java.io.Serializable;
 
 import android.content.Context;
@@ -23,7 +21,6 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getActionBar().setIcon(R.drawable.ic_launcher);
 	}
 
 	/**

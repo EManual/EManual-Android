@@ -72,12 +72,17 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 		lv.setAdapter(adapter);
 		lv.setOnScrollListener(this);
 		lv.setOnItemClickListener(this);
+		onRefresh();
 	}
 
 	@Override
 	public void onRefresh() {
 		isloading = true;
 		JavaAPI.getTopicInfo(kind, topic, new JsonHttpResponseHandler() {
+			@Override
+			public void onStart() {
+				swipeRefreshLayout.setRefreshing(true);
+			}
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {

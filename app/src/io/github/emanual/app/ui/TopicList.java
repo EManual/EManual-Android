@@ -65,6 +65,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 				android.R.color.holo_blue_light);
 		lv.setAdapter(adapter);
 		lv.setOnItemClickListener(this);
+		onRefresh();
 	}
 
 	@Override

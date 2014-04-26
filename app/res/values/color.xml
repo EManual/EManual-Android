@@ -20,14 +20,17 @@
     <color name="grey_lv_two">#808080</color>
     <color name="grey_lv_third">#404040</color>
     <color name="grey_lv_forth">#36362B</color>
+    <color name="grey_lv_fifth">#FF666666</color>
     <color name="blue_lv_one">#6699FF</color>
     <color name="blue_lv_two">#3366CC</color>
     <color name="blue_lv_third">#003399</color>
+    <color name="blue_lv_third">#FF3F9FE0</color>
     <color name="blue_nav_bg_nomal">#2CA7EA</color>
     <color name="blue_nav_bg_press">#2A94E0</color>
     <color name="green_lv_one">#99CC33</color>
     <color name="green_lv_two">#00CC00</color>
     <color name="green_lv_third">#FF339900</color>
+    <color name="green_forth">#FF96AA39</color>
     <color name="yello_lv_one">#FFCC00</color>
     <color name="yello_lv_two">#FF9900</color>
     <color name="yello_lv_third">#FF6600</color>

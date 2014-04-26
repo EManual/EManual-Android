@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:background="@drawable/btn_item_whit2grey"
-    android:orientation="vertical"
-     >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/TextView.item_main"
         android:layout_gravity="left"
-        android:text="Java 基础"
-        android:textSize="18sp"
-        android:layout_margin="14dp"
-     />
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="14dp"
+        android:gravity="left"
+        android:text="Java 基础Java 基础Java 基础Java 基础Java 基础"
+        android:textSize="18sp" />
 
 </LinearLayout>

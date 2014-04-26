@@ -9,13 +9,13 @@
         <menu>
             <item
                 android:id="@+id/action_share"
-                android:icon="@drawable/ic_action_social_share"
+                android:icon="@drawable/ic_action_social_share_dark"
                 android:showAsAction="always|withText"
                 android:title="分    享">
             </item>
             <item
                 android:id="@+id/action_settings"
-                android:icon="@drawable/ic_action_settings"
+                android:icon="@drawable/ic_action_settings_dark"
                 android:showAsAction="always|withText"
                 android:title="设    置">
             </item>

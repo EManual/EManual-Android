@@ -2,7 +2,15 @@
 
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
-    <style name="AppTheme" parent="AppBaseTheme"></style>
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+         <item name="android:homeAsUpIndicator">@drawable/ic_navigation_previous_item</item> <!-- 放在这里才有效 -->
+    </style>
+
+    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:icon">@drawable/ic_launcher</item>
+        <item name="android:background">#FF3F9FE0</item>
+    </style>
 
     <style name="Linerlayout"></style>
 
@@ -51,6 +59,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:textColor">@android:color/black</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>
