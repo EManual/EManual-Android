@@ -1,7 +1,10 @@
 package io.github.emanual.app.adapter;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.utils.ParseUtils;
+
 import java.util.List;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,9 +48,7 @@ public class ArticleListAdapter extends BaseAdapter {
 			h =(ViewHolder)convertView.getTag();
 			
 		}
-//		h.title.setText(ParseUtils.getArticleName(data.get(position)));
-		h.title.setText(data.get(position));
-		Log.i("debug", data.get(position));
+		h.title.setText(ParseUtils.getArticleName(data.get(position)));
 		return convertView;
 	}
 	

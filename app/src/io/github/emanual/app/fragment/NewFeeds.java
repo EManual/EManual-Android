@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,9 +98,6 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {
 				try {
-					Log.i("debug",
-							"last_motify:" + response.getLong("last_motify"));
-					Log.i("debug", "last_motify:" + response.getInt("pages"));
 					maxPage = response.getInt("pages");
 					api.getNewFeeds(1, new JsonHttpResponseHandler() {
 						@Override
@@ -158,7 +154,6 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 	}
 	
 	public void onLoadMore() {
-		Log.i("debug", "page+1=" + (page + 1) + "  maxPage=" + maxPage);
 		api.getNewFeeds(page + 1, new JsonHttpResponseHandler() {
 			@Override
 			public void onStart() {

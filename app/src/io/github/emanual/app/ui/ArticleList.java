@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -78,7 +77,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	@Override
 	public void onRefresh() {
 		isloading = true;
-		Log.i("debug","onRefresh");
 		JavaAPI.getTopicInfo(kind, topic, new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
@@ -88,12 +86,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 					maxPage = response.getInt("pages");
 					JavaAPI.getArticleList(1, kind, topic,
 							new JsonHttpResponseHandler() {
-								@Override
-								public void onStart() {
-									Log.i("debug", "isRefresg-->"
-											+ swipeRefreshLayout.isRefreshing());
-								}
-
 								@Override
 								public void onSuccess(int statusCode,
 										Header[] headers, JSONObject response) {
@@ -150,7 +142,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	}
 
 	public void onLoadMore() {
-		Log.i("debug", "page+1=" + (page + 1) + "  maxPage=" + maxPage);
 		JavaAPI.getArticleList(page + 1, kind, topic,
 				new JsonHttpResponseHandler() {
 					@Override
@@ -196,11 +187,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		Intent intent = new Intent(getContext(), Detail.class);
-		Log.i("debug",
-				RestClient.URL_Preview
-						+ "?"
-						+ JavaAPI.getArticleParam(kind, topic,
-								data.get(position)));
 		intent.putExtra(
 				"url",
 				RestClient.URL_Preview

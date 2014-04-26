@@ -85,7 +85,6 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 					for (int i = 0; i < array.length(); i++) {
 						_tipics.add(array.getString(i));
 					}
-					
 					data.clear();
 					data.addAll(_tipics);
 					adapter.notifyDataSetChanged();
