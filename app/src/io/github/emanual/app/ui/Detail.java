@@ -1,10 +1,18 @@
 package io.github.emanual.app.ui;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import org.apache.http.client.utils.URLEncodedUtils;
+
 import io.github.emanual.app.R;
+import io.github.emanual.app.utils.ParseUtils;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.KeyEvent;
@@ -15,11 +23,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class Detail extends BaseActivity implements OnRefreshListener{
+public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
 	SwipeRefreshLayout swipeRefreshLayout;
 	WebView webview;
 	String url = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,22 +40,22 @@ public class Detail extends BaseActivity implements OnRefreshListener{
 	@Override
 	protected void initData() {
 		url = getIntent().getStringExtra("url");
-		if(url==null){
+		if (url == null) {
 			finish();
-		    toast("you hava to pass a url for this");
+			toast("you hava to pass a url for this");
 		}
 	}
 
 	@Override
 	protected void initLayout() {
-		swipeRefreshLayout = (SwipeRefreshLayout)_getView(R.id.swipeRefresh);
-		webview = (WebView)_getView(R.id.webview);
+		swipeRefreshLayout = (SwipeRefreshLayout) _getView(R.id.swipeRefresh);
+		webview = (WebView) _getView(R.id.webview);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,
 				android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light);
-		
+
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.loadUrl(url);
 		webview.setWebChromeClient(new MyWebChromeClient());
@@ -72,9 +81,9 @@ public class Detail extends BaseActivity implements OnRefreshListener{
 
 			}
 		}).start();
-		
+
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -82,7 +91,14 @@ public class Detail extends BaseActivity implements OnRefreshListener{
 			toast("faviourite");
 			return true;
 		case R.id.action_share:
-			toast("share");
+			ShareCompat.IntentBuilder
+					.from(this)
+					.setType("text/plain")
+					.setText(
+							"我发现了一篇很不错的文章<<"
+									+ ParseUtils.getArticleNameByUrl(url)
+									+ ">> " + ParseUtils.encodeArticleURL(url))
+					.setChooserTitle("分享到").startChooser();
 			return true;
 		case android.R.id.home:
 			finish();
@@ -90,25 +106,25 @@ public class Detail extends BaseActivity implements OnRefreshListener{
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		
+
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		 getMenuInflater().inflate(R.menu.detail, menu);
+		getMenuInflater().inflate(R.menu.detail, menu);
 		return true;
 	}
-	
-	class MyWebChromeClient extends WebChromeClient{
+
+	class MyWebChromeClient extends WebChromeClient {
 		@Override
 		public void onProgressChanged(WebView view, int newProgress) {
-			if(newProgress ==100){
+			if (newProgress == 100) {
 				swipeRefreshLayout.setRefreshing(false);
 			}
 		}
 	}
-	
-	class MyWebViewClient extends WebViewClient{
+
+	class MyWebViewClient extends WebViewClient {
 
 		@Override
 		public void onLoadResource(WebView view, String url) {
@@ -139,7 +155,7 @@ public class Detail extends BaseActivity implements OnRefreshListener{
 			// TODO Auto-generated method stub
 			return super.shouldOverrideUrlLoading(view, url);
 		}
-		
+
 	}
 
 }
