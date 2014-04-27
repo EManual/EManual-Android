@@ -104,8 +104,12 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 										data.clear();
 										data.addAll(_articles);
 										adapter.notifyDataSetChanged();
-										hasMore = true;
 										page = 1;
+										if(_articles.size()<10){
+											hasMore = false;
+										}else{
+											hasMore = true;
+										}
 									} catch (JSONException e) {
 										e.printStackTrace();
 										toast("parse error!");
@@ -115,8 +119,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 								@Override
 								public void onFailure(int arg0, Header[] arg1,
 										byte[] arg2, Throwable arg3) {
-									toast("get article list error.ErrorCode="
-											+ arg0);
+									toast("无法获取首页  ErrorCode=" + arg0);
 								}
 
 								@Override
@@ -134,7 +137,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
-				toast("get topic info error!");
+				toast("无法获取该信息 ErrorCode="+arg0);
 			}
 			
 			@Override
@@ -167,7 +170,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 							adapter.notifyDataSetChanged();
 							hasMore = true;
 							page += 1;
-							if (page >= maxPage)
+							if (page >= maxPage || _articles.size()< 10)
 								hasMore = false;
 						} catch (JSONException e) {
 							e.printStackTrace();
@@ -178,7 +181,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 					@Override
 					public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 							Throwable arg3) {
-						toast("get article list error.ErrorCode=" + arg0);
+						toast("无法加载更多  ErrorCode=" + arg0);
 					}
 
 					@Override

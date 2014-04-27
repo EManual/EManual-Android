@@ -81,15 +81,17 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
-				intent.putExtra("url", RestClient.URL_Preview+NewFeedsAPI.getNewFeedsParam(data.get(position)));
+				intent.putExtra(
+						"url",
+						RestClient.URL_Preview
+								+ NewFeedsAPI.getNewFeedsParam(data
+										.get(position)));
 				startActivity(intent);
 			}
 		});
 		onRefresh();
 		return v;
 	}
-	
-	
 
 	@Override
 	public void onRefresh() {
@@ -114,8 +116,12 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 								data.clear();
 								data.addAll(names);
 								adapter.notifyDataSetChanged();
-								hasMore = true;
-								page=1;
+								page = 1;
+								if (names.size() < 10) {
+									hasMore = false;
+								} else {
+									hasMore = true;
+								}
 							} catch (JSONException e) {
 								e.printStackTrace();
 								toast("parse error!");
@@ -144,7 +150,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 					Throwable arg3) {
 				toast("get info error:" + arg0);
 			}
-			
+
 			@Override
 			public void onFinish() {
 				swipeRefreshLayout.setRefreshing(false);
@@ -153,7 +159,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 
 		});
 	}
-	
+
 	public void onLoadMore() {
 		api.getNewFeeds(page + 1, new JsonHttpResponseHandler() {
 			@Override
@@ -173,7 +179,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 					data.addAll(names);
 					adapter.notifyDataSetChanged();
 					page += 1;
-					if (page >= maxPage)
+					if (page >= maxPage || names.size() < 10)
 						hasMore = false;
 				} catch (JSONException e) {
 					e.printStackTrace();
