@@ -7,17 +7,23 @@
         android:showAsAction="always"
         android:title="@string/action_more">
         <menu>
+             <item
+                android:id="@+id/action_favourite"
+                android:icon="@drawable/ic_action_rating_important_dark"
+                android:showAsAction="always|withText"
+                android:title="@string/action_favourite">
+            </item>
             <item
                 android:id="@+id/action_share"
                 android:icon="@drawable/ic_action_social_share_dark"
                 android:showAsAction="always|withText"
-                android:title="分    享">
+                android:title="@string/action_share">
             </item>
             <item
                 android:id="@+id/action_settings"
                 android:icon="@drawable/ic_action_settings_dark"
                 android:showAsAction="always|withText"
-                android:title="设    置">
+                android:title="@string/action_setting">
             </item>
         </menu>
     </item>

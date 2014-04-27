@@ -26,9 +26,9 @@ public class LearnClub extends BaseFragment implements OnClickListener {
 		case R.id.btn_basic:
 			intent.putExtra("kind", "basic");
 			intent.putExtra("title", "基础");
-
 			break;
 		default:
+			toast("It's comming soon.");
 			break;
 		}
 		startActivity(intent);

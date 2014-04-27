@@ -16,7 +16,7 @@
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_icon_1"
+                    android:drawableTop="@drawable/ic_icon_4"
                     android:text="基  础" />
             </LinearLayout>
 

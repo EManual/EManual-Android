@@ -48,6 +48,7 @@ public class ArticleListAdapter extends BaseAdapter {
 			h =(ViewHolder)convertView.getTag();
 			
 		}
+		Log.i("debug",data.get(position) );
 		h.title.setText(ParseUtils.getArticleName(data.get(position)));
 		return convertView;
 	}
