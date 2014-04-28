@@ -16,6 +16,12 @@ public class LearnClub extends BaseFragment implements OnClickListener {
 		View v = inflater
 				.inflate(R.layout.fragment_learnclub, container, false);
 		v.findViewById(R.id.btn_basic).setOnClickListener(this);
+		v.findViewById(R.id.btn_advance).setOnClickListener(this);
+		v.findViewById(R.id.btn_pattern).setOnClickListener(this);
+		v.findViewById(R.id.btn_database).setOnClickListener(this);
+		v.findViewById(R.id.btn_web).setOnClickListener(this);
+		v.findViewById(R.id.btn_webframework).setOnClickListener(this);
+		v.findViewById(R.id.btn_arithmetic).setOnClickListener(this);
 		return v;
 	}
 
@@ -25,7 +31,33 @@ public class LearnClub extends BaseFragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_basic:
 			intent.putExtra("kind", "basic");
-			intent.putExtra("title", "基础");
+			intent.putExtra("title", "Java基础");
+			break;
+		case R.id.btn_advance:
+			intent.putExtra("kind", "advance");
+			intent.putExtra("title", "Java进阶");
+			break;
+		case R.id.btn_pattern:
+			intent.putExtra("kind", "pattern");
+			intent.putExtra("title", "设计模式");
+			break;
+
+		case R.id.btn_database:
+			intent.putExtra("kind", "database");
+			intent.putExtra("title", "数据库");
+			break;
+			
+		case R.id.btn_web:
+			intent.putExtra("kind", "java_web");
+			intent.putExtra("title", "Java Web");
+			break;
+		case R.id.btn_webframework:
+			intent.putExtra("kind", "framework");
+			intent.putExtra("title", "Web框架");
+			break;
+		case R.id.btn_arithmetic:
+			intent.putExtra("kind", "arithmetic");
+			intent.putExtra("title", "算法实践");
 			break;
 		default:
 			toast("It's comming soon.");
