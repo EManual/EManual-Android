@@ -207,12 +207,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		Intent intent = new Intent(getContext(), Detail.class);
-		intent.putExtra(
-				"url",
-				RestClient.URL_Preview
-						+ "?"
-						+ JavaAPI.getArticleParam(kind, topic,
-								data.get(position)));
+		intent.putExtra("url", RestClient.URL_Java+"/"+kind+"/"+topic+"/"+data.get(position));
 		startActivity(intent);
 	}
 

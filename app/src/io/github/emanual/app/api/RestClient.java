@@ -14,6 +14,8 @@ public class RestClient {
 	//http://jayin.github.io/EManual
 	public static final String BASE_URL ="http://emanual.github.io";
 	public static final String URL_Preview =BASE_URL+"/assets/preview.html";
+	public static final String URL_Java_NewFeeds =BASE_URL+"/java-newfeeds/article";
+	public static final String URL_Java =BASE_URL+"/java";
 	private static int HTTP_Timeout = 12 * 1000;
 	public static Context context;
 

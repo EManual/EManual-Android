@@ -81,11 +81,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
-				intent.putExtra(
-						"url",
-						RestClient.URL_Preview
-								+ NewFeedsAPI.getNewFeedsParam(data
-										.get(position)));
+				intent.putExtra("url", RestClient.URL_Java_NewFeeds+"/"+data.get(position));
 				startActivity(intent);
 			}
 		});
@@ -95,6 +91,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 
 	@Override
 	public void onRefresh() {
+		swipeRefreshLayout.setRefreshing(true);
 		isloading = true;
 		api.getInfo(new JsonHttpResponseHandler() {
 			@Override

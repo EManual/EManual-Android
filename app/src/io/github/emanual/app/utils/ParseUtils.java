@@ -25,8 +25,14 @@ public class ParseUtils {
 	}
 
 	// http:xxxxx/assets/preview.html?path=/a/b/[(2013-1-1,0010)]title].md
-	public static String getArticleNameByUrl(String url) {
-		String[] s = url.split("=")[1].split("/");
+//	public static String getArticleNameByUrl(String url) {
+//		String[] s = url.split("=")[1].split("/");
+//		return getArticleName(s[s.length - 1]);
+//	}
+	
+	// http:xxxxx/a/b/[(2013-1-1,0010)]title].md
+	public static String getArticleNameByUrl(String url){
+		String[] s = url.split("/");
 		return getArticleName(s[s.length - 1]);
 	}
 
