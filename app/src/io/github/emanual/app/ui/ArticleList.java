@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
@@ -37,7 +38,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	ArticleListAdapter adapter;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
-	boolean hasMore = true,isloading = false;
+	boolean hasMore = true, isloading = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	protected void initLayout() {
 		mActionBar = getActionBar();
 		mActionBar.setTitle(topic);
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 		swipeRefreshLayout = (SwipeRefreshLayout) _getView(R.id.swipeRefreshLayout);
 		lv = (ListView) _getView(R.id.listview);
 		swipeRefreshLayout.setOnRefreshListener(this);
@@ -76,6 +78,15 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
 	public void onRefresh() {
 		isloading = true;
 		JavaAPI.getTopicInfo(kind, topic, new JsonHttpResponseHandler() {
@@ -83,6 +94,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			public void onStart() {
 				swipeRefreshLayout.setRefreshing(true);
 			}
+
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {
@@ -105,9 +117,9 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 										data.addAll(_articles);
 										adapter.notifyDataSetChanged();
 										page = 1;
-										if(_articles.size()<10){
+										if (_articles.size() < 10) {
 											hasMore = false;
-										}else{
+										} else {
 											hasMore = true;
 										}
 									} catch (JSONException e) {
@@ -137,9 +149,9 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
-				toast("无法获取该信息 ErrorCode="+arg0);
+				toast("无法获取该信息 ErrorCode=" + arg0);
 			}
-			
+
 			@Override
 			public void onFinish() {
 				swipeRefreshLayout.setRefreshing(false);
@@ -170,7 +182,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 							adapter.notifyDataSetChanged();
 							hasMore = true;
 							page += 1;
-							if (page >= maxPage || _articles.size()< 10)
+							if (page >= maxPage || _articles.size() < 10)
 								hasMore = false;
 						} catch (JSONException e) {
 							e.printStackTrace();
@@ -207,14 +219,14 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
 			int visibleItemCount, int totalItemCount) {
-		    if(swipeRefreshLayout.isRefreshing()|| isloading)
-		    	return;
-		    
-			if (firstVisibleItem + visibleItemCount >= totalItemCount
-					&& totalItemCount != 0 && hasMore) {
-				isloading = true;
-				onLoadMore();
-			}
+		if (swipeRefreshLayout.isRefreshing() || isloading)
+			return;
+
+		if (firstVisibleItem + visibleItemCount >= totalItemCount
+				&& totalItemCount != 0 && hasMore) {
+			isloading = true;
+			onLoadMore();
+		}
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -24,11 +25,12 @@ import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-public class TopicList extends BaseActivity implements OnRefreshListener,OnItemClickListener{
+public class TopicList extends BaseActivity implements OnRefreshListener,
+		OnItemClickListener {
 	ActionBar mActionBar;
 	SwipeRefreshLayout swipeRefreshLayout;
 	ListView lv;
-	String kind = null,title = null;
+	String kind = null, title = null;
 	List<String> data;
 	TopicListAdapter adapter;
 	long last_motify = 0;
@@ -45,7 +47,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 	protected void initData() {
 		kind = getStringExtra("kind");
 		title = getStringExtra("title");
-		if (kind == null || title ==null) {
+		if (kind == null || title == null) {
 			throw new NullPointerException("You need a `kind` and `title`");
 		}
 		data = new ArrayList<String>();
@@ -56,6 +58,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 	protected void initLayout() {
 		mActionBar = getActionBar();
 		mActionBar.setTitle(title);
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 		swipeRefreshLayout = (SwipeRefreshLayout) _getView(R.id.swipeRefreshLayout);
 		lv = (ListView) _getView(R.id.listview);
 		swipeRefreshLayout.setOnRefreshListener(this);
@@ -69,6 +72,15 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
 	public void onRefresh() {
 		JavaAPI.getKindInfo(kind, new JsonHttpResponseHandler() {
 			@Override
@@ -79,9 +91,9 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 			@Override
 			public void onSuccess(int statusCode, Header[] headers,
 					JSONObject response) {
-			    try {
+				try {
 					JSONArray array = response.getJSONArray("result");
-					last_motify =response.getInt("last_motify");
+					last_motify = response.getInt("last_motify");
 					ArrayList<String> _tipics = new ArrayList<String>();
 					for (int i = 0; i < array.length(); i++) {
 						_tipics.add(array.getString(i));
@@ -94,7 +106,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 					toast("parse error!");
 				}
 			}
-			
+
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
@@ -111,10 +123,10 @@ public class TopicList extends BaseActivity implements OnRefreshListener,OnItemC
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-       Intent intent = new Intent(getContext(),ArticleList.class);
-       intent.putExtra("kind", kind);
-       intent.putExtra("topic", data.get(position));
-       startActivity(intent);
+		Intent intent = new Intent(getContext(), ArticleList.class);
+		intent.putExtra("kind", kind);
+		intent.putExtra("topic", data.get(position));
+		startActivity(intent);
 	}
 
 }
