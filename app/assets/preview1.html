@@ -9,7 +9,7 @@
 
     <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="../assets/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
     <style>
         body {
@@ -73,13 +73,17 @@
     <div class="row-fluid" id="content" style="padding-left: 4px;padding-right: 4px;padding-top: 6px"></div>
 </div>
 <script>
-    console.log("准备去干活啦");
+ 
     $(document).ready(function () {
-        console.log("准备好了");
         if (Android.getUrl() != null) {
-            $.get(Android.getUrl(), function (result) {
+            $.get(Android.getUrl(),function (result) {
                 $("#content").html(marked(result));
                 console.log(result);
+            }).fail(function () {
+                $.get('./404.md', function (result) {
+                    $("#content").html(marked(result));
+                    console.log(result);
+                });
             });
         } else if (Android.getContent() != null) {
             $("#content").html(marked(WebAppInterface.getContent()));

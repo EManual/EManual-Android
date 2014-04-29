@@ -174,7 +174,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		@Override
 		public void onReceivedError(WebView view, int errorCode,
 				String description, String failingUrl) {
-			toast("Error Code--->"+errorCode+"   failingUrl--> "+failingUrl);
+//			toast("Error Code--->"+errorCode+"   failingUrl--> "+failingUrl);
+//			view.loadUrl("file:///android_asset/404.html");
 		}
 	}
 
