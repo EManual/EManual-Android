@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -124,14 +125,16 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 										}
 									} catch (JSONException e) {
 										e.printStackTrace();
-										toast("parse error!");
+										Log.e("debug", "ArticleList-->parse error!");
+										toast("哎呀,出错了！");
 									}
 								}
 
 								@Override
 								public void onFailure(int arg0, Header[] arg1,
 										byte[] arg2, Throwable arg3) {
-									toast("无法获取首页  ErrorCode=" + arg0);
+									Log.e("debug", "ArticleList-->无法获取首页  ErrorCode=" + arg0);
+									toast("哎呀,出错了！");
 								}
 
 								@Override
@@ -142,14 +145,16 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 							});
 				} catch (JSONException e) {
 					e.printStackTrace();
-					toast("parse error!");
+					Log.e("debug", "ArticleList-->parse error!" );
+					toast("哎呀,出错了！");
 				}
 			}
 
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
-				toast("无法获取该信息 ErrorCode=" + arg0);
+				Log.e("debug", "ArticleList-->无法获取该信息 ErrorCode=" + arg0);
+				toast("哎呀,出错了！");
 			}
 
 			@Override
@@ -186,14 +191,16 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 								hasMore = false;
 						} catch (JSONException e) {
 							e.printStackTrace();
-							toast("parse error!");
+							Log.e("debug", "ArticleList-->parse error!" );
+							toast("哎呀,出错了！");
 						}
 					}
 
 					@Override
 					public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 							Throwable arg3) {
-						toast("无法加载更多  ErrorCode=" + arg0);
+						Log.e("debug", "ArticleList-->无法加载更多  ErrorCode=" + arg0 );
+						toast("哎呀,出错了！");
 					}
 
 					@Override

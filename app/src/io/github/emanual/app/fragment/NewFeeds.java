@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,14 +122,16 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 								}
 							} catch (JSONException e) {
 								e.printStackTrace();
-								toast("parse error!");
+								toast("哎呀,出错了！");
+								Log.e("debug", "NewFeeds-->parse error!");
 							}
 						}
 
 						@Override
 						public void onFailure(int arg0, Header[] arg1,
 								byte[] arg2, Throwable arg3) {
-							toast("get newfeedlist error:" + arg0);
+							Log.e("debug", "NewFeeds-->get newfeedlist error:" + arg0);
+							toast("哎呀,出错了！");
 						}
 
 						@Override
@@ -145,7 +148,8 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
-				toast("get info error:" + arg0);
+				Log.e("debug", "NewFeeds-->get info error:" + arg0);
+				toast("哎呀,出错了！");
 			}
 
 			@Override
