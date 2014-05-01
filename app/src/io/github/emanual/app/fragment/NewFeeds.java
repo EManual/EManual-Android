@@ -5,8 +5,6 @@ import io.github.emanual.app.adapter.NewFeedsAdapter;
 import io.github.emanual.app.api.NewFeedsAPI;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.ui.Detail;
-import io.github.emanual.app.utils._;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,6 +2,8 @@ package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
+import io.github.emanual.app.entity.FavArticle;
+import io.github.emanual.app.utils.MyDBManager;
 import io.github.emanual.app.utils.ParseUtils;
 import io.github.emanual.app.utils._;
 import android.annotation.SuppressLint;
@@ -25,6 +27,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
+import com.lidroid.xutils.exception.DbException;
+
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
@@ -32,7 +39,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	WebView webview;
 	String url = null, content = null;
 	String interfaceName = "Android";
-	
+	boolean isFavourite = false; // 是否已收藏
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	@Override
 	protected void initData() {
 		url = getIntent().getStringExtra("url");
-		Log.d("debug","当前文章的URL--> "+url);
+		Log.d("debug", "当前文章的URL--> " + url);
 		content = getIntent().getStringExtra("content");
 		if (url == null) {
 			finish();
@@ -67,11 +74,10 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		webview.setWebChromeClient(new MyWebChromeClient());
 		webview.setWebViewClient(new MyWebViewClient());
 
-	
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
-		
+
 		swipeRefreshLayout.setRefreshing(true);
 		onRefresh();
 	}
@@ -82,7 +88,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	}
 
 	private void load() {
-		webview.addJavascriptInterface(new WebAppInterface(getContext()), interfaceName);
+		webview.addJavascriptInterface(new WebAppInterface(getContext()),
+				interfaceName);
 		webview.loadUrl("file:///android_asset/preview1.html");
 	}
 
@@ -90,7 +97,30 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_favourite:
-			toast("faviourite");
+			DbUtils db = MyDBManager.getDBUtils(getContext());
+			FavArticle fa = new FavArticle();
+			fa.setTitle(ParseUtils.getArticleNameByUrl(url));
+			fa.setUrl(url);
+			fa.setContent(content);
+			if (isFavourite) {
+				isFavourite = false;
+				try {
+					db.delete(FavArticle.class,WhereBuilder.b("url", "=", url));
+				} catch (DbException e) {
+					e.printStackTrace();
+				}
+				item.setIcon(R.drawable.ic_action_rating_not_important);
+				toast("已取消收藏");
+			} else {
+				isFavourite = true;
+				try {
+					db.save(fa);
+				} catch (DbException e) {
+					e.printStackTrace();
+				}
+				item.setIcon(R.drawable.ic_action_rating_important);
+				toast("已收藏");
+			}
 			return true;
 		case R.id.action_share:
 			ShareCompat.IntentBuilder
@@ -99,8 +129,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 					.setText(
 							"我发现了一篇很不错的文章<<"
 									+ ParseUtils.getArticleNameByUrl(url)
-									+ ">> " +RestClient.URL_Preview+"?path="+_.encodeURL(url))
-					.setChooserTitle("分享到").startChooser();
+									+ ">> " + RestClient.URL_Preview + "?path="
+									+ _.encodeURL(url)).setChooserTitle("分享到")
+					.startChooser();
 			return true;
 		case android.R.id.home:
 			finish();
@@ -114,6 +145,21 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.detail, menu);
+		DbUtils db = MyDBManager.getDBUtils(getContext());
+		FavArticle fa = null;
+		try {
+			fa = db.findFirst(Selector.from(FavArticle.class).where("url", "=",
+					url));
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
+		if (fa == null) {
+			isFavourite = false;
+			menu.getItem(1).setIcon(R.drawable.ic_action_rating_not_important);
+		} else {
+			isFavourite = true;
+			menu.getItem(1).setIcon(R.drawable.ic_action_rating_important);
+		}
 		return true;
 	}
 
@@ -122,16 +168,17 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		public void onProgressChanged(WebView view, int newProgress) {
 			if (newProgress == 100) {
 				swipeRefreshLayout.setRefreshing(false);
-			}else{
+			} else {
 				swipeRefreshLayout.setRefreshing(true);
 			}
 		}
-		
+
 		@Override
 		public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-			Log.d("debug", consoleMessage.message() + " -- From line "
-                    + consoleMessage.lineNumber() + " of "
-                    + consoleMessage.sourceId() );
+			Log.d("debug",
+					consoleMessage.message() + " -- From line "
+							+ consoleMessage.lineNumber() + " of "
+							+ consoleMessage.sourceId());
 			return true;
 		}
 	}
@@ -142,21 +189,21 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		public void onLoadResource(WebView view, String url) {
 			// TODO Auto-generated method stub
 			super.onLoadResource(view, url);
-			Log.d("debug","onLoadResource--> "+url);
+			Log.d("debug", "onLoadResource--> " + url);
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
 			// TODO Auto-generated method stub
 			super.onPageFinished(view, url);
-			Log.d("debug","onPageFinished--> "+url);
+			Log.d("debug", "onPageFinished--> " + url);
 		}
 
 		@Override
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
 			// TODO Auto-generated method stub
 			super.onPageStarted(view, url, favicon);
-			Log.d("debug","onPageStarted--> "+url);
+			Log.d("debug", "onPageStarted--> " + url);
 		}
 
 		@Override
@@ -172,12 +219,12 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 			startActivity(intent);
 			return true;
 		}
-		
+
 		@Override
 		public void onReceivedError(WebView view, int errorCode,
 				String description, String failingUrl) {
-//			toast("Error Code--->"+errorCode+"   failingUrl--> "+failingUrl);
-//			view.loadUrl("file:///android_asset/404.html");
+			// toast("Error Code--->"+errorCode+"   failingUrl--> "+failingUrl);
+			// view.loadUrl("file:///android_asset/404.html");
 		}
 	}
 
@@ -202,6 +249,11 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		public String getContent() {
 			return content;
 		}
+
+		public void setContent(String content) {
+			Detail.this.content = content;
+		}
+
 	}
 
 }
