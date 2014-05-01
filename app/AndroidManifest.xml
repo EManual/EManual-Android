@@ -9,6 +9,7 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="io.github.emanual.app"></instrumentation>
 
     <application
         android:name="io.github.emanual.app.App"
@@ -16,6 +17,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner"></uses-library>
         <activity
             android:name=".AppStart"
             android:label="@string/app_name"
