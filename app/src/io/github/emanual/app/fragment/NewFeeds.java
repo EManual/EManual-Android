@@ -5,6 +5,7 @@ import io.github.emanual.app.adapter.NewFeedsAdapter;
 import io.github.emanual.app.api.NewFeedsAPI;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.ui.Detail;
+import io.github.emanual.app.utils._;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
+				//RestClient.URL_Java_NewFeeds+"/"+data.get(position)
 				intent.putExtra("url", RestClient.URL_Java_NewFeeds+"/"+data.get(position));
 				startActivity(intent);
 			}

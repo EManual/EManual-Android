@@ -1,7 +1,9 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.utils.ParseUtils;
+import io.github.emanual.app.utils._;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
@@ -97,7 +99,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 					.setText(
 							"我发现了一篇很不错的文章<<"
 									+ ParseUtils.getArticleNameByUrl(url)
-									+ ">> " + webview.getUrl())
+									+ ">> " +RestClient.URL_Preview+"?path="+_.encodeURL(url))
 					.setChooserTitle("分享到").startChooser();
 			return true;
 		case android.R.id.home:
