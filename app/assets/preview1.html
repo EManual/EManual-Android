@@ -73,12 +73,14 @@
     <div class="row-fluid" id="content" style="padding-left: 4px;padding-right: 4px;padding-top: 6px"></div>
 </div>
 <script>
- 
     $(document).ready(function () {
-        if (Android.getUrl() != null) {
+        if (Android.getContent() != null && Android.getContent() !== "") {
+            $("#content").html(marked(Android.getContent()));
+        } else if (Android.getUrl() != null) {
             $.get(Android.getUrl(),function (result) {
                 $("#content").html(marked(result));
                 console.log(result);
+                Android.setContent(result);
             }).fail(function () {
                 $.get('./404.md', function (result) {
                     $("#content").html(marked(result));

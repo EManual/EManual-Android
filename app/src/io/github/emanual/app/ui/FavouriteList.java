@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,11 +25,12 @@ import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
 
-public class FavouriteList extends BaseActivity implements OnItemClickListener{
+public class FavouriteList extends BaseActivity implements OnItemClickListener {
+	DbUtils db;
 	ActionBar mActionBar;
 	ListView lv;
-	String[] strs = new String[] {  };
-	
+	String[] titles = new String[] {};
+	String[] urls = new String[] {};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +42,28 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener{
 
 	@Override
 	protected void initData() {
-		DbUtils db = MyDBManager.getDBUtils(getContext());
+		db = MyDBManager.getDBUtils(getContext());
 		List<DbModel> models = null;
-		Log.i("debug","initData----");
+		Log.i("debug", "initData----");
 		try {
-			//title 可以由url构造
-			models = db.findDbModelAll(Selector.from(FavArticle.class).select("url").orderBy("saveTime", true));
+			// title 可以由url构造
+			models = db.findDbModelAll(Selector.from(FavArticle.class)
+					.select("url").orderBy("saveTime", true));
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
-		
-		List<String> res  = new ArrayList<String>();
-		if(models == null)	Log.d("debug", models+"is null!!!");
-		for(DbModel m : models){
-			res.add(ParseUtils.getArticleNameByUrl(m.getString("url")));
-			Log.d("debug", res.get(res.size()-1));
+
+		List<String> res_url = new ArrayList<String>();
+		List<String> res_title = new ArrayList<String>();
+		if (models == null)
+			Log.d("debug", models + "is null!!!");
+		for (DbModel m : models) {
+			res_title.add(ParseUtils.getArticleNameByUrl(m.getString("url")));
+			res_url.add(m.getString("url"));
 		}
-        strs = (String[])res.toArray(new String[res.size()]);
-		Log.d("debug", "result-->"+res.toString());
+		titles = (String[]) res_title.toArray(new String[res_title.size()]);
+		urls = (String[]) res_url.toArray(new String[res_url.size()]);
+		// Log.d("debug", "result-->"+res.toString());
 		Log.d("debug", "init data finished");
 	}
 
@@ -66,9 +72,9 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener{
 		mActionBar = getActionBar();
 		lv = (ListView) _getView(R.id.listview);
 		lv.setAdapter(new ArrayAdapter<String>(getContext(),
-				android.R.layout.simple_list_item_1, strs));
+				android.R.layout.simple_list_item_1, titles));
 		lv.setOnItemClickListener(this);
-		
+
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -104,7 +110,18 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		toast(strs[position]);
+		toast(urls[position]);
+		try {
+			DbModel model = db.findDbModelFirst(Selector.from(FavArticle.class)
+					.select("content").where("url", "=", urls[position]));
+			Intent intent = new Intent(getContext(), Detail.class);
+			intent.putExtra("url", urls[position]);
+			intent.putExtra("content", model.getString("content"));
+			startActivity(intent);
+		} catch (DbException e) {
+			e.printStackTrace();
+			toast("数据库异常");
+		}
 	}
 
 }

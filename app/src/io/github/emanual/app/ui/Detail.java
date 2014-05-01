@@ -52,12 +52,16 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	@Override
 	protected void initData() {
 		url = getIntent().getStringExtra("url");
-		Log.d("debug", "当前文章的URL--> " + url);
 		content = getIntent().getStringExtra("content");
+		Log.d("debug", "当前文章的URL--> " + url);
 		if (url == null) {
 			finish();
 			toast("you hava to pass a url for this");
 		}
+		if(content == null){
+			content = "";
+		}
+		Log.d("debug", "当前文章的content--> " + content);
 	}
 
 	@Override
