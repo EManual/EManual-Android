@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.emanual.app"
+    package="io.github.emanual.java.app"
     android:versionCode="1"
     android:versionName="1.0.0" >
 
@@ -12,14 +12,14 @@
     <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="io.github.emanual.app"></instrumentation>
 
     <application
-        android:name="io.github.emanual.app.App"
+        android:name="io.github.emanual.java.app.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <uses-library android:name="android.test.runner"></uses-library>
         <activity
-            android:name=".AppStart"
+            android:name="io.github.emanual.java.app.AppStart"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
@@ -30,29 +30,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Main"
+            android:name="io.github.emanual.java.app.ui.Main"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".ui.Detail"
+            android:name="io.github.emanual.java.app.ui.Detail"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".ui.FavouriteList"
+            android:name="io.github.emanual.java.app.ui.FavouriteList"
             android:label="@string/action_favourite"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".ui.Setting"
+            android:name="io.github.emanual.java.app.ui.Setting"
             android:label="@string/action_setting"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".ui.TopicList"
+            android:name="io.github.emanual.java.app.ui.TopicList"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name=".ui.ArticleList"
+            android:name="io.github.emanual.java.app.ui.ArticleList"
             android:launchMode="singleTask" >
         </activity>
     </application>
