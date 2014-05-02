@@ -59,16 +59,18 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener,
 		data = new ArrayList<FavArticle>();
 		selected = new ArrayList<Boolean>();
 		adapter = new FavouriteListAdapter(getContext(), data, selected);
-		//models会为空，因为没有建表就打开收藏
-		for (DbModel m : models) {
-			FavArticle fa = new FavArticle();
-			fa.setTitle(ParseUtils.getArticleNameByUrl(m.getString("url")));
-			fa.setUrl(m.getString("url"));
-			fa.setSaveTime(m.getLong("saveTime"));
-			fa.setId(m.getInt("id"));
-			data.add(fa);
+		if(models!=null){
+			//models会为空，因为没有建表就打开收藏
+			for (DbModel m : models) {
+				FavArticle fa = new FavArticle();
+				fa.setTitle(ParseUtils.getArticleNameByUrl(m.getString("url")));
+				fa.setUrl(m.getString("url"));
+				fa.setSaveTime(m.getLong("saveTime"));
+				fa.setId(m.getInt("id"));
+				data.add(fa);
+			}
+			restSelected();
 		}
-		restSelected();
 	}
 
 	@Override
