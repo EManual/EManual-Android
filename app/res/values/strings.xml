@@ -8,6 +8,7 @@
     <string name="action_favourite">收      藏</string>
     <string name="action_setting">设      置</string>
     <string name="cleanup">清空</string>
+    <string name="cleanup_selected">删除所选</string>
 
     <string-array name="title_main">
         <item>新鲜事</item>

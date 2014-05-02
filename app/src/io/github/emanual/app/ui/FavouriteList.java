@@ -1,6 +1,7 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.adapter.FavouriteListAdapter;
 import io.github.emanual.app.entity.FavArticle;
 import io.github.emanual.app.utils.MyDBManager;
 import io.github.emanual.app.utils.ParseUtils;
@@ -12,25 +13,32 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView.MultiChoiceModeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.db.table.DbModel;
 import com.lidroid.xutils.exception.DbException;
 
-public class FavouriteList extends BaseActivity implements OnItemClickListener {
+public class FavouriteList extends BaseActivity implements OnItemClickListener,
+		OnItemSelectedListener {
 	DbUtils db;
 	ActionBar mActionBar;
 	ListView lv;
-	String[] titles = new String[] {};
-	String[] urls = new String[] {};
+	List<FavArticle> data;
+	List<Boolean> selected;
+	FavouriteListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,37 +52,36 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener {
 	protected void initData() {
 		db = MyDBManager.getDBUtils(getContext());
 		List<DbModel> models = null;
-		Log.i("debug", "initData----");
 		try {
 			// title 可以由url构造
 			models = db.findDbModelAll(Selector.from(FavArticle.class)
-					.select("url").orderBy("saveTime", true));
+					.select("id", "url", "saveTime").orderBy("saveTime", true));
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
-
-		List<String> res_url = new ArrayList<String>();
-		List<String> res_title = new ArrayList<String>();
-		if (models == null)
-			Log.d("debug", models + "is null!!!");
+		data = new ArrayList<FavArticle>();
+		selected = new ArrayList<Boolean>();
+		adapter = new FavouriteListAdapter(getContext(), data, selected);
 		for (DbModel m : models) {
-			res_title.add(ParseUtils.getArticleNameByUrl(m.getString("url")));
-			res_url.add(m.getString("url"));
+			FavArticle fa = new FavArticle();
+			fa.setTitle(ParseUtils.getArticleNameByUrl(m.getString("url")));
+			fa.setUrl(m.getString("url"));
+			fa.setSaveTime(m.getLong("saveTime"));
+			fa.setId(m.getInt("id"));
+			data.add(fa);
 		}
-		titles = (String[]) res_title.toArray(new String[res_title.size()]);
-		urls = (String[]) res_url.toArray(new String[res_url.size()]);
-		// Log.d("debug", "result-->"+res.toString());
-		Log.d("debug", "init data finished");
+		restSelected();
 	}
 
 	@Override
 	protected void initLayout() {
 		mActionBar = getActionBar();
 		lv = (ListView) _getView(R.id.listview);
-		lv.setAdapter(new ArrayAdapter<String>(getContext(),
-				android.R.layout.simple_list_item_1, titles));
+		lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		lv.setOnItemClickListener(this);
-
+		lv.setMultiChoiceModeListener(new MyMultiChoiceMode());
+		lv.setAdapter(adapter);
+		lv.setOnItemSelectedListener(this);
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -85,6 +92,9 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener {
 			DbUtils db = MyDBManager.getDBUtils(getContext());
 			try {
 				db.deleteAll(FavArticle.class);
+//				data.clear();
+//				restSelected();
+//				adapter.notifyDataSetChanged();
 				toast("已清空");
 				finish();
 			} catch (DbException e) {
@@ -110,18 +120,110 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		toast(urls[position]);
 		try {
+			// get content
 			DbModel model = db.findDbModelFirst(Selector.from(FavArticle.class)
-					.select("content").where("url", "=", urls[position]));
+					.select("content")
+					.where("url", "=", data.get(position).getUrl()));
 			Intent intent = new Intent(getContext(), Detail.class);
-			intent.putExtra("url", urls[position]);
+			intent.putExtra("url", data.get(position).getUrl());
 			intent.putExtra("content", model.getString("content"));
 			startActivity(intent);
 		} catch (DbException e) {
 			e.printStackTrace();
 			toast("数据库异常");
 		}
+	}
+
+	private void restSelected() {
+
+		selected.clear();
+		for (int i = 0; i < data.size(); i++) {
+			selected.add(false);
+		}
+		adapter.notifyDataSetInvalidated();
+	}
+
+	class MyMultiChoiceMode implements MultiChoiceModeListener {
+		@Override
+		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.favouritelist_selected, menu);
+			mode.setTitle("选择删除项");
+			setSubtitle(mode);
+			restSelected();
+			return true;
+		}
+
+		@Override
+		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+			return true;
+		}
+
+		@Override
+		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+			if (item.getItemId() == R.id.action_cleanup_selected) {
+				List<FavArticle> tmp = new ArrayList<FavArticle>();
+				for (int i = 0; i < data.size(); i++) {
+					// should be clean up
+					if (selected.get(i)) {
+						try {
+							db.delete(data.get(i));
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+					} else {
+						tmp.add(data.get(i));
+					}
+				}
+				data.clear();
+				data.addAll(tmp);
+				adapter.notifyDataSetChanged();
+				toast("已删除所选项");
+				mode.finish();
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public void onDestroyActionMode(ActionMode mode) {
+			restSelected();
+		}
+
+		@Override
+		public void onItemCheckedStateChanged(ActionMode mode, int position,
+				long id, boolean checked) {
+			setSubtitle(mode);
+			selected.set(position, checked);
+			adapter.notifyDataSetInvalidated();
+		}
+
+		private void setSubtitle(ActionMode mode) {
+			final int checkedCount = lv.getCheckedItemCount();
+			switch (checkedCount) {
+			case 0:
+				mode.setSubtitle(null);
+				break;
+			case 1:
+				mode.setSubtitle("已选择 " + 1 + " 个");
+				break;
+			default:
+				mode.setSubtitle("已选择 " + checkedCount + " 个");
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		toast("you select :" + position);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		toast("onNothingSelected");
 	}
 
 }
