@@ -56,11 +56,11 @@ public class Main extends BaseActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_share:
-			toast("share");
-			return true;
-		case R.id.action_settings:
-			startActivity(new Intent(getContext(), Setting.class));
+//		case R.id.action_share:
+//			toast("share");
+//			return true;
+		case R.id.action_about:
+			startActivity(new Intent(getContext(), About.class));
 			return true;
 		case R.id.action_favourite:
 			startActivity(new Intent(getContext(), FavouriteList.class));

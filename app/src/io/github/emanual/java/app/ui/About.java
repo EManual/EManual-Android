@@ -1,16 +1,19 @@
 package io.github.emanual.java.app.ui;
 
 import io.github.emanual.java.app.R;
+import io.github.emanual.java.app.utils.AndroidUtils;
 import android.app.ActionBar;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-public class Setting extends BaseActivity {
+public class About extends BaseActivity {
 	ActionBar mActionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.acty_setting);
+		setContentView(R.layout.acty_about);
 		initData();
 		initLayout();
 	}
@@ -24,6 +27,11 @@ public class Setting extends BaseActivity {
 	protected void initLayout() {
 		mActionBar = getActionBar();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		try {
+			((TextView)_getView(R.id.tv_version)).setText("Java学习助手  v"+AndroidUtils.getAppVersionName(getContext()));
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

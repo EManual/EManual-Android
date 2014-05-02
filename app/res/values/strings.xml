@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_share">分      享</string>
     <string name="action_favourite">收      藏</string>
-    <string name="action_setting">设      置</string>
+    <string name="action_about">关      于</string>
     <string name="cleanup">清空</string>
     <string name="cleanup_selected">删除所选</string>
 
@@ -14,5 +14,4 @@
         <item>新鲜事</item>
         <item>学习库</item>
     </string-array>
-
 </resources>

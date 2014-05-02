@@ -14,16 +14,10 @@
                 android:title="@string/action_favourite">
             </item>
             <item
-                android:id="@+id/action_share"
-                android:icon="@drawable/ic_action_social_share_dark"
-                android:showAsAction="always|withText"
-                android:title="@string/action_share">
-            </item>
-            <item
-                android:id="@+id/action_settings"
+                android:id="@+id/action_about"
                 android:icon="@drawable/ic_action_settings_dark"
                 android:showAsAction="always|withText"
-                android:title="@string/action_setting">
+                android:title="@string/action_about">
             </item>
         </menu>
     </item>

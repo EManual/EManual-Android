@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        style="@style/TextView.item_main"
+        android:layout_marginTop="10dp"
+        android:text="Java学习助手  v"
+        android:textColor="@color/grey_lv_fifth" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+    <TextView
+        style="@style/TextView.item_main"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:text="说明:"
+        android:textSize="14sp" />
+
+    <TextView
+        style="@style/TextView.item_main"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:gravity="left"
+        android:text="1.本软件资料来源于网络(我们全力保留出处),并经过整理得出，如有侵权，请联系我们!"
+        android:textSize="14sp" />
+
+    <TextView
+        style="@style/TextView.item_main"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:gravity="left"
+        android:text="2.本软件基于Apache Licence 2.0开源协议"
+        android:textSize="14sp" />
+
+    <TextView
+        style="@style/TextView.item_main"
+        android:layout_gravity="left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:text="联系我们"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/TextView.item_main"
+            android:text="官方网站: "
+            android:textSize="14sp" />
+
+        <TextView
+            style="@style/TextView.item_main"
+            android:text="http://emanual.github.io"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/TextView.item_main"
+            android:text="Email: "
+            android:textSize="14sp" />
+
+        <TextView
+            style="@style/TextView.item_main"
+            android:text="tonjayin@gmail.com"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

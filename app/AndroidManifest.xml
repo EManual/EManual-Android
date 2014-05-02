@@ -43,8 +43,8 @@
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.Setting"
-            android:label="@string/action_setting"
+            android:name="io.github.emanual.java.app.ui.About"
+            android:label="@string/action_about"
             android:launchMode="singleTask" >
         </activity>
         <activity
