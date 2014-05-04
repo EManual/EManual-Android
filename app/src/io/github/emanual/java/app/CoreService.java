@@ -20,9 +20,11 @@ public class CoreService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		String action = intent.getAction();
-		Log.d("debug", "CoreService-->action-->"+action);
-		if (action.equals(Action_CheckVersion)) {
-			checkVersion();
+		if(action !=  null){
+			Log.d("debug", "CoreService-->action-->"+action);
+			if (action.equals(Action_CheckVersion)) {
+				checkVersion();
+			}
 		}
 		return Service.START_STICKY;
 	}
