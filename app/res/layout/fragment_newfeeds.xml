@@ -11,8 +11,7 @@
 
         <ListView
             android:id="@+id/lv_newfeeds"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            style="@style/ListView.default">
         </ListView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
