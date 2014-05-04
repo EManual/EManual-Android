@@ -76,24 +76,7 @@
     $(document).ready(function () {
         if (Android.getContent() != null && Android.getContent() !== "") {
             $("#content").html(marked(Android.getContent()));
-        } else if (Android.getUrl() != null) {
-            $.get(Android.getUrl(),function (result) {
-                $("#content").html(marked(result));
-                console.log(result);
-                Android.setContent(result);
-            }).fail(function () {
-                $.get('./404.md', function (result) {
-                    $("#content").html(marked(result));
-                    console.log(result);
-                });
-            });
-        } else if (Android.getContent() != null) {
-            $("#content").html(marked(WebAppInterface.getContent()));
-            console.log(Android.getContent());
-        } else {
-            $("#content").html(marked('No Content'));
-            console.log('No Content');
-        }
+        } 
     });
 </script>
 </body>

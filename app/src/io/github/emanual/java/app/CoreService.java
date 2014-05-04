@@ -19,14 +19,17 @@ public class CoreService extends Service {
 	 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		String action = intent.getAction();
+		String action  = null;
+		if(intent != null){
+			action = intent.getAction();
+		}
 		if(action !=  null){
 			Log.d("debug", "CoreService-->action-->"+action);
 			if (action.equals(Action_CheckVersion)) {
 				checkVersion();
 			}
 		}
-		return Service.START_STICKY;
+		return Service.START_NOT_STICKY;
 	}
 
 	private void checkVersion() {

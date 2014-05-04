@@ -1,5 +1,7 @@
 package io.github.emanual.java.app.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -11,6 +13,22 @@ public class _ {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public static String getContent(InputStream inputStream){
+		String content = null;
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		try {
+			while((len=inputStream.read(buffer, 0, buffer.length))!=-1){
+				content += new String(buffer, 0, len, "utf-8");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return content;
+		
 	}
     
 	public static String urlJoin(String baseUrl, String... strs) {

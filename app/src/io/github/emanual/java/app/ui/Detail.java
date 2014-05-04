@@ -6,6 +6,11 @@ import io.github.emanual.java.app.db.ArticleDAO;
 import io.github.emanual.java.app.entity.Article;
 import io.github.emanual.java.app.utils.ParseUtils;
 import io.github.emanual.java.app.utils._;
+
+import java.io.IOException;
+
+import org.apache.http.Header;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
@@ -27,6 +32,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
@@ -38,6 +46,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	Article current = null;
 	Menu mMenu;
 	ArticleDAO dao;
+	boolean isLoading = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +69,6 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 			content = "";
 		}
 		Log.d("debug", "当前文章的content--> " + content);
-//		db = MyDBManager.getDBUtils(getContext());
-//		try {
-//			current = db.findFirst(Selector.from(Article.class).where("url",
-//					"=", url));
-//		} catch (DbException e) {
-//			e.printStackTrace();
-//		}
 		dao = new ArticleDAO(getContext());
 		current = dao.queryFirst(url);
 
@@ -90,13 +92,48 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
 
-		swipeRefreshLayout.setRefreshing(true);
 		onRefresh();
 	}
 
 	@Override
 	public void onRefresh() {
-		load();
+		if (isLoading)
+			return;
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get(url, new AsyncHttpResponseHandler() {
+			@Override
+			public void onStart() {
+				swipeRefreshLayout.setRefreshing(false);
+				unDisplayMenu(mMenu);
+				isLoading = true;
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, byte[] data) {
+				content = new String(data);
+				load();
+				debug("onSuccess");
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers,
+					byte[] data, Throwable arg3) {
+				try {
+					content = _.getContent(getAssets().open("404.md"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				load();
+				debug("onFailure");
+			}
+
+			@Override
+			public void onFinish() {
+				swipeRefreshLayout.setRefreshing(false);
+				isLoading = false;
+				displayMenu(mMenu);
+			}
+		});
 
 	}
 
@@ -111,17 +148,16 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		switch (item.getItemId()) {
 		case R.id.action_favourite:
 			if (isFavourite) {
-					current.setIsFavourite(0);
-					dao.update(current);
-					isFavourite = false;
-			 
+				current.setIsFavourite(0);
+				dao.update(current);
+				isFavourite = false;
 				item.setIcon(R.drawable.ic_action_rating_not_important);
 				toast("已取消收藏");
 			} else {
-					current.setIsFavourite(1);
-					dao.update(current);
-					isFavourite = true;
-				 
+				current.setIsFavourite(1);
+				dao.update(current);
+				isFavourite = true;
+
 				item.setIcon(R.drawable.ic_action_rating_important);
 				toast("已收藏");
 			}
@@ -150,12 +186,11 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		mMenu = menu;
 		return displayMenu(menu);
-
-		// return true;
 	}
 
 	private boolean displayMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.detail, menu);
+		if (menu.size() == 0)
+			getMenuInflater().inflate(R.menu.detail, menu);
 		if (current == null || current.getIsFavourite() == 0) {
 			isFavourite = false;
 			menu.getItem(1).setIcon(R.drawable.ic_action_rating_not_important);
@@ -197,7 +232,6 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		@Override
 		public void onLoadResource(WebView view, String url) {
-			// TODO Auto-generated method stub
 			Log.d("debug", "onLoadResource--> " + url);
 		}
 
@@ -258,21 +292,19 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		public void setContent(String content) {
 			Detail.this.content = content;
-		 
-				if (current == null) {
-					current = new Article();
-					current.setContent(content);
-					current.setIsFavourite(0);
-					current.setTitle(ParseUtils.getArticleNameByUrl(url));
-					current.setUrl(url);
-					dao.insert(current);
-					Log.d("deubg", "db.save(content);成功--->" + url);
-				} else {
-					current.setContent(content);
-					current.setSaveTime(System.currentTimeMillis());
-					dao.update(current);
-					Log.d("deubg", "db.update();成功--->" + url);
-				}
+
+			if (current == null) {
+				current = new Article();
+				current.setContent(content);
+				current.setIsFavourite(0);
+				current.setTitle(ParseUtils.getArticleNameByUrl(url));
+				current.setUrl(url);
+				dao.insert(current);
+			} else {
+				current.setContent(content);
+				current.setSaveTime(System.currentTimeMillis());
+				dao.update(current);
+			}
 		}
 	}
 }
