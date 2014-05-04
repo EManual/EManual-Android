@@ -13,9 +13,10 @@
     <application
         android:name="io.github.emanual.java.app.App"
         android:allowBackup="true"
+        android:debuggable="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" android:debuggable="false">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="io.github.emanual.java.app.AppStart"
             android:label="@string/app_name"
@@ -53,6 +54,9 @@
             android:name="io.github.emanual.java.app.ui.ArticleList"
             android:launchMode="singleTask" >
         </activity>
+
+        <service android:name="io.github.emanual.java.app.CoreService" >
+        </service>
     </application>
 
 </manifest>

@@ -24,4 +24,8 @@ public class JavaAPI {
 		return "path=java/"+kind+"/"+topic+"/"+article_name;
 	}
 	
+	public static void getVersionInfo(AsyncHttpResponseHandler responseHandler){
+		RestClient.get("/released/java/update.json", null, responseHandler);
+	}
+	
 }
