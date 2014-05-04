@@ -2,41 +2,35 @@ package io.github.emanual.java.app.entity;
 
 import java.io.Serializable;
 
-import com.lidroid.xutils.db.annotation.Column;
-import com.lidroid.xutils.db.annotation.Table;
-import com.lidroid.xutils.db.annotation.Unique;
 
 @SuppressWarnings("serial")
-@Table(name="FavArticle")
-public class FavArticle extends BaseEntity implements Serializable  {
+public class Article implements Serializable  {
 
 	/** 标题 */
-	@Column
 	private String title;
 	/** 文章url */
-	@Column
-	@Unique
 	private String url;
 	/** 收藏时间 */
-	@Column
 	private long saveTime;
 	/**内容 */
-	@Column
 	private String content;
+	/** 非0记为已收藏*/
+	private int isFavourite;
 	
-	public FavArticle(){
+	public Article(){
 		this("", "", "");
 	}
 
-	public FavArticle(String title, String url) {
+	public Article(String title, String url) {
 		this(title, url, "");
 	}
 	
-	public FavArticle(String title, String url,String content) {
+	public Article(String title, String url,String content) {
 		this.title = title;
 		this.url = url;
 		this.content = content;
 		this.saveTime = System.currentTimeMillis();
+		this.isFavourite = 0;
 	}
 
 	public String getTitle() {
@@ -69,6 +63,21 @@ public class FavArticle extends BaseEntity implements Serializable  {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getIsFavourite() {
+		return isFavourite;
+	}
+
+	public void setIsFavourite(int isFavourite) {
+		this.isFavourite = isFavourite;
+	}
+
+	@Override
+	public String toString() {
+		return "Article [title=" + title + ", url=" + url + ", saveTime="
+				+ saveTime + ", content=" + content + ", isFavourite="
+				+ isFavourite + "]";
 	}
  
 }

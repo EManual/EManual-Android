@@ -2,8 +2,8 @@ package io.github.emanual.java.app.ui;
 
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.api.RestClient;
-import io.github.emanual.java.app.entity.FavArticle;
-import io.github.emanual.java.app.utils.MyDBManager;
+import io.github.emanual.java.app.db.ArticleDAO;
+import io.github.emanual.java.app.entity.Article;
 import io.github.emanual.java.app.utils.ParseUtils;
 import io.github.emanual.java.app.utils._;
 import android.annotation.SuppressLint;
@@ -27,11 +27,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.db.sqlite.WhereBuilder;
-import com.lidroid.xutils.exception.DbException;
-
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
@@ -40,6 +35,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	String url = null, content = null;
 	String interfaceName = "Android";
 	boolean isFavourite = false; // 是否已收藏
+	Article current = null;
+	Menu mMenu;
+	ArticleDAO dao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +56,20 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 			finish();
 			toast("you hava to pass a url for this");
 		}
-		if(content == null){
+		if (content == null) {
 			content = "";
 		}
 		Log.d("debug", "当前文章的content--> " + content);
+//		db = MyDBManager.getDBUtils(getContext());
+//		try {
+//			current = db.findFirst(Selector.from(Article.class).where("url",
+//					"=", url));
+//		} catch (DbException e) {
+//			e.printStackTrace();
+//		}
+		dao = new ArticleDAO(getContext());
+		current = dao.queryFirst(url);
+
 	}
 
 	@Override
@@ -89,6 +97,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	@Override
 	public void onRefresh() {
 		load();
+
 	}
 
 	private void load() {
@@ -101,27 +110,18 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_favourite:
-			DbUtils db = MyDBManager.getDBUtils(getContext());
-			FavArticle fa = new FavArticle();
-			fa.setTitle(ParseUtils.getArticleNameByUrl(url));
-			fa.setUrl(url);
-			fa.setContent(content);
 			if (isFavourite) {
-				isFavourite = false;
-				try {
-					db.delete(FavArticle.class,WhereBuilder.b("url", "=", url));
-				} catch (DbException e) {
-					e.printStackTrace();
-				}
+					current.setIsFavourite(0);
+					dao.update(current);
+					isFavourite = false;
+			 
 				item.setIcon(R.drawable.ic_action_rating_not_important);
 				toast("已取消收藏");
 			} else {
-				isFavourite = true;
-				try {
-					db.save(fa);
-				} catch (DbException e) {
-					e.printStackTrace();
-				}
+					current.setIsFavourite(1);
+					dao.update(current);
+					isFavourite = true;
+				 
 				item.setIcon(R.drawable.ic_action_rating_important);
 				toast("已收藏");
 			}
@@ -148,16 +148,15 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		mMenu = menu;
+		return displayMenu(menu);
+
+		// return true;
+	}
+
+	private boolean displayMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.detail, menu);
-		DbUtils db = MyDBManager.getDBUtils(getContext());
-		FavArticle fa = null;
-		try {
-			fa = db.findFirst(Selector.from(FavArticle.class).where("url", "=",
-					url));
-		} catch (DbException e) {
-			e.printStackTrace();
-		}
-		if (fa == null) {
+		if (current == null || current.getIsFavourite() == 0) {
 			isFavourite = false;
 			menu.getItem(1).setIcon(R.drawable.ic_action_rating_not_important);
 		} else {
@@ -167,13 +166,20 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		return true;
 	}
 
+	private boolean unDisplayMenu(Menu menu) {
+		if(menu!=null)menu.clear();
+		return true;
+	}
+
 	class MyWebChromeClient extends WebChromeClient {
 		@Override
 		public void onProgressChanged(WebView view, int newProgress) {
 			if (newProgress == 100) {
 				swipeRefreshLayout.setRefreshing(false);
+				displayMenu(mMenu);
 			} else {
 				swipeRefreshLayout.setRefreshing(true);
+				unDisplayMenu(mMenu);
 			}
 		}
 
@@ -192,27 +198,23 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		@Override
 		public void onLoadResource(WebView view, String url) {
 			// TODO Auto-generated method stub
-			super.onLoadResource(view, url);
 			Log.d("debug", "onLoadResource--> " + url);
 		}
 
 		@Override
 		public void onPageFinished(WebView view, String url) {
-			// TODO Auto-generated method stub
 			super.onPageFinished(view, url);
 			Log.d("debug", "onPageFinished--> " + url);
 		}
 
 		@Override
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
-			// TODO Auto-generated method stub
 			super.onPageStarted(view, url, favicon);
 			Log.d("debug", "onPageStarted--> " + url);
 		}
 
 		@Override
 		public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
-			// TODO Auto-generated method stub
 			return super.shouldOverrideKeyEvent(view, event);
 		}
 
@@ -256,8 +258,21 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		public void setContent(String content) {
 			Detail.this.content = content;
+		 
+				if (current == null) {
+					current = new Article();
+					current.setContent(content);
+					current.setIsFavourite(0);
+					current.setTitle(ParseUtils.getArticleNameByUrl(url));
+					current.setUrl(url);
+					dao.insert(current);
+					Log.d("deubg", "db.save(content);成功--->" + url);
+				} else {
+					current.setContent(content);
+					current.setSaveTime(System.currentTimeMillis());
+					dao.update(current);
+					Log.d("deubg", "db.update();成功--->" + url);
+				}
 		}
-
 	}
-
 }

@@ -1,7 +1,7 @@
 package io.github.emanual.java.app.adapter;
 
 import io.github.emanual.java.app.R;
-import io.github.emanual.java.app.entity.FavArticle;
+import io.github.emanual.java.app.entity.Article;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 public class FavouriteListAdapter extends BaseAdapter {
 
-	List<FavArticle> data;
+	List<Article> data;
 	Context context;
 	List<Boolean> selected;
 
-	public FavouriteListAdapter(Context context, List<FavArticle> data,List<Boolean> selected) {
+	public FavouriteListAdapter(Context context, List<Article> data,List<Boolean> selected) {
 		this.data = data;
 		this.context = context;
 		this.selected  =selected;
