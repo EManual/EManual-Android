@@ -11,6 +11,8 @@
     <!-- Bootstrap -->
     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./styles/default.css">
+    <script src="./js/highlight.pack.js"></script>
     <style>
         body {
             background: #f5f5f5 url('./img/brushed.png') repeat;
@@ -75,6 +77,7 @@
 <script>
     $(document).ready(function () {
         if (Android.getContent() != null && Android.getContent() !== "") {
+        	hljs.initHighlightingOnLoad();
             $("#content").html(marked(Android.getContent()));
         } 
     });
