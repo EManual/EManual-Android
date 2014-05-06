@@ -202,7 +202,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	}
 
 	private boolean unDisplayMenu(Menu menu) {
-		if(menu!=null)menu.clear();
+		if (menu != null)
+			menu.clear();
 		return true;
 	}
 
@@ -282,14 +283,17 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 			Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
 		}
 
+		@JavascriptInterface
 		public String getUrl() {
 			return url;
 		}
 
+		@JavascriptInterface
 		public String getContent() {
 			return content;
 		}
 
+		@JavascriptInterface
 		public void setContent(String content) {
 			Detail.this.content = content;
 
