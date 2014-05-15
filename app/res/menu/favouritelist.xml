@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_cleanup"
         android:menuCategory="container"
-        android:showAsAction="always|withText"
+        android:showAsAction="always"
         android:title="@string/cleanup"
         android:icon="@drawable/ic_action_cleanup">
     </item>
