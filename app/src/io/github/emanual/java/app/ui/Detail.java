@@ -92,6 +92,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
 
+		isLoading = false;
 		onRefresh();
 	}
 
@@ -129,9 +130,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 			@Override
 			public void onFinish() {
+				displayMenu(mMenu);
 				swipeRefreshLayout.setRefreshing(false);
 				isLoading = false;
-				displayMenu(mMenu);
 			}
 		});
 
@@ -147,6 +148,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_favourite:
+			//the content not download yet
+			if(current == null) 
+				return true;
 			if (isFavourite) {
 				current.setIsFavourite(0);
 				dao.update(current);
@@ -157,7 +161,6 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 				current.setIsFavourite(1);
 				dao.update(current);
 				isFavourite = true;
-
 				item.setIcon(R.drawable.ic_action_rating_important);
 				toast("已收藏");
 			}
@@ -185,6 +188,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		mMenu = menu;
+		Log.i("debug", "onCreateOptionsMenu");
 		return displayMenu(menu);
 	}
 

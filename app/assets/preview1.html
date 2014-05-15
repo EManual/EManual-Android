@@ -79,6 +79,7 @@
         if (Android.getContent() != null && Android.getContent() !== "") {
         	hljs.initHighlightingOnLoad();
             $("#content").html(marked(Android.getContent()));
+            Android.setContent(Android.getContent());
         } 
     });
 </script>
