@@ -5,6 +5,24 @@ EManual-Android
 EManual makes you learn programming language more  easier.  
 Currently, it focuse on **Java and Android**
 
+Configuration
+---
+### for Eclipse 
+
+1. Java Compiler → Annotation Processing and check `"Enable project specific settings".`
+
+2. Expand the Annotation Processing section and select Factory Path. Check `"Enable project specific settings"` and then click `"Add JARs…"`. Navigate to the project's `libs/` folder and select the Butter Knife jar.
+
+3. Click `"Ok"` to save the new settings. Eclipse will ask you to rebuild your project to which you should click `"Yes"`
+Make sure that the `.apt_generated/` folder is in your project root. It should contain files like `YOURACTIVITY$$ViewInjector.java`. If these files are not present trigger a clean build by selected `Project → Clean`. This folder and files should **not** be checked into revision control
+
+4.still error faild? restart the Eclipse 
+
+### for IntelliJ IDEA 
+
+familiar with Eclipse.Click [here](http://jakewharton.github.io/butterknife/ide-idea.html)
+
+
 License
 =======
 ``` 
