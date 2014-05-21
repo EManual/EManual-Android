@@ -27,13 +27,15 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener,
 		OnScrollListener {
-	ListView lv;
-	SwipeRefreshLayout swipeRefreshLayout;
+	@InjectView(R.id.lv_newfeeds)ListView lv;
+	@InjectView(R.id.swipeRefreshLayout)SwipeRefreshLayout swipeRefreshLayout;
 	boolean hasMore = true, isloading = false;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
@@ -45,9 +47,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
-		lv = (ListView) v.findViewById(R.id.lv_newfeeds);
-		swipeRefreshLayout = (SwipeRefreshLayout) v
-				.findViewById(R.id.swipeRefreshLayout);
+		ButterKnife.inject(this, v);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,

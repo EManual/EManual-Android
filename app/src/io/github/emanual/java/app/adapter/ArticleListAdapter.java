@@ -5,6 +5,8 @@ import io.github.emanual.java.app.utils.ParseUtils;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +18,8 @@ import android.widget.TextView;
 public class ArticleListAdapter extends BaseAdapter {
 	List<String> data;
 	Context context;
-	public ArticleListAdapter(Context context,List<String> data){
+
+	public ArticleListAdapter(Context context, List<String> data) {
 		this.data = data;
 		this.context = context;
 	}
@@ -38,23 +41,28 @@ public class ArticleListAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder h =  null;
-		if(convertView == null){
-			h = new ViewHolder();
-			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_articlelist, null);
-			h.title = (TextView)convertView.findViewById(R.id.tv_title);
+		ViewHolder h = null;
+		if (convertView == null) {
+			convertView = LayoutInflater.from(context).inflate(
+					R.layout.adapter_articlelist, null);
+			h = new ViewHolder(convertView);
 			convertView.setTag(h);
-		}else{
-			h =(ViewHolder)convertView.getTag();
-			
+		} else {
+			h = (ViewHolder) convertView.getTag();
+
 		}
-		Log.i("debug",data.get(position) );
+		Log.i("debug", data.get(position));
 		h.title.setText(ParseUtils.getArticleName(data.get(position)));
 		return convertView;
 	}
-	
-	class ViewHolder{
+
+	static class ViewHolder {
+		@InjectView(R.id.tv_title)
 		TextView title;
+
+		public ViewHolder(View view) {
+			ButterKnife.inject(this, view);
+		}
 	}
 
 }

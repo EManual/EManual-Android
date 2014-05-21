@@ -28,3 +28,6 @@ proguard/
 .project
 .settings/
 proguard-project.txt
+/.apt_generated
+
+.factorypath

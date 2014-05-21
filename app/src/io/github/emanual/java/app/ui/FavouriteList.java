@@ -8,6 +8,8 @@ import io.github.emanual.java.app.entity.Article;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ import android.widget.ListView;
 public class FavouriteList extends BaseActivity implements OnItemClickListener,
 		OnItemSelectedListener {
 	ActionBar mActionBar;
-	ListView lv;
+	@InjectView(R.id.listview) ListView lv;
 	List<Article> data;
 	List<Boolean> selected;
 	FavouriteListAdapter adapter;
@@ -35,6 +37,7 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_favouritelist);
+		ButterKnife.inject(this);
 		initData();
 		initLayout();
 	}
@@ -61,7 +64,6 @@ public class FavouriteList extends BaseActivity implements OnItemClickListener,
 	@Override
 	protected void initLayout() {
 		mActionBar = getActionBar();
-		lv = (ListView) _getView(R.id.listview);
 		lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		lv.setOnItemClickListener(this);
 		lv.setMultiChoiceModeListener(new MyMultiChoiceMode());

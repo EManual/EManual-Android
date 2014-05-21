@@ -18,15 +18,19 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 import com.astuetz.PagerSlidingTabStrip;
 
 public class Main extends BaseActivity {
 	ActionBar mActionBar;
-	PagerSlidingTabStrip tabs;
-	ViewPager viewPager;
+    @InjectView(R.id.tabs) PagerSlidingTabStrip tabs;
+    @InjectView(R.id.viewpager) ViewPager viewPager;
+	
 	List<Fragment> fragments = new ArrayList<Fragment>();
 	String[] titles;
 	NewVersionDialog dialog;
@@ -35,6 +39,7 @@ public class Main extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_main);
+		ButterKnife.inject(this);
 		initData();
 		initLayout();
 
@@ -62,14 +67,11 @@ public class Main extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
-		viewPager = (ViewPager) _getView(R.id.viewpager);
-		tabs = (PagerSlidingTabStrip) _getView(R.id.tabs);
-
 		mActionBar = getActionBar();
 
-		viewPager = (ViewPager) _getView(R.id.viewpager);
 		fragments.add(new NewFeeds());
 		fragments.add(new LearnClub());
+		if(viewPager == null)Log.d("debug", "viewPager is null");
 		viewPager.setAdapter(new MainFragmentPagerAdapter(
 				getSupportFragmentManager(), fragments, titles));
 		tabs.setViewPager(viewPager);

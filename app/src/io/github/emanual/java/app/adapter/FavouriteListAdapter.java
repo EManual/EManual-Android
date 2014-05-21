@@ -5,6 +5,8 @@ import io.github.emanual.java.app.entity.Article;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,12 +47,9 @@ public class FavouriteListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder h = null;
 		if (convertView == null) {
-			h = new ViewHolder();
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.adapter_favouritelist, null);
-			h.tv_title = (TextView) convertView.findViewById(R.id.tv_title);
-			h.iv_checked = (ImageView) convertView
-					.findViewById(R.id.iv_checked);
+			h = new ViewHolder(convertView);
 			convertView.setTag(h);
 
 		} else {
@@ -61,9 +60,13 @@ public class FavouriteListAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	class ViewHolder {
-		TextView tv_title;
-		ImageView iv_checked;
+	static class ViewHolder {
+		@InjectView(R.id.tv_title) TextView tv_title;
+		@InjectView(R.id.iv_checked) ImageView iv_checked;
+		
+		public ViewHolder(View view){
+			ButterKnife.inject(this, view);
+		}
 
 	}
 

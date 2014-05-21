@@ -26,14 +26,16 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ArticleList extends BaseActivity implements OnRefreshListener,
 		OnItemClickListener, OnScrollListener {
 	ActionBar mActionBar;
-	SwipeRefreshLayout swipeRefreshLayout;
-	ListView lv;
+	@InjectView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+	@InjectView(R.id.listview) ListView lv;
 	String kind = null, topic = null;
 	List<String> data;
 	ArticleListAdapter adapter;
@@ -45,6 +47,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_articlelist);
+		ButterKnife.inject(this);
 		initData();
 		initLayout();
 	}
@@ -65,8 +68,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 		mActionBar = getActionBar();
 		mActionBar.setTitle(topic);
 		mActionBar.setDisplayHomeAsUpEnabled(true);
-		swipeRefreshLayout = (SwipeRefreshLayout) _getView(R.id.swipeRefreshLayout);
-		lv = (ListView) _getView(R.id.listview);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,

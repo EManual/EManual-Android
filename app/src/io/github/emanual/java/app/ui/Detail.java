@@ -31,6 +31,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -38,8 +40,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
-	SwipeRefreshLayout swipeRefreshLayout;
-	WebView webview;
+	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
+	@InjectView(R.id.webview) WebView webview;
 	String url = null, content = null;
 	String interfaceName = "Android";
 	boolean isFavourite = false; // 是否已收藏
@@ -52,6 +54,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_detail);
+		ButterKnife.inject(this);
 		initData();
 		initLayout();
 	}
@@ -76,8 +79,6 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 	@Override
 	protected void initLayout() {
-		swipeRefreshLayout = (SwipeRefreshLayout) _getView(R.id.swipeRefresh);
-		webview = (WebView) _getView(R.id.webview);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,

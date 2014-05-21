@@ -4,6 +4,8 @@ import io.github.emanual.java.app.R;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,9 +40,8 @@ public class TopicListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder h =  null;
 		if(convertView == null){
-			h = new ViewHolder();
 			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_topiclist, null);
-			h.title = (TextView)convertView.findViewById(R.id.tv_title);
+			h = new ViewHolder(convertView);
 			convertView.setTag(h);
 		}else{
 			h =(ViewHolder)convertView.getTag();
@@ -50,7 +51,12 @@ public class TopicListAdapter extends BaseAdapter {
 	}
 	
 	class ViewHolder{
+		@InjectView(R.id.tv_title)
 		TextView title;
+		
+		public ViewHolder(View view) {
+			ButterKnife.inject(this, view);
+		}
 	}
 
 }
