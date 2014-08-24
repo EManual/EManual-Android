@@ -13,8 +13,8 @@
     <application
         android:name="io.github.emanual.java.app.App"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/ic_app_launcher"
+        android:label="@string/application_name"
         android:theme="@style/AppTheme" >
         <activity
             android:name="io.github.emanual.java.app.AppStart"
