@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".MainActivity">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is Ads-SDK sample."/>
+
+    <Button
+            android:id="@+id/show_apps_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click me to show Ads Apps wall."/>
+
+    <LinearLayout android:layout_width="270dip" android:layout_height="180dip">
+        <FrameLayout
+                android:id="@+id/ads_widget_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/show_app_widget_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click me to show Ads widget in Full-Screen mode."/>
+
+    <Button
+            android:id="@+id/show_app_widget_button_exception"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click me to show Ads widget with No-TAG --> Exception caught."/>
+
+    <FrameLayout
+            android:id="@+id/banner_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"/>
+
+
+</LinearLayout>

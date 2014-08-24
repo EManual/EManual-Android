@@ -25,6 +25,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -36,12 +38,16 @@ import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.wandoujia.ads.sdk.Ads;
+import com.wandoujia.ads.sdk.widget.AdBanner;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
-	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
-	@InjectView(R.id.webview) WebView webview;
+	@InjectView(R.id.swipeRefresh)
+	SwipeRefreshLayout swipeRefreshLayout;
+	@InjectView(R.id.webview)
+	WebView webview;
 	String url = null, content = null;
 	String interfaceName = "Android";
 	boolean isFavourite = false; // 是否已收藏
@@ -49,6 +55,10 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	Menu mMenu;
 	ArticleDAO dao;
 	boolean isLoading = false;
+	// 广告
+	private static final String TAG_BANNER = "1ecf3f37f1a348d3a0a2e5f7bfca623d";
+	private AdBanner adBanner;
+	private View adBannerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +105,19 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		isLoading = false;
 		onRefresh();
+
+		showBannerAd();
+	}
+
+	private void showBannerAd() {
+		ViewGroup containerView = (ViewGroup) findViewById(R.id.banner_ad_container);
+		if (adBannerView != null
+				&& containerView.indexOfChild(adBannerView) >= 0) {
+			containerView.removeView(adBannerView);
+		}
+		adBanner = Ads.showBannerAd(this,
+				(ViewGroup) findViewById(R.id.banner_ad_container), TAG_BANNER);
+		adBannerView = adBanner.getView();
 	}
 
 	@Override
@@ -139,6 +162,18 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 	}
 
+	@Override
+	protected void onStart() {
+		adBanner.startAutoScroll();
+		super.onStart();
+	}
+
+	@Override
+	protected void onStop() {
+		adBanner.stopAutoScroll();
+		super.onStop();
+	}
+
 	private void load() {
 		webview.addJavascriptInterface(new WebAppInterface(getContext()),
 				interfaceName);
@@ -149,8 +184,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_favourite:
-			//the content not download yet
-			if(current == null) 
+			// the content not download yet
+			if (current == null)
 				return true;
 			if (isFavourite) {
 				current.setIsFavourite(0);
