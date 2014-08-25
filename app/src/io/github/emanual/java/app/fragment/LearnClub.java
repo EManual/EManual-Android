@@ -22,6 +22,7 @@ public class LearnClub extends BaseFragment implements OnClickListener {
 		v.findViewById(R.id.btn_web).setOnClickListener(this);
 		v.findViewById(R.id.btn_webframework).setOnClickListener(this);
 		v.findViewById(R.id.btn_arithmetic).setOnClickListener(this);
+		v.findViewById(R.id.btn_puzzle).setOnClickListener(this);
 		return v;
 	}
 
@@ -58,6 +59,11 @@ public class LearnClub extends BaseFragment implements OnClickListener {
 		case R.id.btn_arithmetic:
 			intent.putExtra("kind", "arithmetic");
 			intent.putExtra("title", "算法实践");
+			break;
+			
+		case R.id.btn_puzzle:
+			intent.putExtra("kind", "puzzle");
+			intent.putExtra("title", "谜题");
 			break;
 		default:
 			toast("It's comming soon.");
