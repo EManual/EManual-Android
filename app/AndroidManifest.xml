@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="io.github.emanual.java.app.AppStart"
-            android:label="@string/app_name"
+            android:label="@string/application_name"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
             <intent-filter>
