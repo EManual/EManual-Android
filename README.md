@@ -1,4 +1,4 @@
-EManual-Android
+EManual-Android  [![GitHub version](https://badge.fury.io/gh/EManual%2FEManual-Client-Java.svg)](http://badge.fury.io/gh/EManual%2FEManual-Client-Java) ![license](http://img.shields.io/badge/license-MIT-brightgreen.svg)
 ---
 
 **Android client for EManual.**  
