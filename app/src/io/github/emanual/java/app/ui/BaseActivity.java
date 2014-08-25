@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
+
 
 public abstract class BaseActivity extends FragmentActivity implements OnClickListener {
 	 
@@ -129,6 +131,7 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
 	@Override
 	protected void onPause() {
 		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	@Override
@@ -138,5 +141,6 @@ public abstract class BaseActivity extends FragmentActivity implements OnClickLi
 	@Override
 	protected void onResume() {
 		super.onResume();
+		MobclickAgent.onResume(this);
 	}
 }

@@ -14,7 +14,7 @@ public class App extends Application {
 		super.onCreate();
 		RestClient.init(getApplicationContext());
 		ButterKnife.setDebug(true);
-
+		
 		// Init AdsSdk.
 		try {
 			Ads.init(this, AppKey_ID, SECRET_KEY);

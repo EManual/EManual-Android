@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />  
 
     <application
         android:name="io.github.emanual.java.app.App"
@@ -87,6 +87,10 @@
         </receiver>
 
         <!-- AdsSdk End. -->
+        <!-- Umeng  -->
+        <meta-data android:value="53fad774fd98c5e05500a369" android:name="UMENG_APPKEY"></meta-data>
+		<meta-data android:value="wandoujia" android:name="UMENG_CHANNEL"/>
+		<!-- Umeng End -->
     </application>
 
 </manifest>

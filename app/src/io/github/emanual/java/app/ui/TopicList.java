@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.umeng.analytics.MobclickAgent;
 
 public class TopicList extends BaseActivity implements OnRefreshListener,
 		OnItemClickListener {
@@ -132,6 +133,24 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
 		intent.putExtra("kind", kind);
 		intent.putExtra("topic", data.get(position));
 		startActivity(intent);
+	}
+	
+	public void onResume() {
+	    super.onResume();
+	    if(title!= null && !title.equals("")){
+	    	MobclickAgent.onPageStart(title);  
+	    }else{
+	    	MobclickAgent.onPageStart("TopicList");  
+	    }
+	    
+	}
+	public void onPause() {
+	    super.onPause();
+	    if(title!= null && !title.equals("")){
+	    	MobclickAgent.onPageEnd(title);  
+	    }else{
+	    	MobclickAgent.onPageEnd("TopicList");  
+	    }
 	}
 
 }
