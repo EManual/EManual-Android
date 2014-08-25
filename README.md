@@ -1,6 +1,8 @@
-EManual-Android  [![GitHub version](https://badge.fury.io/gh/EManual%2FEManual-Client-Java.svg)](http://badge.fury.io/gh/EManual%2FEManual-Client-Java) ![license](http://img.shields.io/badge/license-Apache2-brightgreen.svg) ![platform](http://img.shields.io/badge/platform-Android-blue.svg)
-
+EManual-Android 
 ---
+[![GitHub version](https://badge.fury.io/gh/EManual%2FEManual-Client-Java.svg)](http://badge.fury.io/gh/EManual%2FEManual-Client-Java) ![license](http://img.shields.io/badge/license-Apache2-brightgreen.svg) ![platform](http://img.shields.io/badge/platform-Android-blue.svg)
+
+
 
 **Android client for EManual.**  
 EManual makes you learn programming language more  easier.  
