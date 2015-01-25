@@ -16,7 +16,7 @@ public class _ {
 	}
 	
 	public static String getContent(InputStream inputStream){
-		String content = null;
+		String content = "";
 		byte[] buffer = new byte[1024];
 		int len = 0;
 		try {
