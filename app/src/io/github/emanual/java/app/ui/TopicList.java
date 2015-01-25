@@ -113,9 +113,9 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
 			}
 
 			@Override
-			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-					Throwable arg3) {
-				Log.e("debug", "TopicList-->get newfeedlist error:" + arg0);
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				Log.e("debug", "TopicList-->无法获取该信息 ErrorCode=" + statusCode);
 				toast("哎呀,出错了！");
 			}
 

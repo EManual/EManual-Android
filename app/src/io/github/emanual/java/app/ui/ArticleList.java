@@ -132,9 +132,9 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 								}
 
 								@Override
-								public void onFailure(int arg0, Header[] arg1,
-										byte[] arg2, Throwable arg3) {
-									Log.e("debug", "ArticleList-->无法获取首页  ErrorCode=" + arg0);
+								public void onFailure(int statusCode, Header[] headers,
+										Throwable throwable, JSONObject errorResponse) {
+									Log.e("debug", "ArticleList-->无法获取该信息 ErrorCode=" + statusCode);
 									toast("哎呀,出错了！");
 								}
 
@@ -152,9 +152,9 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 			}
 
 			@Override
-			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-					Throwable arg3) {
-				Log.e("debug", "ArticleList-->无法获取该信息 ErrorCode=" + arg0);
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				Log.e("debug", "ArticleList-->无法获取该信息 ErrorCode=" + statusCode);
 				toast("哎呀,出错了！");
 			}
 
@@ -198,9 +198,9 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
 					}
 
 					@Override
-					public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-							Throwable arg3) {
-						Log.e("debug", "ArticleList-->无法加载更多  ErrorCode=" + arg0 );
+					public void onFailure(int statusCode, Header[] headers,
+							Throwable throwable, JSONObject errorResponse) {
+						Log.e("debug", "ArticleList-->无法获取该信息 ErrorCode=" + statusCode);
 						toast("哎呀,出错了！");
 					}
 

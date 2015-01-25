@@ -129,9 +129,9 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 						}
 
 						@Override
-						public void onFailure(int arg0, Header[] arg1,
-								byte[] arg2, Throwable arg3) {
-							Log.e("debug", "NewFeeds-->get newfeedlist error:" + arg0);
+						public void onFailure(int statusCode, Header[] headers,
+								Throwable throwable, JSONObject errorResponse) {
+							Log.e("debug", "NewFeeds-->get newfeedlist error:" + statusCode);
 							toast("哎呀,出错了！");
 						}
 
@@ -147,9 +147,9 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			}
 
 			@Override
-			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-					Throwable arg3) {
-				Log.e("debug", "NewFeeds-->get info error:" + arg0);
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				Log.e("debug", "NewFeeds-->get newfeedlist error:" + statusCode);
 				toast("哎呀,出错了！");
 			}
 
@@ -190,10 +190,11 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			}
 
 			@Override
-			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
-					Throwable arg3) {
-				toast("get NewFeed list error.ErrorCode=" + arg0);
+			public void onFailure(int statusCode, Header[] headers,
+					Throwable throwable, JSONObject errorResponse) {
+				toast("get NewFeed list error.ErrorCode=" + statusCode);
 			}
+
 
 			@Override
 			public void onFinish() {
