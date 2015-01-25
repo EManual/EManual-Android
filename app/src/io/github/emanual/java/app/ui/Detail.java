@@ -128,7 +128,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		client.get(url, new AsyncHttpResponseHandler() {
 			@Override
 			public void onStart() {
-				swipeRefreshLayout.setRefreshing(false);
+				swipeRefreshLayout.setRefreshing(true);
 				unDisplayMenu(mMenu);
 				isLoading = true;
 			}
