@@ -52,7 +52,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	String interfaceName = "Android";
 	boolean isFavourite = false; // 是否已收藏
 	Article current = null;
-	Menu mMenu;
+	Menu mMenu = null;
 	ArticleDAO dao;
 	boolean isLoading = false;
 	// 广告
@@ -154,9 +154,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 			@Override
 			public void onFinish() {
-				displayMenu(mMenu);
 				swipeRefreshLayout.setRefreshing(false);
 				isLoading = false;
+				displayMenu(mMenu);
 			}
 		});
 
@@ -225,10 +225,14 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		mMenu = menu;
 		Log.i("debug", "onCreateOptionsMenu");
-		return displayMenu(menu);
+		return displayMenu(mMenu);
 	}
 
 	private boolean displayMenu(Menu menu) {
+		if (menu == null){
+			//加载UI比网络访问还慢,menu依然为null see:https://github.com/EManual/EManual-Client-Java/issues/18
+			return true;
+		}
 		if (menu.size() == 0)
 			getMenuInflater().inflate(R.menu.detail, menu);
 		if (current == null || current.getIsFavourite() == 0) {
