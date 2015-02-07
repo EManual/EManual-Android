@@ -138,6 +138,19 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 				content = new String(data);
 				load();
 				debug("onSuccess");
+				if (current == null) {
+					current = new Article();
+					current.setContent(content);
+					current.setIsFavourite(0);
+					current.setTitle(ParseUtils.getArticleNameByUrl(url));
+					current.setUrl(url);
+					dao.insert(current);
+				} else {
+					current.setContent(content);
+					current.setSaveTime(System.currentTimeMillis());
+					dao.update(current);
+				}
+				displayMenu(mMenu);
 			}
 
 			@Override
@@ -150,13 +163,13 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 				}
 				load();
 				debug("onFailure");
+				unDisplayMenu(mMenu);
 			}
 
 			@Override
 			public void onFinish() {
 				swipeRefreshLayout.setRefreshing(false);
 				isLoading = false;
-				displayMenu(mMenu);
 			}
 		});
 
@@ -258,13 +271,14 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	class MyWebChromeClient extends WebChromeClient {
 		@Override
 		public void onProgressChanged(WebView view, int newProgress) {
-			if (newProgress == 100) {
-				swipeRefreshLayout.setRefreshing(false);
-				displayMenu(mMenu);
-			} else {
-				swipeRefreshLayout.setRefreshing(true);
-				unDisplayMenu(mMenu);
-			}
+//			这部分ui显示逻辑应该在onRefresh()中控制
+//			if (newProgress == 100) {
+//				swipeRefreshLayout.setRefreshing(false);
+//				displayMenu(mMenu);
+//			} else {
+//				swipeRefreshLayout.setRefreshing(true);
+//				unDisplayMenu(mMenu);
+//			}
 		}
 
 		@Override
