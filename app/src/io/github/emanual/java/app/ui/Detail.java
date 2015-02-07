@@ -175,9 +175,13 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	}
 
 	private void load() {
-		webview.addJavascriptInterface(new WebAppInterface(getContext()),
-				interfaceName);
-		webview.loadUrl("file:///android_asset/preview1.html");
+		try {
+			String tpl = _.getContent(getAssets().open("preview.html"));
+			webview.loadDataWithBaseURL("about:blank", tpl.replace("{markdown}", content), "text/html", "UTF-8", null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

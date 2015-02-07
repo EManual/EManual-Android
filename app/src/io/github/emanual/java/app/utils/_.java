@@ -1,5 +1,6 @@
 package io.github.emanual.java.app.utils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -16,19 +17,7 @@ public class _ {
 	}
 	
 	public static String getContent(InputStream inputStream){
-		String content = "";
-		byte[] buffer = new byte[1024];
-		int len = 0;
-		try {
-			while((len=inputStream.read(buffer, 0, buffer.length))!=-1){
-				content += new String(buffer, 0, len, "utf-8");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return content;
-		
+		return readFile(inputStream);
 	}
     
 	public static String urlJoin(String baseUrl, String... strs) {
@@ -58,4 +47,21 @@ public class _ {
 		}
 		return sb.toString();
 	}
+	
+	
+    public static String readFile(InputStream inputStream) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte buf[] = new byte[1024];
+        int len;
+        try {
+            while ((len = inputStream.read(buf)) != -1) {
+                outputStream.write(buf, 0, len);
+            }
+            outputStream.close();
+            inputStream.close();
+
+        } catch (IOException e) {
+        }
+        return outputStream.toString();
+    }
 }
