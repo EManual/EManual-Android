@@ -4,7 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
+
+import android.util.Log;
 
 public class _ {
 	public static boolean isNumber(String s) {
@@ -32,22 +35,14 @@ public class _ {
 		return sb.toString();
 	}
 
-	public static String encodeURL(String url) {
-		String[] splits = url.split("//");
-		StringBuilder sb = new StringBuilder(splits[0] + "//");
+	public static String encodeURL(String url){
 		try {
-			String s = splits[1];
-			for (String _s : s.split("/")) {
-				sb.append(URLEncoder.encode(_s, "utf-8")).append("/");
-			}
-			sb.deleteCharAt(sb.length() - 1);
-		} catch (Exception e) {
+			url = URLEncoder.encode(url, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-			return null;
 		}
-		return sb.toString();
+		return url;
 	}
-	
 	
     public static String readFile(InputStream inputStream) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
