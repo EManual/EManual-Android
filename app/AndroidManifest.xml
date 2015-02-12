@@ -58,6 +58,10 @@
             android:name="io.github.emanual.java.app.ui.ArticleList"
             android:launchMode="singleTask" >
         </activity>
+                <activity
+            android:name="io.github.emanual.java.app.ui.FileTree"
+            android:launchMode="singleTask" >
+        </activity>
 
         <service android:name="io.github.emanual.java.app.CoreService" >
         </service>
