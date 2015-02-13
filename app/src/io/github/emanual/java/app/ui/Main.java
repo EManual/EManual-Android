@@ -3,8 +3,8 @@ package io.github.emanual.java.app.ui;
 import io.github.emanual.java.app.CoreService;
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.adapter.MainFragmentPagerAdapter;
-import io.github.emanual.java.app.fragment.LearnClub;
 import io.github.emanual.java.app.fragment.NewFeeds;
+import io.github.emanual.java.app.fragment.ResourceCenter;
 import io.github.emanual.java.app.widget.NewVersionDialog;
 
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class Main extends BaseActivity {
 		mActionBar = getActionBar();
 
 		fragments.add(new NewFeeds());
-		fragments.add(new LearnClub());
+		fragments.add(new ResourceCenter());
 		if(viewPager == null)Log.d("debug", "viewPager is null");
 		viewPager.setAdapter(new MainFragmentPagerAdapter(
 				getSupportFragmentManager(), fragments, titles));
