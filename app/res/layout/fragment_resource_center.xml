@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+
+            <!-- item -->
+
+            <LinearLayout
+                android:id="@+id/btn_java"
+                style="@style/Linerlayout.list_vertical" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:drawableTop="@drawable/ic_icon_4"
+                    android:text="Java" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3" />
+
+            <LinearLayout
+                android:id="@+id/btn_android"
+                style="@style/Linerlayout.list_vertical" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:drawableTop="@drawable/ic_icon_4"
+                    android:text="Android" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3" />
+
+            <LinearLayout
+                android:id="@+id/btn_php"
+                style="@style/Linerlayout.list_vertical" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:drawableTop="@drawable/ic_icon_4"
+                    android:text="PHP" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/ic_line_1" />
+    </LinearLayout>
+
+</ScrollView>

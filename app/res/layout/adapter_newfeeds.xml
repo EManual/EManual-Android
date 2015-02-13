@@ -8,13 +8,13 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextView.item_main"
+        style="@style/TextView.newfeed"
            android:gravity="left"
      />
 
     <TextView
         android:id="@+id/tv_time"
-        style="@style/TextView.item_main"
+        style="@style/TextView.newfeed"
         android:layout_gravity="right"
         android:textColor="@color/grey_lv_two"
         android:textSize="12sp" />
