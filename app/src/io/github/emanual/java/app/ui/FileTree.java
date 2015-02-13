@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.os.Bundle;
-import android.os.Environment;
+import android.view.MenuItem;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -35,38 +35,24 @@ public class FileTree extends BaseActivity {
 
 	@Override
 	protected void initData() {
-		if( getIntent().getStringExtra("root") != null){
-			root = getIntent().getStringExtra("root");
+		if( getIntent().getStringExtra("LANG_PATH") != null){
+			cur_path = root = getIntent().getStringExtra("LANG_PATH");//-> MD_PATH/lang
+		}else{
+			toast("目录不存在");
+			finish();
 		}
-		debug("locals:");
-		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-//			debug(Environment.getRootDirectory().getAbsolutePath());
-//			debug(Environment.getExternalStorageDirectory().getAbsolutePath());
-//			debug(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath());
-//			debug(this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath());
-			
-			cur_path = root = new File(getExternalFilesDir(null),"md").getAbsolutePath();
-			
-			File f= new File(cur_path);
-			String[] names = f.list();
-//			for (String n : names){
-//				debug(n);
-//				try {
-//					n = new String(n.getBytes(),"UTF-8");
-//				} catch (UnsupportedEncodingException e) {
-//					e.printStackTrace();
-//				}
-//			}
-			data = new ArrayList();
-			data.addAll(Arrays.asList(names));
-			adapter = new TopicListAdapter(this, data);
-		}
+		File f= new File(cur_path);
+		String[] names = f.list();
+		data = new ArrayList<String>();
+		data.addAll(Arrays.asList(names));
+		adapter = new TopicListAdapter(this, data);
 	}
 
 	@Override
 	protected void initLayout() {
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		lv.setAdapter(adapter);
-	
 	}
 	
 	public void updateTree(){
@@ -75,15 +61,6 @@ public class FileTree extends BaseActivity {
 			data.add("..");
 		}
 		String[] _names = new File(cur_path).list();
-//		for(int i=0;i<_names.length;i++){
-//			try {
-//				debug("befor-->"+_names[i]);
-//				_names[i] = new String(_names[i].getBytes("gbk"),"UTF-8");
-//				debug("after-->"+_names[i]);
-//			} catch (UnsupportedEncodingException e) {
-//				e.printStackTrace();
-//			}
-//		}
 		data.addAll(Arrays.asList(_names));
 		adapter.notifyDataSetChanged();
 	}
@@ -106,5 +83,18 @@ public class FileTree extends BaseActivity {
 		debug("cur--> "+cur_path);
 		debug("root--> "+root);
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
 
 }

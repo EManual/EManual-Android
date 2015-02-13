@@ -6,8 +6,7 @@
 
     <ListView
         android:id="@+id/lv_filetree"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        style="@style/ListView.default" >
     </ListView>
 
 </LinearLayout>
