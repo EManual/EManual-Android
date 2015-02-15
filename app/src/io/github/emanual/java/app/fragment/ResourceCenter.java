@@ -75,13 +75,15 @@ public class ResourceCenter extends BaseFragment {
 			setDownloadVisibility(v, View.VISIBLE);
 			v.setClickable(true);
 		}
-		for (String _n : _names) {
-			for (View v : names) {
-				TextView lang = (TextView) v.findViewWithTag("lang");
-				if (lang.getText().toString().toLowerCase()
-						.equals(_n.toLowerCase())) {
-					// 有这个目录
-					setDownloadVisibility(v, View.INVISIBLE);
+		if (_names != null) {
+			for (String _n : _names) {
+				for (View v : names) {
+					TextView lang = (TextView) v.findViewWithTag("lang");
+					if (lang.getText().toString().toLowerCase()
+							.equals(_n.toLowerCase())) {
+						// 有这个目录
+						setDownloadVisibility(v, View.INVISIBLE);
+					}
 				}
 			}
 		}
@@ -117,11 +119,11 @@ public class ResourceCenter extends BaseFragment {
 		case R.id.btn_android:
 			lang = "android";
 			return;
-//			break;
+			// break;
 		case R.id.btn_php:
 			lang = "php";
 			return;
-//			break;
+			// break;
 		default:
 			break;
 		}
@@ -199,12 +201,14 @@ public class ResourceCenter extends BaseFragment {
 			mProgressDialog.dismiss();
 			if (result) {
 				// 解压成功
-				Toast.makeText(getActivity(), "操作完成，请点击打开", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "操作完成，请点击打开", Toast.LENGTH_SHORT)
+						.show();
 				updateStatus();
 				return;
 			}
 			// 解压失败,请求重试
-			Toast.makeText(getActivity(), "数据转换失败，请重试!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "数据转换失败，请重试!", Toast.LENGTH_SHORT)
+					.show();
 		}
 
 	}
