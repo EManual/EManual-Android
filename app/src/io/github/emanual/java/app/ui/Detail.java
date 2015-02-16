@@ -40,7 +40,11 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.wandoujia.ads.sdk.Ads;
 import com.wandoujia.ads.sdk.widget.AdBanner;
-
+/**
+ * 查看NewsFeeds or 文章详情
+ * @author jayin
+ *
+ */
 @SuppressLint("SetJavaScriptEnabled")
 public class Detail extends BaseActivity implements OnRefreshListener {
 	ActionBar mActionBar;
@@ -101,7 +105,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
-		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
+//		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
+//		mActionBar.setTitle()
 
 		isLoading = false;
 		onRefresh();

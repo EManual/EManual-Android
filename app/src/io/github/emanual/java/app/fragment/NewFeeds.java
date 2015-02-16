@@ -4,6 +4,7 @@ import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.adapter.NewFeedsAdapter;
 import io.github.emanual.java.app.api.NewFeedsAPI;
 import io.github.emanual.java.app.api.RestClient;
+import io.github.emanual.java.app.entity.NewsFeedsObject;
 import io.github.emanual.java.app.ui.Detail;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener,
@@ -41,7 +43,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 	long last_motify = 0;
 	NewFeedsAPI api = new NewFeedsAPI();
 	NewFeedsAdapter adapter;
-	List<String> data = new ArrayList<String>();
+	List<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,8 +85,9 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
 				//RestClient.URL_Java_NewFeeds+"/"+data.get(position)
-				intent.putExtra("url", RestClient.URL_Java_NewFeeds+"/"+data.get(position));
+				intent.putExtra("url", String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
 				startActivity(intent);
+				toast( String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
 			}
 		});
 		onRefresh();
@@ -95,114 +98,13 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 	public void onRefresh() {
 		swipeRefreshLayout.setRefreshing(true);
 		isloading = true;
-		api.getInfo(new JsonHttpResponseHandler() {
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					JSONObject response) {
-				try {
-					maxPage = response.getInt("pages");
-					api.getNewFeeds(1, new JsonHttpResponseHandler() {
-						@Override
-						public void onSuccess(int statusCode, Header[] headers,
-								JSONObject response) {
-							try {
-								JSONArray array = response
-										.getJSONArray("result");
-								ArrayList<String> names = new ArrayList<String>();
-								for (int i = 0; i < array.length(); i++) {
-									names.add(array.getString(i));
-								}
-								data.clear();
-								data.addAll(names);
-								adapter.notifyDataSetChanged();
-								page = 1;
-								if (names.size() < 10) {
-									hasMore = false;
-								} else {
-									hasMore = true;
-								}
-							} catch (JSONException e) {
-								e.printStackTrace();
-								toast("哎呀,出错了！");
-								Log.e("debug", "NewFeeds-->parse error!");
-							}
-						}
-
-						@Override
-						public void onFailure(int statusCode, Header[] headers,
-								Throwable throwable, JSONObject errorResponse) {
-							Log.e("debug", "NewFeeds-->get newfeedlist error:" + statusCode);
-							toast("哎呀,出错了！");
-						}
-
-						@Override
-						public void onFinish() {
-							swipeRefreshLayout.setRefreshing(false);
-							isloading = false;
-						}
-					});
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					Throwable throwable, JSONObject errorResponse) {
-				Log.e("debug", "NewFeeds-->get newfeedlist error:" + statusCode);
-				toast("哎呀,出错了！");
-			}
-
-			@Override
-			public void onFinish() {
-				swipeRefreshLayout.setRefreshing(false);
-				isloading = false;
-			}
-
-		});
+		api.getNewFeeds(1, new MyAsyncHttpResponseHandler(1));
 	}
+	
+
 
 	public void onLoadMore() {
-		api.getNewFeeds(page + 1, new JsonHttpResponseHandler() {
-			@Override
-			public void onStart() {
-				swipeRefreshLayout.setRefreshing(true);
-			}
-
-			@Override
-			public void onSuccess(int statusCode, Header[] headers,
-					JSONObject response) {
-				try {
-					JSONArray array = response.getJSONArray("result");
-					ArrayList<String> names = new ArrayList<String>();
-					for (int i = 0; i < array.length(); i++) {
-						names.add(array.getString(i));
-					}
-					data.addAll(names);
-					adapter.notifyDataSetChanged();
-					page += 1;
-					if (page >= maxPage || names.size() < 10)
-						hasMore = false;
-				} catch (JSONException e) {
-					e.printStackTrace();
-					toast("parse error!");
-				}
-			}
-
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					Throwable throwable, JSONObject errorResponse) {
-				toast("get NewFeed list error.ErrorCode=" + statusCode);
-			}
-
-
-			@Override
-			public void onFinish() {
-				swipeRefreshLayout.setRefreshing(false);
-				isloading = false;
-			}
-		});
-
+		api.getNewFeeds(page+1, new MyAsyncHttpResponseHandler(page+1));
 	}
 
 	@Override
@@ -223,4 +125,50 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 
 	}
+	
+	class MyAsyncHttpResponseHandler extends AsyncHttpResponseHandler{
+		private int mPage = 1;
+		
+		public MyAsyncHttpResponseHandler(int mPage){
+			this.mPage = mPage;
+		}
+		
+		@Override public void onStart() {
+			swipeRefreshLayout.setRefreshing(true);
+		}
+		
+		@Override public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+			if(mPage == 1){
+				//refresh
+				List<NewsFeedsObject> names = NewsFeedsObject.createNewsFeedsObjects(new String(response));
+				data.clear();
+				data.addAll(names);
+				adapter.notifyDataSetChanged();
+				page = mPage;
+				hasMore = true;
+			}else{
+				//loadmore
+				List<NewsFeedsObject> names = NewsFeedsObject.createNewsFeedsObjects(new String(response));
+				data.addAll(names);
+				adapter.notifyDataSetChanged();
+				page = mPage;
+			}
+		}
+		
+		@Override public void onFailure(int statusCode, Header[] header, byte[] response,
+				Throwable arg3) {
+			if(statusCode == 404){
+				hasMore = false;
+				toast("没有更多了");
+			}else{
+				Log.e("debug", "NewFeeds-->get newfeedlist error:" + statusCode);
+				toast("哎呀,出错了！");
+			}
+		}
+		@Override public void onFinish() {
+			swipeRefreshLayout.setRefreshing(false);
+			isloading = false;
+		}
+	}
+	
 }

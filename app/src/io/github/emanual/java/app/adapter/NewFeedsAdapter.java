@@ -1,23 +1,24 @@
 package io.github.emanual.java.app.adapter;
 
 import io.github.emanual.java.app.R;
+import io.github.emanual.java.app.entity.NewsFeedsObject;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class NewFeedsAdapter extends BaseAdapter {
-	List<String> data;
+	List<NewsFeedsObject> data;
 	Context context;
 
-	public NewFeedsAdapter(Context context, List<String> data) {
+	public NewFeedsAdapter(Context context, List<NewsFeedsObject> data) {
 		this.data = data;
 		this.context = context;
 	}
@@ -48,7 +49,7 @@ public class NewFeedsAdapter extends BaseAdapter {
 		} else {
 			h = (ViewHolder) convertView.getTag();
 		}
-		String filename = data.get(position).split("\\.")[0];
+		String filename = data.get(position).getRname().split("\\.")[0];
 		String[] s = filename.split("-");
 		String time = s[0] + "-" + s[1] + "-" + s[2];
 		String title = s[3];

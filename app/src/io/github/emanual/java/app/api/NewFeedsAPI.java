@@ -13,7 +13,7 @@ public class NewFeedsAPI {
 	}
 	
 	public void getNewFeeds(int page,AsyncHttpResponseHandler responseHandler){
-		RestClient.get("/java-newfeeds/article/"+page+".json", null, responseHandler);
+		RestClient.get("/md-newsfeeds/dist/"+page+".json", null, responseHandler);
 	}
 	
 	public static String getNewFeedsParam(String filename){
