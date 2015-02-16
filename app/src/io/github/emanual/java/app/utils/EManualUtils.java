@@ -24,7 +24,7 @@ public class EManualUtils {
 	 * @return
 	 */
 	public static String getFileNameWithoutExt(String filename){
-		return filename.substring(0, filename.lastIndexOf(".")-1);
+		return filename.substring(0, filename.lastIndexOf("."));
 	}
 
 }
