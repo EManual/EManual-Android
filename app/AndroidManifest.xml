@@ -41,11 +41,6 @@
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.FavouriteList"
-            android:label="@string/action_favourite"
-            android:launchMode="singleTask" >
-        </activity>
-        <activity
             android:name="io.github.emanual.java.app.ui.About"
             android:label="@string/action_about"
             android:launchMode="singleTask" >

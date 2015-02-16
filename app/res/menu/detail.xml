@@ -6,12 +6,4 @@
         android:title="@string/action_share" 
         android:menuCategory="container" 
         android:icon="@drawable/ic_action_social_share"/>
-    
-    <item 
-        android:id="@+id/action_favourite" 
-        android:showAsAction="always" 
-        android:title="@string/action_favourite" 
-        android:menuCategory="container"
-        android:icon="@drawable/ic_action_rating_not_important"/>
-
 </menu>

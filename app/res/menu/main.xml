@@ -7,12 +7,6 @@
         android:showAsAction="always"
         android:title="@string/action_more">
         <menu>
-             <item
-                android:id="@+id/action_favourite"
-                android:icon="@drawable/ic_action_rating_important_dark"
-                android:showAsAction="always|withText"
-                android:title="@string/action_favourite">
-            </item>
             <item
                 android:id="@+id/action_about"
                 android:icon="@drawable/ic_action_settings_dark"

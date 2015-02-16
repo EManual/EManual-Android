@@ -83,9 +83,6 @@ public class Main extends BaseActivity {
 		case R.id.action_about:
 			startActivity(new Intent(getContext(), About.class));
 			return true;
-		case R.id.action_favourite:
-			startActivity(new Intent(getContext(), FavouriteList.class));
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
