@@ -84,10 +84,8 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
-				//RestClient.URL_Java_NewFeeds+"/"+data.get(position)
-				intent.putExtra("url", String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
+				intent.putExtra("link", String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
 				startActivity(intent);
-				toast( String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
 			}
 		});
 		onRefresh();

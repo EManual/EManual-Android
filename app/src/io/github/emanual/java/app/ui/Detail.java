@@ -5,6 +5,7 @@ import io.github.emanual.java.app.api.RestClient;
 import io.github.emanual.java.app.utils.ParseUtils;
 import io.github.emanual.java.app.utils._;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.http.Header;
@@ -14,6 +15,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -35,19 +37,19 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.wandoujia.ads.sdk.Ads;
 import com.wandoujia.ads.sdk.widget.AdBanner;
+
 /**
  * 查看NewsFeeds or 文章详情
+ * 
  * @author jayin
- *
+ * 
  */
-@SuppressLint("SetJavaScriptEnabled")
-public class Detail extends BaseActivity implements OnRefreshListener {
+@SuppressLint("SetJavaScriptEnabled") public class Detail extends BaseActivity
+		implements OnRefreshListener {
 	ActionBar mActionBar;
-	@InjectView(R.id.swipeRefresh)
-	SwipeRefreshLayout swipeRefreshLayout;
-	@InjectView(R.id.webview)
-	WebView webview;
-	String url = null;
+	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
+	@InjectView(R.id.webview) WebView webview;
+	String link = null;// 接受2种URL,一种是url,另一种文件路径path
 	Menu mMenu = null;
 	boolean isLoading = false;
 	// 广告
@@ -55,8 +57,7 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	private AdBanner adBanner;
 	private View adBannerView;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_detail);
 		ButterKnife.inject(this);
@@ -64,18 +65,15 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 		initLayout();
 	}
 
-	@Override
-	protected void initData() {
-		url = getIntent().getStringExtra("url");
-		Log.d("debug", "当前文章的URL--> " + url);
-		if (url == null) {
+	@Override protected void initData() {
+		link = getIntent().getStringExtra("link");
+		Log.d("debug", "当前文章的URL--> " + link);
+		if (link == null) {
 			finish();
-			toast("you hava to pass a url for this");
 		}
 	}
 
-	@Override
-	protected void initLayout() {
+	@Override protected void initLayout() {
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,
@@ -88,8 +86,8 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
-//		mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
-//		mActionBar.setTitle()
+		// mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
+		// mActionBar.setTitle()
 
 		isLoading = false;
 		onRefresh();
@@ -107,73 +105,83 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 				(ViewGroup) findViewById(R.id.banner_ad_container), TAG_BANNER);
 		adBannerView = adBanner.getView();
 	}
-
-	@Override
-	public void onRefresh() {
-		if (isLoading)
-			return;
-		AsyncHttpClient client = new AsyncHttpClient();
-		client.get(url, new AsyncHttpResponseHandler() {
-			@Override
-			public void onStart() {
-				swipeRefreshLayout.setRefreshing(true);
-				unDisplayMenu(mMenu);
-				isLoading = true;
-			}
-
-			@Override
-			public void onSuccess(int statusCode, Header[] headers, byte[] data) {
-				load(new String(data));
-				debug("onSuccess");
-				displayMenu(mMenu);
-			}
-
-			@Override
-			public void onFailure(int statusCode, Header[] headers,
-					byte[] data, Throwable arg3) {
-				try {
-					load(_.getContent(getAssets().open("404.md")));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				debug("onFailure");
-				unDisplayMenu(mMenu);
-			}
-
-			@Override
-			public void onFinish() {
-				swipeRefreshLayout.setRefreshing(false);
-				isLoading = false;
-			}
-		});
-
+	/**
+	 *  刷新前
+	 */
+	private void onPreRefresh(){
+		swipeRefreshLayout.setRefreshing(true);
+		unDisplayMenu(mMenu);
+		isLoading = true;
 	}
 
-	@Override
-	protected void onStart() {
+	@Override public void onRefresh() {
+		if (isLoading)
+			return;
+		if (_.isURL(link)) {
+			AsyncHttpClient client = new AsyncHttpClient();
+			client.get(link, new AsyncHttpResponseHandler() {
+				@Override public void onStart() {
+					onPreRefresh();
+				}
+
+				@Override public void onSuccess(int statusCode,
+						Header[] headers, byte[] data) {
+					load(new String(data));
+					debug("onSuccess");
+				}
+
+				@Override public void onFailure(int statusCode,
+						Header[] headers, byte[] data, Throwable arg3) {
+					try {
+						load(_.readFile(getAssets().open("404.md")));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					debug("onFailure");
+				}
+
+				@Override public void onFinish() {
+					onPostRefresh();
+				}
+			});
+		} else {
+			// read file
+			new ReadFileTask(link).execute();
+		}
+
+	}
+	/**
+	 * 刷新完毕
+	 */
+	private void onPostRefresh(){
+		swipeRefreshLayout.setRefreshing(false);
+		isLoading = false;
+		displayMenu(mMenu);
+	}
+
+	@Override protected void onStart() {
 		adBanner.startAutoScroll();
 		super.onStart();
 	}
 
-	@Override
-	protected void onStop() {
+	@Override protected void onStop() {
 		adBanner.stopAutoScroll();
 		super.onStop();
 	}
 
 	private void load(String content) {
 		try {
-			String tpl = _.getContent(getAssets().open("preview.html"));
-			webview.loadDataWithBaseURL("about:blank", tpl.replace("{markdown}", content), "text/html", "UTF-8", null);
+			String tpl = _.readFile(getAssets().open("preview.html"));
+			webview.loadDataWithBaseURL("about:blank",
+					tpl.replace("{markdown}", content), "text/html", "UTF-8",
+					null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_share:
 			ShareCompat.IntentBuilder
@@ -181,9 +189,9 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 					.setType("text/plain")
 					.setText(
 							"我发现了一篇很不错的文章<<"
-									+ ParseUtils.getArticleNameByUrl(url)
+									+ ParseUtils.getArticleNameByUrl(link)
 									+ ">> " + RestClient.URL_Preview + "?path="
-									+ _.encodeURL(url)).setChooserTitle("分享到")
+									+ _.encodeURL(link)).setChooserTitle("分享到")
 					.startChooser();
 			return true;
 		case android.R.id.home:
@@ -195,16 +203,16 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	@Override public boolean onCreateOptionsMenu(Menu menu) {
 		mMenu = menu;
 		Log.i("debug", "onCreateOptionsMenu");
 		return displayMenu(mMenu);
 	}
 
 	private boolean displayMenu(Menu menu) {
-		if (menu == null){
-			//加载UI比网络访问还慢,menu依然为null see:https://github.com/EManual/EManual-Client-Java/issues/18
+		if (menu == null) {
+			// 加载UI比网络访问还慢,menu依然为null
+			// see:https://github.com/EManual/EManual-Client-Java/issues/18
 			return true;
 		}
 		if (menu.size() == 0)
@@ -219,20 +227,18 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 	}
 
 	class MyWebChromeClient extends WebChromeClient {
-		@Override
-		public void onProgressChanged(WebView view, int newProgress) {
-//			这部分ui显示逻辑应该在onRefresh()中控制
-//			if (newProgress == 100) {
-//				swipeRefreshLayout.setRefreshing(false);
-//				displayMenu(mMenu);
-//			} else {
-//				swipeRefreshLayout.setRefreshing(true);
-//				unDisplayMenu(mMenu);
-//			}
+		@Override public void onProgressChanged(WebView view, int newProgress) {
+			// 这部分ui显示逻辑应该在onRefresh()中控制
+			// if (newProgress == 100) {
+			// swipeRefreshLayout.setRefreshing(false);
+			// displayMenu(mMenu);
+			// } else {
+			// swipeRefreshLayout.setRefreshing(true);
+			// unDisplayMenu(mMenu);
+			// }
 		}
 
-		@Override
-		public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+		@Override public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
 			Log.d("debug",
 					consoleMessage.message() + " -- From line "
 							+ consoleMessage.lineNumber() + " of "
@@ -243,41 +249,68 @@ public class Detail extends BaseActivity implements OnRefreshListener {
 
 	class MyWebViewClient extends WebViewClient {
 
-		@Override
-		public void onLoadResource(WebView view, String url) {
+		@Override public void onLoadResource(WebView view, String url) {
 			Log.d("debug", "onLoadResource--> " + url);
 		}
 
-		@Override
-		public void onPageFinished(WebView view, String url) {
+		@Override public void onPageFinished(WebView view, String url) {
 			super.onPageFinished(view, url);
 			Log.d("debug", "onPageFinished--> " + url);
 		}
 
-		@Override
-		public void onPageStarted(WebView view, String url, Bitmap favicon) {
+		@Override public void onPageStarted(WebView view, String url,
+				Bitmap favicon) {
 			super.onPageStarted(view, url, favicon);
 			Log.d("debug", "onPageStarted--> " + url);
 		}
 
-		@Override
-		public boolean shouldOverrideKeyEvent(WebView view, KeyEvent event) {
+		@Override public boolean shouldOverrideKeyEvent(WebView view,
+				KeyEvent event) {
 			return super.shouldOverrideKeyEvent(view, event);
 		}
 
-		@Override
-		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+		@Override public boolean shouldOverrideUrlLoading(WebView view,
+				String url) {
 			Uri uri = Uri.parse(url);
 			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(intent);
 			return true;
 		}
 
-		@Override
-		public void onReceivedError(WebView view, int errorCode,
+		@Override public void onReceivedError(WebView view, int errorCode,
 				String description, String failingUrl) {
 			// toast("Error Code--->"+errorCode+"   failingUrl--> "+failingUrl);
 			// view.loadUrl("file:///android_asset/404.html");
 		}
 	}
+
+	class ReadFileTask extends AsyncTask<Void, Void, String> {
+		private String path;
+		public ReadFileTask(String path){
+			this.path = path;
+		}
+		@Override protected void onPreExecute() {
+			onPreRefresh();
+		}
+
+		@Override protected String doInBackground(Void... params) {
+			try {
+				return _.readFile(this.path);
+			} catch (FileNotFoundException e) {
+				try {
+					return _.readFile(getAssets().open("404.md"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return null;
+		}
+
+		@Override protected void onPostExecute(String result) {
+			load(result);
+			onPostRefresh();
+		}
+
+	}
+
 }

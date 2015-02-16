@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -94,7 +95,10 @@ public class FileTree extends BaseActivity {
 				updateTree();
 			}else{
 				//处理:显示这个文件
-				toast("open-> "+data.get(position));
+				String link = cur_path + File.separator + data.get(position).getName();
+				Intent intent = new Intent(this,Detail.class);
+				intent.putExtra("link", link);
+				startActivity(intent);
 			}
 		}
 		debug("cur--> "+cur_path);
