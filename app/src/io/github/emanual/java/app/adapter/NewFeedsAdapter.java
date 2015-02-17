@@ -55,14 +55,14 @@ public class NewFeedsAdapter extends BaseAdapter {
 		String title = s[3];
 		h.title.setText(title);
 		h.time.setText(time);
+		h.description.setText(data.get(position).getDescription());
 		return convertView;
 	}
 
 	class ViewHolder {
-		@InjectView(R.id.tv_title)
-		TextView title;
-		@InjectView(R.id.tv_time)
-		TextView time;
+		@InjectView(R.id.tv_title) TextView title;
+		@InjectView(R.id.tv_time) TextView time;
+		@InjectView(R.id.tv_description) TextView description;
 
 		public ViewHolder(View view) {
 			ButterKnife.inject(this, view);
