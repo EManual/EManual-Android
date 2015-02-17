@@ -2,7 +2,6 @@ package io.github.emanual.java.app.ui;
 
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.api.RestClient;
-import io.github.emanual.java.app.utils.ParseUtils;
 import io.github.emanual.java.app.utils._;
 
 import java.io.FileNotFoundException;
@@ -49,7 +48,9 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	ActionBar mActionBar;
 	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
 	@InjectView(R.id.webview) WebView webview;
-	String link,title;// 接受2种URL,一种是url,另一种文件路径path
+	String link;// 接受2种URL,一种是url,另一种文件路径path
+	String title;
+	String sharePath; //分享路径
 	Menu mMenu = null;
 	boolean isLoading = false;
 	// 广告
@@ -68,6 +69,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	@Override protected void initData() {
 		link = getIntent().getStringExtra("link");
 		title = getIntent().getStringExtra("title");
+		sharePath = getIntent().getStringExtra("sharePath");
 		Log.d("debug", "当前文章的URL--> " + link);
 		if (link == null || title == null) {
 			finish();
@@ -107,10 +109,11 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 				(ViewGroup) findViewById(R.id.banner_ad_container), TAG_BANNER);
 		adBannerView = adBanner.getView();
 	}
+
 	/**
-	 *  刷新前
+	 * 刷新前
 	 */
-	private void onPreRefresh(){
+	private void onPreRefresh() {
 		swipeRefreshLayout.setRefreshing(true);
 		unDisplayMenu(mMenu);
 		isLoading = true;
@@ -152,10 +155,11 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		}
 
 	}
+
 	/**
 	 * 刷新完毕
 	 */
-	private void onPostRefresh(){
+	private void onPostRefresh() {
 		swipeRefreshLayout.setRefreshing(false);
 		isLoading = false;
 		displayMenu(mMenu);
@@ -190,10 +194,10 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 					.from(this)
 					.setType("text/plain")
 					.setText(
-							"我发现了一篇很不错的文章<<"
-									+ ParseUtils.getArticleNameByUrl(link)
-									+ ">> " + RestClient.URL_Preview + "?path="
-									+ _.encodeURL(link)).setChooserTitle("分享到")
+							"<" + title + "> " + RestClient.URL_Preview
+									+ "?path=" + sharePath)
+					.setChooserTitle("分享到")
+
 					.startChooser();
 			return true;
 		case android.R.id.home:
@@ -288,9 +292,11 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 
 	class ReadFileTask extends AsyncTask<Void, Void, String> {
 		private String path;
-		public ReadFileTask(String path){
+
+		public ReadFileTask(String path) {
 			this.path = path;
 		}
+
 		@Override protected void onPreExecute() {
 			onPreRefresh();
 		}

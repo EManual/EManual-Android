@@ -83,6 +83,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 				Intent intent = new Intent(getActivity(), Detail.class);
 				intent.putExtra("link", String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
 				intent.putExtra("title", EManualUtils.getNewsFeedsTitle(data.get(position).getRname()));
+				intent.putExtra("sharePath", EManualUtils.genSharePath(data.get(position).getPath()));
 				startActivity(intent);
 			}
 		});

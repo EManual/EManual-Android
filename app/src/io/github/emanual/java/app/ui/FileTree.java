@@ -13,7 +13,6 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import butterknife.ButterKnife;
@@ -101,6 +100,7 @@ public class FileTree extends BaseActivity {
 				Intent intent = new Intent(this,Detail.class);
 				intent.putExtra("link", link);
 				intent.putExtra("title", EManualUtils.getResouceTitle(data.get(position).getRname()));
+				intent.putExtra("sharePath", EManualUtils.genSharePath(data.get(position).getPath()));
 				startActivity(intent);
 			}
 		}

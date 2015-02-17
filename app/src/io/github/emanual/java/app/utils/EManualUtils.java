@@ -61,6 +61,13 @@ public class EManualUtils {
 		String[] s = filename.split("-");
 		return s[0] + "-" + s[1] + "-" + s[2];
 	}
-
-
+	/**
+	 * 根据文件的path生成分享url
+	 * @param path
+	 * @return
+	 */
+	public static String genSharePath(String path){
+		String module = path.split("/")[0];
+		return String.format("/md-%s/dist/%s",module,path);
+	}
 }
