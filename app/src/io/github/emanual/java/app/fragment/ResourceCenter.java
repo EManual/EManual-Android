@@ -4,6 +4,7 @@ import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.api.EmanualAPI;
 import io.github.emanual.java.app.ui.FileTree;
 import io.github.emanual.java.app.utils.ZipUtils;
+import io.github.emanual.java.app.widget.DownloadConfirmDialog;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -14,6 +15,8 @@ import org.apache.http.Header;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -27,6 +30,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectViews;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
@@ -38,6 +42,7 @@ public class ResourceCenter extends BaseFragment {
 	public String MD_PATH;
 	// private List<Long> downloadIds = new ArrayList<Long>();
 	private ProgressDialog mProgressDialog;
+	private DownloadConfirmDialog mDownloadConfirmDialog;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -52,10 +57,24 @@ public class ResourceCenter extends BaseFragment {
 
 		updateStatus();
 
+		initDialog();
+		
+		return v;
+	}
+
+	private void initDialog() {
 		mProgressDialog = new ProgressDialog(getActivity());
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		mProgressDialog.setCancelable(false);
-		return v;
+		
+		
+		mDownloadConfirmDialog = new DownloadConfirmDialog(getActivity());
+		mDownloadConfirmDialog.setConfirmClickListener(new OnClickListener() {
+			
+			@Override public void onClick(DialogInterface dialog, int which) {
+				downloadLang(mDownloadConfirmDialog.getLang());
+			}
+		});
+		
 	}
 
 	// 更新所有item的下载状态
@@ -134,37 +153,50 @@ public class ResourceCenter extends BaseFragment {
 			getActivity().startActivity(intent);
 		} else {
 			// 未下载
-			EmanualAPI.downloadLang(lang, new FileAsyncHttpResponseHandler(
-					new File(DOWNLOAD_PATH, lang + ".zip")) {
+			//downloadLang(lang);
+			mDownloadConfirmDialog.show(lang);
 
-				@Override public void onStart() {
-					mProgressDialog.setTitle("正在下载对应文档资源");
-					mProgressDialog.show();
-				}
-
-				@Override public void onSuccess(int arg0, Header[] arg1,
-						File file) {
-					// 解压
-					new UnzipFileTask(file).execute();
-				}
-
-				@Override public void onFailure(int status_code, Header[] arg1,
-						Throwable arg2, File file) {
-					if (status_code == 404) {
-						toast("找不到该资源");
-					} else {
-						toast("网络环境差，下载失败");
-					}
-				}
-
-				@Override public void onProgress(int bytesWritten, int totalSize) {
-					Log.d("debug", bytesWritten + "/" + totalSize);
-					mProgressDialog.setMax(totalSize);
-					mProgressDialog.setProgress(bytesWritten);
-
-				}
-			});
 		}
+	}
+	
+	@OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php}) public boolean update_lang(View v){
+		TextView tv =(TextView) v.findViewWithTag("lang");
+		mDownloadConfirmDialog.show(tv.getText().toString().toLowerCase());
+		return true;
+	}
+	
+	private void downloadLang(String lang){
+		EmanualAPI.downloadLang(lang, new FileAsyncHttpResponseHandler(
+				new File(DOWNLOAD_PATH, lang + ".zip")) {
+
+			@Override public void onStart() {
+				mProgressDialog.setTitle("正在下载..");
+				mProgressDialog.show();
+			}
+
+			@Override public void onSuccess(int arg0, Header[] arg1,
+					File file) {
+				// 解压
+				new UnzipFileTask(file).execute();
+			}
+
+			@Override public void onFailure(int status_code, Header[] arg1,
+					Throwable arg2, File file) {
+				if (status_code == 404) {
+					toast("找不到该资源");
+				} else {
+					toast("网络环境差，下载失败");
+				}
+			}
+
+			@Override public void onProgress(int bytesWritten, int totalSize) {
+				Log.d("debug", bytesWritten + "/" + totalSize);
+				mProgressDialog.setMessage(String.format("大小:%.2f M",1.0*totalSize/1024/1024));
+				mProgressDialog.setMax(totalSize);
+				mProgressDialog.setProgress(bytesWritten);
+
+			}
+		});
 	}
 
 	/**
@@ -210,6 +242,5 @@ public class ResourceCenter extends BaseFragment {
 			Toast.makeText(getActivity(), "数据转换失败，请重试!", Toast.LENGTH_SHORT)
 					.show();
 		}
-
 	}
 }
