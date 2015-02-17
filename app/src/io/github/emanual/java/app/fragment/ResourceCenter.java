@@ -44,9 +44,9 @@ public class ResourceCenter extends BaseFragment {
 		View v = inflater.inflate(R.layout.fragment_resource_center, null);
 		ButterKnife.inject(this, v);
 
-		ROOT_PATH = getActivity().getExternalFilesDir(null).getAbsolutePath();
-		MD_PATH = ROOT_PATH + File.separator + "md";
-		DOWNLOAD_PATH = getActivity().getExternalFilesDir(
+		ROOT_PATH = getActivity().getExternalFilesDir(null).getAbsolutePath();// /Android/data/包名/files
+		MD_PATH = ROOT_PATH + File.separator + "md"; // /Android/data/包名/files/md
+		DOWNLOAD_PATH = getActivity().getExternalFilesDir(     // /Android/data/包名/files/Download/
 				Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
 		Log.d("debug", DOWNLOAD_PATH);
 

@@ -3,6 +3,7 @@ package io.github.emanual.java.app.ui;
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.adapter.FileTreeAdapter;
 import io.github.emanual.java.app.entity.FileTreeObject;
+import io.github.emanual.java.app.utils.EManualUtils;
 import io.github.emanual.java.app.utils._;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import butterknife.ButterKnife;
@@ -98,6 +100,7 @@ public class FileTree extends BaseActivity {
 				String link = cur_path + File.separator + data.get(position).getName();
 				Intent intent = new Intent(this,Detail.class);
 				intent.putExtra("link", link);
+				intent.putExtra("title", EManualUtils.getResouceTitle(data.get(position).getRname()));
 				startActivity(intent);
 			}
 		}

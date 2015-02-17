@@ -49,7 +49,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	ActionBar mActionBar;
 	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
 	@InjectView(R.id.webview) WebView webview;
-	String link = null;// 接受2种URL,一种是url,另一种文件路径path
+	String link,title;// 接受2种URL,一种是url,另一种文件路径path
 	Menu mMenu = null;
 	boolean isLoading = false;
 	// 广告
@@ -67,8 +67,9 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 
 	@Override protected void initData() {
 		link = getIntent().getStringExtra("link");
+		title = getIntent().getStringExtra("title");
 		Log.d("debug", "当前文章的URL--> " + link);
-		if (link == null) {
+		if (link == null || title == null) {
 			finish();
 		}
 	}
@@ -86,6 +87,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
+		mActionBar.setTitle(title);
 		// mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
 		// mActionBar.setTitle()
 

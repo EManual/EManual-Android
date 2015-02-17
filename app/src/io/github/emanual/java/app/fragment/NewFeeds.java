@@ -6,14 +6,12 @@ import io.github.emanual.java.app.api.NewFeedsAPI;
 import io.github.emanual.java.app.api.RestClient;
 import io.github.emanual.java.app.entity.NewsFeedsObject;
 import io.github.emanual.java.app.ui.Detail;
+import io.github.emanual.java.app.utils.EManualUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +30,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener,
 		OnScrollListener {
@@ -85,6 +82,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 					int position, long id) {
 				Intent intent = new Intent(getActivity(), Detail.class);
 				intent.putExtra("link", String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
+				intent.putExtra("title", EManualUtils.getNewsFeedsTitle(data.get(position).getRname()));
 				startActivity(intent);
 			}
 		});
