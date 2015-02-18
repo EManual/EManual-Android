@@ -24,7 +24,7 @@
     <color name="blue_lv_one">#6699FF</color>
     <color name="blue_lv_two">#3366CC</color>
     <color name="blue_lv_third">#003399</color>
-    <color name="blue_lv_third">#FF3F9FE0</color>
+    <color name="blue_lv_third1">#FF3F9FE0</color>
     <color name="blue_nav_bg_nomal">#2CA7EA</color>
     <color name="blue_nav_bg_press">#2A94E0</color>
     <color name="green_lv_one">#99CC33</color>
@@ -38,5 +38,7 @@
     <color name="blue_main_item">#02bbf3</color>
     <!-- 008ED9 -->
     <color name="bg_frame_main">#802CA7EA</color>
+    <!--应用基础色调  -->
+    <color name="app_base_color">#0099CC</color>
 
 </resources>

@@ -28,7 +28,8 @@ public class About extends BaseActivity {
 		mActionBar = getActionBar();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		try {
-			((TextView)_getView(R.id.tv_version)).setText("Java学习助手  v"+AndroidUtils.getAppVersionName(getContext()));
+			String text =String.format("%s v%s", getResources().getString(R.string.application_name),AndroidUtils.getAppVersionName(getContext()));
+			((TextView)_getView(R.id.tv_version)).setText(text);
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
 		}

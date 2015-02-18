@@ -22,9 +22,12 @@
                     style="@style/ImageView.item_main"
                     android:background="@drawable/ic_widget_download" />
 
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_java" />
+
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_icon_4"
                     android:text="Java" />
             </LinearLayout>
 
@@ -41,9 +44,12 @@
                     style="@style/ImageView.item_main"
                     android:background="@drawable/ic_widget_download" />
 
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_android" />
+
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_icon_4"
                     android:text="Android" />
             </LinearLayout>
 
@@ -60,9 +66,84 @@
                     style="@style/ImageView.item_main"
                     android:background="@drawable/ic_widget_download" />
 
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_php" />
+
                 <TextView
                     style="@style/TextView.item_main"
-                    android:drawableTop="@drawable/ic_icon_4"
+                    android:text="PHP" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/ic_line_1" />
+
+        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+
+            <!-- item -->
+
+            <LinearLayout
+                android:id="@+id/btn_python"
+                style="@style/Linerlayout.list_vertical" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_python" />
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:text="Python" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3" />
+
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:visibility="invisible" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_android" />
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:text="Android" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3"
+                android:visibility="invisible" />
+
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:visibility="invisible" >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download" />
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_php" />
+
+                <TextView
+                    style="@style/TextView.item_main"
                     android:text="PHP" />
             </LinearLayout>
         </LinearLayout>

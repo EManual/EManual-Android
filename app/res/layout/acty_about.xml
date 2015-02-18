@@ -9,13 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_app_launcher" />
+        android:src="@drawable/ic_icon_code" />
 
     <TextView
         android:id="@+id/tv_version"
         style="@style/TextView.item_main"
         android:layout_marginTop="10dp"
-        android:text="Java学习助手  v"
+        android:text="编程助手  v"
         android:textColor="@color/grey_lv_fifth" />
 
     <View

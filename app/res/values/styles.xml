@@ -13,8 +13,8 @@
 
     <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:displayOptions">showTitle</item>
-        <!--default <item name="android:displayOptions">useLogo|showHome|showTitle</item> -->
-        <item name="android:background">#FF3F9FE0</item>
+        <!-- default <item name="android:displayOptions">useLogo|showHome|showTitle</item> -->
+        <item name="android:background">@color/app_base_color</item>
     </style>
 
     <style name="MyActionModeStyle" parent="@android:style/Widget.Holo.Light.ActionMode"></style>
@@ -63,6 +63,13 @@
         <item name="android:tag">img</item>
     </style>
 
+    <style name="ImageView.item_main_module" parent="ImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">-8dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
     <style name="TextView" />
 
     <style name="TextView.base">
@@ -84,7 +91,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_marginTop">-10dp</item>
+        <item name="android:layout_marginTop">4dp</item>
         <item name="android:tag">lang</item>
     </style>
 
