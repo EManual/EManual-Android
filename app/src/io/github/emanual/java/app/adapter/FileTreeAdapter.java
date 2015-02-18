@@ -6,14 +6,15 @@ import io.github.emanual.java.app.utils.EManualUtils;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 public class FileTreeAdapter extends BaseAdapter {
 	List<FileTreeObject> data;
@@ -42,24 +43,25 @@ public class FileTreeAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder h =  null;
 		if(convertView == null){
-			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_topiclist, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_filetree, null);
 			h = new ViewHolder(convertView);
 			convertView.setTag(h);
 		}else{
 			h =(ViewHolder)convertView.getTag();
 		}
 		FileTreeObject item = data.get(position);
+		h.title.setText(EManualUtils.getFileNameWithouExtAndNumber(item.getRname()));
 		if(item.getMode().equals(FileTreeObject.MODE_FILE)){
-			h.title.setText(EManualUtils.getFileNameWithoutExt(item.getRname()));
+			h.icon.setBackgroundResource(R.drawable.ic_icon_file);
 		}else{
-			h.title.setText(item.getRname());
+			h.icon.setBackgroundResource(R.drawable.ic_icon_document);
 		}
 		return convertView;
 	}
 	
 	class ViewHolder{
-		@InjectView(R.id.tv_title)
-		TextView title;
+		@InjectView(R.id.tv_title) TextView title;
+		@InjectView(R.id.iv_icon) ImageView icon; 
 		
 		public ViewHolder(View view) {
 			ButterKnife.inject(this, view);

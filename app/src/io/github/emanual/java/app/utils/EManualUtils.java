@@ -1,6 +1,5 @@
 package io.github.emanual.java.app.utils;
 
-import android.util.Log;
 
 /**
  * EManual 自身常用工具类
@@ -27,7 +26,19 @@ public class EManualUtils {
 	 * @return
 	 */
 	public static String getFileNameWithoutExt(String filename){
-		return filename.substring(0, filename.lastIndexOf("."));
+		if(filename.lastIndexOf(".") != -1 && filename.lastIndexOf(".") != filename.length()-1){
+			return filename.substring(0, filename.lastIndexOf("."));
+		}
+		return filename;
+		
+	}
+	
+	public static String getFileNameWithouExtAndNumber(String filename){
+		filename = getFileNameWithoutExt(filename);
+		if(filename.contains("-")){
+			return filename.substring(filename.indexOf("-")+1, filename.length());
+		}
+		return filename;
 	}
 	/**
 	 * 从ResourceCenter里的文件名提取文章的标题
