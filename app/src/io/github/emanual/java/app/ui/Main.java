@@ -3,6 +3,7 @@ package io.github.emanual.java.app.ui;
 import io.github.emanual.java.app.CoreService;
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.adapter.MainFragmentPagerAdapter;
+import io.github.emanual.java.app.fragment.Explore;
 import io.github.emanual.java.app.fragment.NewFeeds;
 import io.github.emanual.java.app.fragment.ResourceCenter;
 import io.github.emanual.java.app.widget.NewVersionDialog;
@@ -72,6 +73,7 @@ public class Main extends BaseActivity {
 
 		fragments.add(new NewFeeds());
 		fragments.add(new ResourceCenter());
+		fragments.add(new Explore());
 		if(viewPager == null)Log.d("debug", "viewPager is null");
 		viewPager.setAdapter(new MainFragmentPagerAdapter(
 				getSupportFragmentManager(), fragments, titles));

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_item_whit2grey"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="6dp" >
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="使用手册" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_item_whit2grey"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="6dp" >
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="意见反馈" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_item_whit2grey"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="6dp" >
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="评价应用" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_item_whit2grey"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="6dp" >
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:text="关 于" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+</LinearLayout>

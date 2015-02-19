@@ -13,5 +13,6 @@
     <string-array name="title_main">
         <item>新鲜事</item>
         <item>学习库</item>
+        <item>发 现</item>
     </string-array>
 </resources>
