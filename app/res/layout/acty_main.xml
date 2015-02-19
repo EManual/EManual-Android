@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include layout="@layout/toolbar" />
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        android:background="@android:color/white"
+        android:background="?attr/colorPrimary"
         android:textSize="15sp"
-        app:pstsIndicatorColor="#FF3F9FE0"
+        app:pstsIndicatorColor="@android:color/white"
         app:pstsIndicatorHeight="4dp"
         app:pstsShouldExpand="true" />
 

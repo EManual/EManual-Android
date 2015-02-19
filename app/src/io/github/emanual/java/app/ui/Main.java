@@ -10,7 +10,6 @@ import io.github.emanual.java.app.widget.NewVersionDialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.ActionBar;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +17,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +27,6 @@ import butterknife.InjectView;
 import com.astuetz.PagerSlidingTabStrip;
 
 public class Main extends BaseActivity {
-	ActionBar mActionBar;
     @InjectView(R.id.tabs) PagerSlidingTabStrip tabs;
     @InjectView(R.id.viewpager) ViewPager viewPager;
 	
@@ -67,7 +66,9 @@ public class Main extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
-		mActionBar = getActionBar();
+		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+		getSupportActionBar().setIcon(R.drawable.ic_icon_code_small_pure);
+		
 
 		fragments.add(new NewFeeds());
 		fragments.add(new ResourceCenter());

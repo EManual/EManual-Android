@@ -19,6 +19,7 @@ import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -46,6 +47,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 @SuppressLint("SetJavaScriptEnabled") public class Detail extends BaseActivity
 		implements OnRefreshListener {
 	ActionBar mActionBar;
+	Toolbar mToolbar;
 	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
 	@InjectView(R.id.webview) WebView webview;
 	String link;// 接受2种URL,一种是url,另一种文件路径path
@@ -86,7 +88,9 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		webview.getSettings().setJavaScriptEnabled(true);
 		webview.setWebChromeClient(new MyWebChromeClient());
 		webview.setWebViewClient(new MyWebViewClient());
-
+		
+		mToolbar = (Toolbar) findViewById(R.id.toolbar);  
+		setSupportActionBar(mToolbar);
 		mActionBar = getSupportActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(title);

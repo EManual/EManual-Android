@@ -5,11 +5,11 @@ import io.github.emanual.java.app.utils.AndroidUtils;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 public class About extends BaseActivity {
-	ActionBar mActionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,8 +25,9 @@ public class About extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
-		mActionBar = getSupportActionBar();
-		mActionBar.setDisplayHomeAsUpEnabled(true);
+		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		try {
 			String text =String.format("%s v%s", getResources().getString(R.string.application_name),AndroidUtils.getAppVersionName(getContext()));
 			((TextView)_getView(R.id.tv_version)).setText(text);

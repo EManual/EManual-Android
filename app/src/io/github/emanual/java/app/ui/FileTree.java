@@ -13,6 +13,7 @@ import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ListView;
 import butterknife.ButterKnife;
@@ -53,6 +54,7 @@ public class FileTree extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
+		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		lv.setAdapter(adapter);
