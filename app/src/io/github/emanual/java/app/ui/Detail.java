@@ -10,7 +10,6 @@ import java.io.IOException;
 import org.apache.http.Header;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -19,6 +18,7 @@ import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -87,7 +87,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		webview.setWebChromeClient(new MyWebChromeClient());
 		webview.setWebViewClient(new MyWebViewClient());
 
-		mActionBar = getActionBar();
+		mActionBar = getSupportActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(title);
 		// mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));

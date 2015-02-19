@@ -53,7 +53,7 @@ public class FileTree extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		lv.setAdapter(adapter);
 	}

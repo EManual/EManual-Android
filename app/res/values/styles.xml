@@ -2,7 +2,13 @@
 
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <item name="android:windowActionBar">true</item>
+        <item name="colorPrimary">@color/app_base_color</item>
+        <item name="colorPrimaryDark">@color/app_base_color</item>
+         <item name="colorAccent">@color/app_base_color</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        
         <item name="android:actionBarStyle">@style/ActionBarStyle</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_navigation_previous_item</item>
         <!-- 放在这里才有效 -->

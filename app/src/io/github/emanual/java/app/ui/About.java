@@ -2,9 +2,9 @@ package io.github.emanual.java.app.ui;
 
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.utils.AndroidUtils;
-import android.app.ActionBar;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -25,8 +25,8 @@ public class About extends BaseActivity {
 
 	@Override
 	protected void initLayout() {
-		mActionBar = getActionBar();
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		mActionBar = getSupportActionBar();
+		mActionBar.setDisplayHomeAsUpEnabled(true);
 		try {
 			String text =String.format("%s v%s", getResources().getString(R.string.application_name),AndroidUtils.getAppVersionName(getContext()));
 			((TextView)_getView(R.id.tv_version)).setText(text);
