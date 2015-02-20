@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.emanual.java.app"
+    package="io.github.emanual.app"
     android:versionCode="6"
     android:versionName="1.3.0" >
 
@@ -16,13 +16,13 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />  
 
     <application
-        android:name="io.github.emanual.java.app.App"
+        android:name="io.github.emanual.app.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_icon_code"
         android:label="@string/application_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="io.github.emanual.java.app.AppStart"
+            android:name="io.github.emanual.app.AppStart"
             android:label="@string/application_name"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
@@ -33,32 +33,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.Main"
+            android:name="io.github.emanual.app.ui.Main"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.Detail"
+            android:name="io.github.emanual.app.ui.Detail"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.About"
+            android:name="io.github.emanual.app.ui.About"
             android:label="@string/action_about"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.TopicList"
+            android:name="io.github.emanual.app.ui.TopicList"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.java.app.ui.ArticleList"
+            android:name="io.github.emanual.app.ui.ArticleList"
             android:launchMode="singleTask" >
         </activity>
                 <activity
-            android:name="io.github.emanual.java.app.ui.FileTree"
+            android:name="io.github.emanual.app.ui.FileTree"
             android:launchMode="singleTask" >
         </activity>
 
-        <service android:name="io.github.emanual.java.app.CoreService" >
+        <service android:name="io.github.emanual.app.CoreService" >
         </service>
 
         <!-- For AdsSdk. -->
