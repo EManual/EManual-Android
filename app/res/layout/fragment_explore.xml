@@ -70,6 +70,7 @@
         android:background="@drawable/ic_line_1" />
 
     <LinearLayout
+        android:id="@+id/btn_about"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/btn_item_whit2grey"

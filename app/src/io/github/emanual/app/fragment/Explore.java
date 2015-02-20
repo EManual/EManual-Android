@@ -1,6 +1,7 @@
 package io.github.emanual.app.fragment;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.ui.About;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,5 +28,11 @@ public class Explore extends BaseFragment {
 		String packageName = getActivity().getPackageName();
 		getActivity().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
 	}
+	
+	@OnClick(R.id.btn_about)
+	public void about(){
+		startActivity(new Intent(getActivity(),About.class));
+	}
+	
 
 }
