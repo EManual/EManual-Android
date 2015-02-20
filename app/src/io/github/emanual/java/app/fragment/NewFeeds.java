@@ -7,6 +7,7 @@ import io.github.emanual.java.app.api.RestClient;
 import io.github.emanual.java.app.entity.NewsFeedsObject;
 import io.github.emanual.java.app.ui.Detail;
 import io.github.emanual.java.app.utils.EManualUtils;
+import io.github.emanual.java.app.utils.SwipeRefreshLayoutUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,24 +32,24 @@ import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-public class NewFeeds extends BaseFragment implements OnRefreshListener,
-		OnScrollListener {
+public class NewFeeds extends BaseFragment implements OnRefreshListener
+		 {
 	@InjectView(R.id.lv_newfeeds)ListView lv;
 	@InjectView(R.id.swipeRefreshLayout)SwipeRefreshLayout swipeRefreshLayout;
-	boolean hasMore = true, isloading = false;
+	boolean hasMore = true;
 	int page = 1, maxPage = 1;
 	long last_motify = 0;
 	NewFeedsAPI api = new NewFeedsAPI();
 	NewFeedsAdapter adapter;
 	List<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
 		ButterKnife.inject(this, v);
 		swipeRefreshLayout.setOnRefreshListener(this);
-		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,
 				android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light);
@@ -93,36 +94,13 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 
 	@Override
 	public void onRefresh() {
-		swipeRefreshLayout.setRefreshing(true);
-		isloading = true;
 		api.getNewFeeds(1, new MyAsyncHttpResponseHandler(1));
 	}
-	
-
 
 	public void onLoadMore() {
 		api.getNewFeeds(page+1, new MyAsyncHttpResponseHandler(page+1));
 	}
 
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem,
-			int visibleItemCount, int totalItemCount) {
-		if (swipeRefreshLayout.isRefreshing() || isloading)
-			return;
-
-		if (firstVisibleItem + visibleItemCount >= totalItemCount
-				&& totalItemCount != 0 && hasMore) {
-			isloading = false;
-			onLoadMore();
-		}
-
-	}
-
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-	}
-	
 	class MyAsyncHttpResponseHandler extends AsyncHttpResponseHandler{
 		private int mPage = 1;
 		
@@ -131,7 +109,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 		}
 		
 		@Override public void onStart() {
-			swipeRefreshLayout.setRefreshing(true);
+			SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, true);
 		}
 		
 		@Override public void onSuccess(int statusCode, Header[] headers, byte[] response) {
@@ -163,8 +141,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener,
 			}
 		}
 		@Override public void onFinish() {
-			swipeRefreshLayout.setRefreshing(false);
-			isloading = false;
+			SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, false);
 		}
 	}
 	

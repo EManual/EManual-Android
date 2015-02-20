@@ -2,6 +2,7 @@ package io.github.emanual.java.app.ui;
 
 import io.github.emanual.java.app.R;
 import io.github.emanual.java.app.api.RestClient;
+import io.github.emanual.java.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.java.app.utils._;
 
 import java.io.FileNotFoundException;
@@ -54,7 +55,6 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	String title;
 	String sharePath; //分享路径
 	Menu mMenu = null;
-	boolean isLoading = false;
 	// 广告
 	private static final String TAG_BANNER = "1ecf3f37f1a348d3a0a2e5f7bfca623d";
 	private AdBanner adBanner;
@@ -80,7 +80,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 
 	@Override protected void initLayout() {
 		swipeRefreshLayout.setOnRefreshListener(this);
-		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light,
 				android.R.color.holo_blue_bright,
 				android.R.color.holo_blue_light);
@@ -94,10 +94,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		mActionBar = getSupportActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setTitle(title);
-		// mActionBar.setTitle(ParseUtils.getArticleNameByUrl(url));
-		// mActionBar.setTitle()
 
-		isLoading = false;
 		onRefresh();
 
 		showBannerAd();
@@ -118,14 +115,11 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	 * 刷新前
 	 */
 	private void onPreRefresh() {
-		swipeRefreshLayout.setRefreshing(true);
+		SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, true);
 		unDisplayMenu(mMenu);
-		isLoading = true;
 	}
 
 	@Override public void onRefresh() {
-		if (isLoading)
-			return;
 		if (_.isURL(link)) {
 			AsyncHttpClient client = new AsyncHttpClient();
 			client.get(link, new AsyncHttpResponseHandler() {
@@ -164,8 +158,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	 * 刷新完毕
 	 */
 	private void onPostRefresh() {
-		swipeRefreshLayout.setRefreshing(false);
-		isLoading = false;
+		SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, false);
 		displayMenu(mMenu);
 	}
 
