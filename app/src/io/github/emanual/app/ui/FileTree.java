@@ -100,9 +100,9 @@ public class FileTree extends BaseActivity {
 				//处理:显示这个文件
 				String link = cur_path + File.separator + data.get(position).getName();
 				Intent intent = new Intent(this,Detail.class);
-				intent.putExtra("link", link);
-				intent.putExtra("title", EManualUtils.getResouceTitle(data.get(position).getRname()));
-				intent.putExtra("sharePath", EManualUtils.genSharePath(data.get(position).getPath()));
+				intent.putExtra(Detail.EXTRA_LINK, link);
+				intent.putExtra(Detail.EXTRA_TITLE, EManualUtils.getResouceTitle(data.get(position).getRname()));
+				intent.putExtra(Detail.EXTRA_SHARE_PATH, EManualUtils.genSharePath(data.get(position).getPath()));
 				startActivity(intent);
 			}
 		}

@@ -47,6 +47,10 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
  */
 @SuppressLint("SetJavaScriptEnabled") public class Detail extends BaseActivity
 		implements OnRefreshListener {
+	public static final String EXTRA_LINK = "link";
+	public static final String EXTRA_TITLE = "title";
+	public static final String EXTRA_SHARE_PATH = "sharePath";
+	
 	ActionBar mActionBar;
 	Toolbar mToolbar;
 	@InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
@@ -69,11 +73,10 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	}
 
 	@Override protected void initData() {
-		link = getIntent().getStringExtra("link");
-		title = getIntent().getStringExtra("title");
-		sharePath = getIntent().getStringExtra("sharePath");
-		Log.d("debug", "当前文章的URL--> " + link);
-		if (link == null || title == null) {
+		link = getIntent().getStringExtra(EXTRA_LINK);
+		title = getIntent().getStringExtra(EXTRA_TITLE);
+		sharePath = getIntent().getStringExtra(EXTRA_SHARE_PATH);
+		if (link == null || title == null || sharePath == null) {
 			finish();
 		}
 	}
