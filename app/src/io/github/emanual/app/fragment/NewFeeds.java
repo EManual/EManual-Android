@@ -41,7 +41,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 	long last_motify = 0;
 	NewFeedsAPI api = new NewFeedsAPI();
 	NewFeedsAdapter adapter;
-	List<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
+	ArrayList<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,14 +88,27 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 				startActivity(intent);
 			}
 		});
-		onRefresh();
+
+		if(savedInstanceState!=null){
+			ArrayList<NewsFeedsObject> save_data = (ArrayList<NewsFeedsObject>) savedInstanceState.getSerializable("data");
+			this.data.addAll(save_data);
+		}
+		if(data.size() == 0){
+			onRefresh();
+		}
 		return v;
+	}
+	
+	@Override public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putSerializable("data", this.data);
 	}
 
 	@Override
 	public void onRefresh() {
 		api.getNewFeeds(1, new MyAsyncHttpResponseHandler(1));
 	}
+	
 
 	public void onLoadMore() {
 		api.getNewFeeds(page+1, new MyAsyncHttpResponseHandler(page+1));

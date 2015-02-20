@@ -1,12 +1,13 @@
 package io.github.emanual.app.entity;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class NewsFeedsObject {
+public class NewsFeedsObject implements Serializable{
 	private String path;
 	private String name;
 	private String rname;
