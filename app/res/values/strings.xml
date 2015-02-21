@@ -5,6 +5,7 @@
     <string name="action_more">更多</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_share">分      享</string>
+    <string name="action_feedback_report">错误反馈</string>
     <string name="action_favourite">收      藏</string>
     <string name="action_about">关      于</string>
     <string name="cleanup">清空</string>
@@ -15,4 +16,8 @@
         <item>学习库</item>
         <item>发 现</item>
     </string-array>
+    
+    <!-- Activity -->
+    <string name="acty_about">关于</string>
+    <string name="acty_feedback">用户反馈</string>
 </resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/toolbar" />
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="left"
+        android:hint="在这里写下你的意见和想法吧"
+        android:lines="6"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        bootstrapbutton:be_roundedCorners="true"
+        bootstrapbutton:be_state="primary" >
+
+        <requestFocus />
+    </com.beardedhen.androidbootstrap.BootstrapEditText>
+
+    <RadioGroup
+        android:id="@+id/rg_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_type_advice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="意见反馈" />
+
+        <RadioButton
+            android:id="@+id/rb_type_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="错误报告" />
+    </RadioGroup>
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/btn_submit"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="提  交"
+        android:textSize="16sp"
+        bootstrapbutton:bb_type="primary" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:gravity="bottom|left"
+        android:layout_marginBottom="2dp"
+        android:textSize="12sp"
+        android:text="* 你的错误反馈/意见建议能帮我们打造更好的应用" />
+
+</LinearLayout>

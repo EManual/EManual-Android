@@ -59,6 +59,8 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	String title;
 	String sharePath; //分享路径
 	Menu mMenu = null;
+	
+	String feedback_report_tpl = "我发现《%s》有错误,路径为 %s ";
 	// 广告
 	private static final String TAG_BANNER = "1ecf3f37f1a348d3a0a2e5f7bfca623d";
 	private AdBanner adBanner;
@@ -202,6 +204,12 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 			return true;
 		case android.R.id.home:
 			finish();
+			return true;
+		case R.id.action_feedback_report:
+			Intent intent = new Intent(this,Feedback.class);
+			intent.putExtra(Feedback.EXTRA_TYPE, Feedback.TYPE_REPORT);
+			intent.putExtra(Feedback.EXTRA_CONTENT, String.format(feedback_report_tpl,title,sharePath));
+			startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

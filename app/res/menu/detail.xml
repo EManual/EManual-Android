@@ -7,5 +7,11 @@
         android:icon="@drawable/ic_action_social_share"
         android:title="@string/action_share"
         app:showAsAction="always"/>
+    
+        <item
+        android:id="@+id/action_feedback_report"
+        android:icon="@drawable/ic_action_about"
+        android:title="@string/action_feedback_report"
+        app:showAsAction="always"/>
 
 </menu>
