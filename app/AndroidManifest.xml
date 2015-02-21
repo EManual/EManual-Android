@@ -33,32 +33,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.github.emanual.app.ui.Main"
+            android:name=".ui.Main"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.app.ui.Detail"
+            android:name=".ui.Detail"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.app.ui.About"
+            android:name=".ui.About"
             android:label="@string/action_about"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.app.ui.TopicList"
+            android:name=".ui.TopicList"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="io.github.emanual.app.ui.ArticleList"
+            android:name=".ui.ArticleList"
             android:launchMode="singleTask" >
         </activity>
                 <activity
-            android:name="io.github.emanual.app.ui.FileTree"
+            android:name=".ui.FileTree"
             android:launchMode="singleTask" >
         </activity>
 
-        <service android:name="io.github.emanual.app.CoreService" >
+        <service android:name=".CoreService" >
         </service>
 
         <!-- For AdsSdk. -->
