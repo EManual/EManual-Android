@@ -1,50 +1,46 @@
 package io.github.emanual.app.widget;
 
-import io.github.emanual.app.R;
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
-public class NewVersionDialog extends Dialog {
+public class NewVersionDialog extends AlertDialog {
+
 	Context context;
-	TextView updaInfo;
-	String description, url;
+	String updaInfo, url;
 
-	public NewVersionDialog(Context context, String description, String url) {
-		super(context, R.style.Dialog_Theme_BaseDialog);
+	public NewVersionDialog(Context context) {
+		super(context);
 		this.context = context;
-		this.description = description;
-		this.url = url;
+		init();
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.dlg_newversion);
-		updaInfo = (TextView) findViewById(R.id.et_body);
-		updaInfo.setText(description);
-		findViewById(R.id.btn_comfirm).setOnClickListener(
-				new View.OnClickListener() {
+	private void init() {
+		this.setTitle("发现新版本");
+		this.setButton(BUTTON_NEGATIVE, "下次更新", new OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						Uri uri = Uri.parse(url);
-						Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-						context.startActivity(intent);
-						NewVersionDialog.this.dismiss();
-					}
-				});
-		findViewById(R.id.btn_cancle).setOnClickListener(
-				new View.OnClickListener() {
+			@Override public void onClick(DialogInterface dialog, int which) {
+				dismiss();
+			}
+		});
+		this.setButton(BUTTON_POSITIVE, "立即更新", new OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						NewVersionDialog.this.dismiss();
-					}
-				});
+			@Override public void onClick(DialogInterface dialog, int which) {
+				Uri uri = Uri.parse(url);
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				context.startActivity(intent);
+				NewVersionDialog.this.dismiss();
+			}
+		});
+	}
+
+	public void show(String updateInfo, String url) {
+		this.updaInfo = updateInfo;
+		this.url = url;
+		this.setMessage(updateInfo);
+		
+		super.show();
 	}
 }

@@ -13,4 +13,13 @@ public class EmanualAPI {
 	@SuppressLint("DefaultLocale") public static void downloadLang(String lang,AsyncHttpResponseHandler responseHandler){
 		RestClient.get(String.format("/md-%s/dist/%s.zip", lang.toLowerCase(),lang.toLowerCase()), null, responseHandler);
 	}
+	/**
+	 * 获得最新版本的信息
+	 * @param responseHandler
+	 */
+	public static void getVersionInfo(AsyncHttpResponseHandler responseHandler){
+		RestClient.get("/md-release/dist/info.json",null, responseHandler);
+	}
+	
+	
 }

@@ -70,7 +70,8 @@ public class Main extends BaseActivity {
 		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 		getSupportActionBar().setIcon(R.drawable.ic_icon_code_small_pure);
 		
-
+		dialog = new NewVersionDialog(getContext());
+		
 		fragments.add(new NewFeeds());
 		fragments.add(new ResourceCenter());
 		fragments.add(new Explore());
@@ -102,12 +103,10 @@ public class Main extends BaseActivity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(CoreService.Action_CheckVersion)) {
-				String description = intent.getStringExtra("description");
-				String url = intent.getStringExtra("url");
-				if (dialog == null)
-					dialog = new NewVersionDialog(getContext(), description,
-							url);
-				dialog.show();
+				String description = intent.getStringExtra("change_log");
+				String url = intent.getStringExtra("download_url");
+
+				dialog.show(description,url);
 			}
 		}
 
