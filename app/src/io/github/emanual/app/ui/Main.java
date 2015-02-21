@@ -53,9 +53,8 @@ public class Main extends BaseActivity {
 		startService(service);
 	}
 	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
+	@Override protected void onPause() {
+		super.onPause();
 		if(mReceiver != null)
 			unregisterReceiver(mReceiver);
 	}
