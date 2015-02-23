@@ -53,12 +53,12 @@ public class Main extends BaseActivity {
 		startService(service);
 	}
 	
-	@Override protected void onPause() {
-		super.onPause();
+	@Override protected void onDestroy() {
+		super.onDestroy();
 		if(mReceiver != null)
 			unregisterReceiver(mReceiver);
 	}
-
+	
 	@Override
 	protected void initData() {
 		titles = getResources().getStringArray(R.array.title_main);
