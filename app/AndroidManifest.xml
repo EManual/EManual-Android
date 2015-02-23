@@ -84,7 +84,7 @@
         <!-- Umeng -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="53fad774fd98c5e05500a369" >
+            android:value="54eaeba6fd98c5faa30003f5" >
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
