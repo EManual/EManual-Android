@@ -54,6 +54,7 @@ public class Feedback extends BaseActivity {
 		
 		if(!TextUtils.isEmpty(_content)){
 			et_content.setText(_content);
+			et_content.setSelection(_content.length());
 		}
 		if(!TextUtils.isEmpty(_type)){
 			if(_type.equals(TYPE_REPORT)){
@@ -62,6 +63,7 @@ public class Feedback extends BaseActivity {
 				rg_type.check(R.id.rb_type_advice);
 			}
 		}
+		
 		mProgressDialog = new ProgressDialog(getContext());
 		mProgressDialog.setTitle("提示");
 		mProgressDialog.setCancelable(false);
