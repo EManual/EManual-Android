@@ -52,6 +52,10 @@
             android:name=".ui.Feedback"
             android:launchMode="singleTask" >
         </activity>
+        <activity
+            android:name=".ui.Browser"
+            android:launchMode="singleTask" >
+        </activity>
 
         <service android:name=".CoreService" >
         </service>
