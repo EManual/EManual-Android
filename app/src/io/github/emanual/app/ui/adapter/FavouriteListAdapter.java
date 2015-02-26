@@ -1,30 +1,35 @@
-package io.github.emanual.app.adapter;
+package io.github.emanual.app.ui.adapter;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.NewsFeedsObject;
+import io.github.emanual.app.entity.Article;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
-public class NewFeedsAdapter extends BaseAdapter {
-	List<NewsFeedsObject> data;
+public class FavouriteListAdapter extends BaseAdapter {
+
+	List<Article> data;
 	Context context;
+	List<Boolean> selected;
 
-	public NewFeedsAdapter(Context context, List<NewsFeedsObject> data) {
+	public FavouriteListAdapter(Context context, List<Article> data,List<Boolean> selected) {
 		this.data = data;
 		this.context = context;
+		this.selected  =selected;
 	}
 
 	@Override
 	public int getCount() {
+
 		return data.size();
 	}
 
@@ -43,29 +48,26 @@ public class NewFeedsAdapter extends BaseAdapter {
 		ViewHolder h = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(context).inflate(
-					R.layout.adapter_newfeeds, null);
+					R.layout.adapter_favouritelist, null);
 			h = new ViewHolder(convertView);
 			convertView.setTag(h);
+
 		} else {
 			h = (ViewHolder) convertView.getTag();
 		}
-		String filename = data.get(position).getRname().split("\\.")[0];
-		String[] s = filename.split("-");
-		String time = s[0] + "-" + s[1] + "-" + s[2];
-		String title = s[3];
-		h.title.setText(title);
-		h.time.setText(time);
-		h.description.setText(data.get(position).getDescription());
+		h.tv_title.setText(data.get(position).getTitle());
+		h.iv_checked.setVisibility(selected.get(position)?View.VISIBLE:View.INVISIBLE);
 		return convertView;
 	}
 
-	class ViewHolder {
-		@InjectView(R.id.tv_title) TextView title;
-		@InjectView(R.id.tv_time) TextView time;
-		@InjectView(R.id.tv_description) TextView description;
-
-		public ViewHolder(View view) {
+	static class ViewHolder {
+		@InjectView(R.id.tv_title) TextView tv_title;
+		@InjectView(R.id.iv_checked) ImageView iv_checked;
+		
+		public ViewHolder(View view){
 			ButterKnife.inject(this, view);
 		}
+
 	}
+
 }

@@ -2,10 +2,10 @@ package io.github.emanual.app.ui;
 
 import io.github.emanual.app.CoreService;
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.MainFragmentPagerAdapter;
-import io.github.emanual.app.fragment.Explore;
-import io.github.emanual.app.fragment.NewFeeds;
-import io.github.emanual.app.fragment.ResourceCenter;
+import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
+import io.github.emanual.app.ui.fragment.Explore;
+import io.github.emanual.app.ui.fragment.NewFeeds;
+import io.github.emanual.app.ui.fragment.ResourceCenter;
 import io.github.emanual.app.widget.NewVersionDialog;
 
 import java.util.ArrayList;

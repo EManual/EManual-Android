@@ -1,4 +1,4 @@
-package io.github.emanual.app.adapter;
+package io.github.emanual.app.ui.adapter;
 
 import io.github.emanual.app.R;
 

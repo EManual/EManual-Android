@@ -1,4 +1,4 @@
-package io.github.emanual.app.fragment;
+package io.github.emanual.app.ui.fragment;
 
 import android.support.v4.app.Fragment;
 import android.widget.Toast;

@@ -1,8 +1,8 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.FileTreeAdapter;
 import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.ui.adapter.FileTreeAdapter;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils._;
 

@@ -1,35 +1,31 @@
-package io.github.emanual.app.adapter;
+package io.github.emanual.app.ui.adapter;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.Article;
+import io.github.emanual.app.utils.ParseUtils;
 
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FavouriteListAdapter extends BaseAdapter {
-
-	List<Article> data;
+public class ArticleListAdapter extends BaseAdapter {
+	List<String> data;
 	Context context;
-	List<Boolean> selected;
 
-	public FavouriteListAdapter(Context context, List<Article> data,List<Boolean> selected) {
+	public ArticleListAdapter(Context context, List<String> data) {
 		this.data = data;
 		this.context = context;
-		this.selected  =selected;
 	}
 
 	@Override
 	public int getCount() {
-
 		return data.size();
 	}
 
@@ -48,26 +44,25 @@ public class FavouriteListAdapter extends BaseAdapter {
 		ViewHolder h = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(context).inflate(
-					R.layout.adapter_favouritelist, null);
+					R.layout.adapter_articlelist, null);
 			h = new ViewHolder(convertView);
 			convertView.setTag(h);
-
 		} else {
 			h = (ViewHolder) convertView.getTag();
+
 		}
-		h.tv_title.setText(data.get(position).getTitle());
-		h.iv_checked.setVisibility(selected.get(position)?View.VISIBLE:View.INVISIBLE);
+		Log.i("debug", data.get(position));
+		h.title.setText(ParseUtils.getArticleName(data.get(position)));
 		return convertView;
 	}
 
 	static class ViewHolder {
-		@InjectView(R.id.tv_title) TextView tv_title;
-		@InjectView(R.id.iv_checked) ImageView iv_checked;
-		
-		public ViewHolder(View view){
+		@InjectView(R.id.tv_title)
+		TextView title;
+
+		public ViewHolder(View view) {
 			ButterKnife.inject(this, view);
 		}
-
 	}
 
 }

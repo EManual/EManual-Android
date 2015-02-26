@@ -1,4 +1,4 @@
-package io.github.emanual.app.fragment;
+package io.github.emanual.app.ui.fragment;
 
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;

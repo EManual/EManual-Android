@@ -1,9 +1,9 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.ArticleListAdapter;
 import io.github.emanual.app.api.JavaAPI;
 import io.github.emanual.app.api.RestClient;
+import io.github.emanual.app.ui.adapter.ArticleListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

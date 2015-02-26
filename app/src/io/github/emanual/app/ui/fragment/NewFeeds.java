@@ -1,11 +1,11 @@
-package io.github.emanual.app.fragment;
+package io.github.emanual.app.ui.fragment;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.NewFeedsAdapter;
 import io.github.emanual.app.api.NewFeedsAPI;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.entity.NewsFeedsObject;
 import io.github.emanual.app.ui.Detail;
+import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 

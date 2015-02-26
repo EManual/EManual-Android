@@ -1,8 +1,8 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
-import io.github.emanual.app.adapter.TopicListAdapter;
 import io.github.emanual.app.api.JavaAPI;
+import io.github.emanual.app.ui.adapter.TopicListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
