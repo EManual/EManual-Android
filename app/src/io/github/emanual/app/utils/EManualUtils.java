@@ -32,7 +32,11 @@ public class EManualUtils {
 		return filename;
 		
 	}
-	
+	/**
+	 * 获得不带序号,后缀名的文件名
+	 * @param filename
+	 * @return
+	 */
 	public static String getFileNameWithouExtAndNumber(String filename){
 		filename = getFileNameWithoutExt(filename);
 		if(filename.contains("-")){
@@ -60,7 +64,15 @@ public class EManualUtils {
 	public static String getNewsFeedsTitle(String filename) {
 		filename = filename.split("\\.")[0]; // rm ext anme
 		String[] s = filename.split("-");
-		return s[3];
+		
+		String title = s[3];
+		if(s.length > 4){
+			//文件名也包含符号`-`
+			for(int i = 4; i < s.length; i++){
+				title += "-" + s[i];
+			}
+		}
+		return title;
 	}
 	/**
 	 * 从NewsFeeds的文件名中提取时间(年-月-日)

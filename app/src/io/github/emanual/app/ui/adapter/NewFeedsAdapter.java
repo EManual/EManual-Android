@@ -2,6 +2,7 @@ package io.github.emanual.app.ui.adapter;
 
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.NewsFeedsObject;
+import io.github.emanual.app.utils.EManualUtils;
 
 import java.util.List;
 
@@ -49,12 +50,9 @@ public class NewFeedsAdapter extends BaseAdapter {
 		} else {
 			h = (ViewHolder) convertView.getTag();
 		}
-		String filename = data.get(position).getRname().split("\\.")[0];
-		String[] s = filename.split("-");
-		String time = s[0] + "-" + s[1] + "-" + s[2];
-		String title = s[3];
-		h.title.setText(title);
-		h.time.setText(time);
+		
+		h.title.setText(EManualUtils.getNewsFeedsTitle(data.get(position).getRname()));
+		h.time.setText(EManualUtils.getNewsFeedsTime(data.get(position).getRname()));
 		h.description.setText(data.get(position).getDescription());
 		return convertView;
 	}
