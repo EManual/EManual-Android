@@ -77,9 +77,12 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/btn_homepage"
             style="@style/TextView.item_main"
-            android:text="http://emanual.github.io"
-            android:textSize="14sp" />
+            android:text="http://www.iEManual.com"
+            android:textSize="14sp" 
+            android:clickable="true"
+            />
     </LinearLayout>
 
     <LinearLayout
