@@ -24,6 +24,8 @@ public class Feedback extends BaseActivity {
 	public static final String TYPE_REPORT = "report"; // 报告错误
 	public static final String TYPE_ADVICE = "advice";// 建议
 	
+	public static final int MAX_CONTENT_LENGTH = 400; //反馈内容最长为400
+	
 
 	@InjectView(R.id.et_content) EditText et_content;
 	@InjectView(R.id.rg_type) RadioGroup rg_type;
@@ -83,8 +85,8 @@ public class Feedback extends BaseActivity {
 		if(content.length() < 5){
 			toast("多写点东西吧~");
 			return;
-		}else if(content.length() > 200){
-			toast("内容太多了,文字数应小于200");
+		}else if(content.length() > MAX_CONTENT_LENGTH){
+			toast("内容太多了,文字数应小于"  + MAX_CONTENT_LENGTH);
 			return;
 		}
 		

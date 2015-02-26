@@ -43,7 +43,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 	NewFeedsAdapter adapter;
 	ArrayList<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
 	
-	@Override
+	@SuppressWarnings("unchecked") @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
@@ -81,10 +81,15 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				String link = String.format(RestClient.URL_NewsFeeds,data.get(position).getPath());
+				String title = EManualUtils.getNewsFeedsTitle(data.get(position).getRname());
+				
 				Intent intent = new Intent(getActivity(), Detail.class);
-				intent.putExtra(Detail.EXTRA_LINK, String.format(RestClient.URL_NewsFeeds,data.get(position).getPath()));
-				intent.putExtra(Detail.EXTRA_TITLE, EManualUtils.getNewsFeedsTitle(data.get(position).getRname()));
+				intent.putExtra(Detail.EXTRA_LINK, link);
+				intent.putExtra(Detail.EXTRA_TITLE, title);
 				intent.putExtra(Detail.EXTRA_SHARE_PATH, EManualUtils.genSharePath(data.get(position).getPath()));
+				intent.putExtra(Detail.EXTRA_FEEDBACK_CONTENT, String.format(Detail.FEEDBACK_CONTENT_TPL, title, "/新鲜事/"+title));
+				
 				startActivity(intent);
 			}
 		});

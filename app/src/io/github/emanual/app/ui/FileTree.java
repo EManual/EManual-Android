@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,8 +22,8 @@ import butterknife.InjectView;
 import butterknife.OnItemClick;
 
 public class FileTree extends BaseActivity {
-	private String root = "";
-	private String cur_path = "";
+	private String root = ""; //根目录
+	private String cur_path = "";  //当前路径
 	private FileTreeObject mFileTreeObject;
 
 	@InjectView(R.id.lv_filetree) ListView lv;
@@ -39,7 +40,7 @@ public class FileTree extends BaseActivity {
 		initLayout();
 	}
 
-	@Override protected void initData() {
+	@SuppressLint("DefaultLocale") @Override protected void initData() {
 		if (getIntent().getStringExtra("LANG_PATH") != null) {
 			cur_path = root = getIntent().getStringExtra("LANG_PATH");// ->
 																		// MD_PATH/lang
@@ -115,12 +116,20 @@ public class FileTree extends BaseActivity {
 				// 处理:显示这个文件
 				String link = cur_path + File.separator
 						+ data.get(position).getName();
+				String title = EManualUtils.getResouceTitle(data.get(position).getRname());
+				String _path = "/";
+				for(String n : rnames){
+					_path += n + "/";
+				}
+				_path +=title;
+				
 				Intent intent = new Intent(this, Detail.class);
 				intent.putExtra(Detail.EXTRA_LINK, link);
-				intent.putExtra(Detail.EXTRA_TITLE, EManualUtils
-						.getResouceTitle(data.get(position).getRname()));
+				intent.putExtra(Detail.EXTRA_TITLE, title);
 				intent.putExtra(Detail.EXTRA_SHARE_PATH,
 						EManualUtils.genSharePath(data.get(position).getPath()));
+				intent.putExtra(Detail.EXTRA_FEEDBACK_CONTENT, String.format(Detail.FEEDBACK_CONTENT_TPL, title, _path));
+				
 				startActivity(intent);
 			}
 		}

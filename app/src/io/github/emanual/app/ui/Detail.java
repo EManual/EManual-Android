@@ -50,6 +50,9 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	public static final String EXTRA_LINK = "link";
 	public static final String EXTRA_TITLE = "title";
 	public static final String EXTRA_SHARE_PATH = "sharePath";
+	public static final String EXTRA_FEEDBACK_CONTENT = "feedbackContent";
+	
+	public static final String FEEDBACK_CONTENT_TPL= "我发现《%s》有错误,路径为: %s ";
 	
 	ActionBar mActionBar;
 	Toolbar mToolbar;
@@ -58,9 +61,10 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	String link;// 接受2种URL,一种是url,另一种文件路径path
 	String title;
 	String sharePath; //分享路径
+	String feedback_content;//反馈内容
 	Menu mMenu = null;
 	
-	String feedback_report_tpl = "我发现《%s》有错误,路径为 %s ";
+	
 	// 广告
 	private static final String TAG_BANNER = "1ecf3f37f1a348d3a0a2e5f7bfca623d";
 	private AdBanner adBanner;
@@ -78,7 +82,9 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		link = getIntent().getStringExtra(EXTRA_LINK);
 		title = getIntent().getStringExtra(EXTRA_TITLE);
 		sharePath = getIntent().getStringExtra(EXTRA_SHARE_PATH);
-		if (link == null || title == null || sharePath == null) {
+		feedback_content = getIntent().getStringExtra(EXTRA_FEEDBACK_CONTENT);
+		
+		if (link == null || title == null || sharePath == null || feedback_content == null) {
 			finish();
 		}
 	}
@@ -208,7 +214,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 		case R.id.action_feedback_report:
 			Intent intent = new Intent(this,Feedback.class);
 			intent.putExtra(Feedback.EXTRA_TYPE, Feedback.TYPE_REPORT);
-			intent.putExtra(Feedback.EXTRA_CONTENT, String.format(feedback_report_tpl,title,sharePath));
+			intent.putExtra(Feedback.EXTRA_CONTENT, feedback_content);
 			startActivity(intent);
 			return true;
 		default:
