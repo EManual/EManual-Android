@@ -8,9 +8,12 @@ import io.github.emanual.app.ui.Detail;
 import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
+import io.github.emanual.app.utils.UmengAnalytics;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.Header;
 
@@ -31,6 +34,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.umeng.analytics.MobclickAgent;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener
 		 {
@@ -84,12 +88,13 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 				String link = String.format(RestClient.URL_NewsFeeds,data.get(position).getPath());
 				String title = EManualUtils.getNewsFeedsTitle(data.get(position).getRname());
 				
+				onUmengAnalytics(title);
+				
 				Intent intent = new Intent(getActivity(), Detail.class);
 				intent.putExtra(Detail.EXTRA_LINK, link);
 				intent.putExtra(Detail.EXTRA_TITLE, title);
 				intent.putExtra(Detail.EXTRA_SHARE_PATH, EManualUtils.genSharePath(data.get(position).getPath()));
 				intent.putExtra(Detail.EXTRA_FEEDBACK_CONTENT, String.format(Detail.FEEDBACK_CONTENT_TPL, title, "/新鲜事/"+title));
-				
 				startActivity(intent);
 			}
 		});
@@ -117,6 +122,14 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 
 	public void onLoadMore() {
 		api.getNewFeeds(page+1, new MyAsyncHttpResponseHandler(page+1));
+	}
+	
+	//统计看了啥文章
+	public void onUmengAnalytics(String title){
+		Map<String,String> m = new HashMap<String, String>();
+		m.put("title", title);
+		
+		MobclickAgent.onEventValue(getActivity(), UmengAnalytics.ID_EVENT_VIEW_NEWSFEEDS, m,UmengAnalytics.DEAFULT_DURATION );
 	}
 
 	class MyAsyncHttpResponseHandler extends AsyncHttpResponseHandler{
@@ -162,5 +175,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener
 			SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, false);
 		}
 	}
+	
+	
 	
 }

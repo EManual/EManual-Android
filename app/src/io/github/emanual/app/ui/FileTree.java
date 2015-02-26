@@ -4,12 +4,17 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.entity.FileTreeObject;
 import io.github.emanual.app.ui.adapter.FileTreeAdapter;
 import io.github.emanual.app.utils.EManualUtils;
+import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.umeng.analytics.MobclickAgent;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,6 +30,7 @@ public class FileTree extends BaseActivity {
 	private String root = ""; //根目录
 	private String cur_path = "";  //当前路径
 	private FileTreeObject mFileTreeObject;
+	private String module; //模块
 
 	@InjectView(R.id.lv_filetree) ListView lv;
 	private List<FileTreeObject> data;
@@ -53,10 +59,12 @@ public class FileTree extends BaseActivity {
 		data.addAll(mFileTreeObject.getFiles());
 		adapter = new FileTreeAdapter(this, data);
 
-		String lang = root.substring(root.lastIndexOf("/") + 1, root.length());
-		rnames.add(lang.substring(0, 1).toUpperCase() + lang.substring(1)); // ->
+		module = root.substring(root.lastIndexOf("/") + 1, root.length());
+		rnames.add(module.substring(0, 1).toUpperCase() + module.substring(1)); // ->
 																			// lang
 																			// 首字母大写
+		
+		onUmengAnalytics(module, null);
 
 	}
 
@@ -123,6 +131,8 @@ public class FileTree extends BaseActivity {
 				}
 				_path +=title;
 				
+				onUmengAnalytics(null, _path);
+				
 				Intent intent = new Intent(this, Detail.class);
 				intent.putExtra(Detail.EXTRA_LINK, link);
 				intent.putExtra(Detail.EXTRA_TITLE, title);
@@ -145,5 +155,23 @@ public class FileTree extends BaseActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	//统计看了X语言的X文章(文章为路径) or 查看了x语言模块
+	public void onUmengAnalytics(String lang ,String file_path){
+		Map<String,String> m = new HashMap<String, String>();
+		
+		if(lang != null){
+			//统计查看语言模块
+			m.put("module", module);
+			
+			MobclickAgent.onEventValue(this, UmengAnalytics.ID_EVENT_VIEW_MODULE, m,UmengAnalytics.DEAFULT_DURATION );
+		}else{
+			m.put("module", module);
+			m.put("file_path", file_path);
+			
+			MobclickAgent.onEventValue(this, UmengAnalytics.ID_EVENT_VIEW_FILE, m,UmengAnalytics.DEAFULT_DURATION );
+		}
+		
 	}
 }
