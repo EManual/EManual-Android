@@ -66,7 +66,7 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	
 	
 	// 广告
-	private static final String TAG_BANNER = "1ecf3f37f1a348d3a0a2e5f7bfca623d";
+	private static final String TAG_BANNER = "0733523bed393b3539e9d362b63ff6ec";
 	private AdBanner adBanner;
 	private View adBannerView;
 

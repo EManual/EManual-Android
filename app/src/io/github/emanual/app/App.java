@@ -7,8 +7,8 @@ import com.avos.avoscloud.AVOSCloud;
 import com.wandoujia.ads.sdk.Ads;
 
 public class App extends Application {
-	private final String AD_AppKey_ID = "100012315";
-	private final String AD_SECRET_KEY = "34120bea3dbac756bb258e7f45e2feb3";
+	private final String AD_AppKey_ID = "100023017";
+	private final String AD_SECRET_KEY = "588db5663b8403d4c67ded503871d19a";
 	private final String LeanCloud_App_Id = "7hyoc6are05n823dd424ywvf752gem2w96inlkl3yiann6vw";
 	private final String LeanCloud_App_Key = "tgufkdybjtb4gvsbwcatiwd9wx49adxrmf8qkpwunh0h3wx3";
 	@Override
