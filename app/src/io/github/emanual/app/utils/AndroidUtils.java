@@ -159,9 +159,15 @@ public class AndroidUtils {
      * @return
      * @throws NameNotFoundException
      */
-	public static int getAppVersionCode(Context context) throws NameNotFoundException{
+	public static int getAppVersionCode(Context context) {
 		PackageManager packageManager = context.getPackageManager();
-		PackageInfo info = packageManager.getPackageInfo(context.getPackageName(),0);
+		PackageInfo info;
+		try {
+			info = packageManager.getPackageInfo(context.getPackageName(),0);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+			return 1;
+		}
 		return info.versionCode;
 	}
 	

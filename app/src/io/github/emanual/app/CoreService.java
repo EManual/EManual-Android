@@ -51,20 +51,16 @@ public class CoreService extends Service {
 						JSONObject obj = change_logs.getJSONObject(i);
 						change_log += String.format(" * %s\n", obj.getString("content"));
 					}
-					
-					if (version_code > AndroidUtils
-							.getAppVersionCode(getApplicationContext())) {
-						intent.putExtra("version_code", version_code);
-						intent.putExtra("version_name", version_name);
-						intent.putExtra("change_log", change_log);
-						intent.putExtra("download_url", download_url);
-						sendBroadcast(intent);
-					}
+					//应该交由接受端判断如何处理
+					intent.putExtra("version_code", version_code);
+					intent.putExtra("version_name", version_name);
+					intent.putExtra("change_log", change_log);
+					intent.putExtra("download_url", download_url);
+					sendBroadcast(intent);
+ 
 				} catch (JSONException e) {
 					e.printStackTrace();
-				} catch (NameNotFoundException e) {
-					e.printStackTrace();
-				}
+				} 
 			}
 		});
 	}

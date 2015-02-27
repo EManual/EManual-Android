@@ -6,6 +6,7 @@ import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
 import io.github.emanual.app.ui.fragment.Explore;
 import io.github.emanual.app.ui.fragment.NewFeeds;
 import io.github.emanual.app.ui.fragment.ResourceCenter;
+import io.github.emanual.app.utils.AndroidUtils;
 import io.github.emanual.app.widget.NewVersionDialog;
 
 import java.util.ArrayList;
@@ -102,12 +103,16 @@ public class Main extends BaseActivity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(CoreService.Action_CheckVersion)) {
-				String description = intent.getStringExtra("change_log");
-				String url = intent.getStringExtra("download_url");
+				int version_code = intent.getIntExtra("version_code", 1);
+				
+				if(version_code > AndroidUtils.getAppVersionCode(getApplicationContext())){
+					
+					String description = intent.getStringExtra("change_log");
+					String url = intent.getStringExtra("download_url");
 
-				dialog.show(description,url);
+					dialog.show(description,url);
+				}
 			}
 		}
-
 	}
 }
