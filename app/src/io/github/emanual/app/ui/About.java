@@ -48,11 +48,4 @@ public class About extends BaseActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@OnClick(R.id.btn_homepage) public void homepage(TextView tv_homepage) {
-		Intent intent = new Intent(this, Browser.class);
-		intent.putExtra(Browser.EXTRA_URL, tv_homepage.getText().toString());
-		startActivity(intent);
-
-	}
-
 }
