@@ -28,6 +28,7 @@ public class Feedback extends BaseActivity {
 	
 
 	@InjectView(R.id.et_content) EditText et_content;
+	@InjectView(R.id.et_user_contact) EditText et_user_contact;
 	@InjectView(R.id.rg_type) RadioGroup rg_type;
 	
 	ProgressDialog mProgressDialog ;
@@ -73,8 +74,9 @@ public class Feedback extends BaseActivity {
 
 	@OnClick(R.id.btn_submit) public void submit() {
 		String content = et_content.getText().toString();
+		String user_contact = et_user_contact.getText().toString(); //optional
 		String type = rg_type.getCheckedRadioButtonId() == R.id.rb_type_advice ? TYPE_ADVICE
-				: TYPE_ADVICE;
+				: TYPE_REPORT;
 		String app_version ="";
 		String system_version = Build.VERSION.RELEASE + "-"+Build.VERSION.SDK_INT;
 		String model = Build.BRAND+" "+Build.MODEL;
@@ -94,6 +96,7 @@ public class Feedback extends BaseActivity {
 		
 	    AVObject fb = new AVObject("FeedBack");
 	    fb.put("content",content);
+	    fb.put("user_contact",user_contact);
 	    fb.put("type",type);
 	    fb.put("app_version",app_version);
 	    fb.put("system_version",system_version);

@@ -19,10 +19,23 @@
         android:lines="6"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        bootstrapbutton:be_roundedCorners="true"
         bootstrapbutton:be_state="primary" >
 
         <requestFocus />
+    </com.beardedhen.androidbootstrap.BootstrapEditText>
+
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/et_user_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="left|center_vertical"
+        android:hint="你的联系方式(邮箱,选填)"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        bootstrapbutton:be_state="primary" >
+
     </com.beardedhen.androidbootstrap.BootstrapEditText>
 
     <RadioGroup
@@ -54,17 +67,17 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:text="提  交"
-        android:textSize="16sp"
+        android:textSize="18sp"
         bootstrapbutton:bb_type="primary" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin="10dp"
+        android:layout_marginBottom="2dp"
         android:layout_weight="1"
         android:gravity="bottom|left"
-        android:layout_marginBottom="2dp"
-        android:textSize="12sp"
-        android:text="* 你的错误反馈/意见建议能帮我们打造更好的应用" />
+        android:text="* 你的错误反馈/意见建议能帮我们打造更好的应用"
+        android:textSize="12sp" />
 
 </LinearLayout>
