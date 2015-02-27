@@ -3,8 +3,10 @@ package io.github.emanual.app.ui.fragment;
 import io.github.emanual.app.CoreService;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.About;
+import io.github.emanual.app.ui.Browser;
 import io.github.emanual.app.ui.Feedback;
 import io.github.emanual.app.utils.AndroidUtils;
+import io.github.emanual.app.utils.EManualUtils;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -65,6 +67,12 @@ public class Explore extends BaseFragment {
 		Intent service = new Intent(getActivity(), CoreService.class);
 		service.setAction(CoreService.Action_CheckVersion);
 		getActivity().startService(service);
+	}
+	
+	@OnClick(R.id.btn_usage) public void usage() {
+		 Intent intent = new Intent(getActivity(),Browser.class);
+		 intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_USAGE);
+		 startActivity(intent);
 	}
 
 	@Override public void onPause() {

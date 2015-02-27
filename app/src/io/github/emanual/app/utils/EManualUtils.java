@@ -7,6 +7,8 @@ package io.github.emanual.app.utils;
  *
  */
 public class EManualUtils {
+	public static final String URL_HOME_PAGE = "http://www.iemanual.com";
+	public static final String URL_USAGE = "http://iemanual.com/blog/?usage/index.md";
 	
 	/**
 	 * 获得文件的扩展名

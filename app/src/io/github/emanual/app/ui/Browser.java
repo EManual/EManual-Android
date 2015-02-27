@@ -1,6 +1,7 @@
 package io.github.emanual.app.ui;
 
 import io.github.emanual.app.R;
+import io.github.emanual.app.utils.EManualUtils;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -43,6 +44,9 @@ public class Browser extends BaseActivity {
 	@Override protected void initData() {
 		if (getIntent().getStringExtra(EXTRA_URL) != null) {
 			url = getIntent().getStringExtra(EXTRA_URL);
+		}else{
+			url = EManualUtils.URL_HOME_PAGE;
+			toast("无URL，跳转至主页..");
 		}
 	}
 
