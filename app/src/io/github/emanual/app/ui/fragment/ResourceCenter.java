@@ -128,7 +128,7 @@ public class ResourceCenter extends BaseFragment {
 		return btn.findViewWithTag("img").getVisibility() == View.VISIBLE;
 	}
 
-	@OnClick({ R.id.btn_java, R.id.btn_android, R.id.btn_php }) public void click_lang(
+	@OnClick({ R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) public void click_lang(
 			final View v) {
 		String lang = "java";
 		switch (v.getId()) {
@@ -137,12 +137,13 @@ public class ResourceCenter extends BaseFragment {
 			break;
 		case R.id.btn_android:
 			lang = "android";
-			return;
-			// break;
+			 break;
 		case R.id.btn_php:
 			lang = "php";
-			return;
-			// break;
+			 break;
+		case R.id.btn_python:
+			lang = "python";
+			break;
 		default:
 			break;
 		}
@@ -153,13 +154,12 @@ public class ResourceCenter extends BaseFragment {
 			getActivity().startActivity(intent);
 		} else {
 			// 未下载
-			//downloadLang(lang);
 			mDownloadConfirmDialog.show(lang);
 
 		}
 	}
 	
-	@OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php}) public boolean update_lang(View v){
+	@OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) public boolean update_lang(View v){
 		TextView tv =(TextView) v.findViewWithTag("lang");
 		mDownloadConfirmDialog.show(tv.getText().toString().toLowerCase());
 		return true;
@@ -171,6 +171,8 @@ public class ResourceCenter extends BaseFragment {
 
 			@Override public void onStart() {
 				mProgressDialog.setTitle("正在下载..");
+				mProgressDialog.setProgress(0);
+				mProgressDialog.setMax(100);
 				mProgressDialog.show();
 			}
 
@@ -183,10 +185,11 @@ public class ResourceCenter extends BaseFragment {
 			@Override public void onFailure(int status_code, Header[] arg1,
 					Throwable arg2, File file) {
 				if (status_code == 404) {
-					toast("找不到该资源");
+					toast("该模块未开放");
 				} else {
 					toast("网络环境差，下载失败");
 				}
+				mProgressDialog.dismiss();
 			}
 
 			@Override public void onProgress(int bytesWritten, int totalSize) {
