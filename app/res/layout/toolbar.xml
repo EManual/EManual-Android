@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
+    android:paddingTop="@dimen/toobal_padingTop"
     app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/Theme.AppCompat.Light"
     app:title="@string/application_name" 
