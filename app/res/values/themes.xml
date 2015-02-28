@@ -9,6 +9,9 @@
         <item name="colorAccent">@color/app_base_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
 
+        <!-- 设置activity切换动画 -->
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+
         <!-- <item name="android:actionBarStyle">@style/ActionBarStyle</item> -->
         <!-- <item name="android:homeAsUpIndicator">@drawable/ic_navigation_previous_item</item> -->
         <!-- 放在这里才有效 -->
@@ -23,5 +26,13 @@
     </style>
 
     <style name="MyActionModeStyle" parent="@android:style/Widget.Holo.Light.ActionMode"></style>
+
+    <!-- Activity animation  -->
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/stay</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@anim/right_out</item>
+    </style>
 
 </resources>
