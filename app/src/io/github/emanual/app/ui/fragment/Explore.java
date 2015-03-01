@@ -8,6 +8,7 @@ import io.github.emanual.app.ui.Feedback;
 import io.github.emanual.app.utils.AndroidUtils;
 import io.github.emanual.app.utils.EManualUtils;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -42,9 +43,13 @@ public class Explore extends BaseFragment {
 
 	@OnClick(R.id.btn_rate_app) public void rate_app() {
 		String packageName = getActivity().getPackageName();
-		getActivity().startActivity(
-				new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="
-						+ packageName)));
+		try {
+			getActivity().startActivity(
+					new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="
+							+ packageName)));
+		} catch (ActivityNotFoundException e) {
+			toast("你手机没有装应用中心，建议下载豌豆荚客户端");
+		}
 	}
 
 	@OnClick(R.id.btn_about) public void about() {
