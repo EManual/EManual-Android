@@ -35,7 +35,7 @@ import butterknife.OnLongClick;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
 public class ResourceCenter extends BaseFragment {
-	@InjectViews({ R.id.btn_java, R.id.btn_android, R.id.btn_php }) List<View> names;
+	@InjectViews({ R.id.btn_java, R.id.btn_android, R.id.btn_php ,R.id.btn_python}) List<View> names;
 
 	public String ROOT_PATH;
 	public String DOWNLOAD_PATH;
