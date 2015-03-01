@@ -1,5 +1,9 @@
 package io.github.emanual.app.utils;
 
+import java.io.File;
+
+import android.content.Context;
+
 
 /**
  * EManual 自身常用工具类
@@ -7,9 +11,53 @@ package io.github.emanual.app.utils;
  *
  */
 public class EManualUtils {
+	public static final boolean DEBUG = false; 
 	public static final String URL_HOME_PAGE = "http://www.iemanual.com";
 	public static final String URL_USAGE = "http://iemanual.com/blog/?usage/index.md";
-	
+	/**
+	 * 获得应用的根目录
+	 * <br>
+	 * <li>如果DEBUG==true,返回的是ExternalStorage路径方便调试 /storage/emulated/0/Android/data/<App Name>/files
+	 * <li>如果DEBUG==false,返回的时InternalStorage /data/data/<App Name>/files
+	 * @param context
+	 * @return
+	 */
+	@SuppressWarnings("unused") public static String getRootPath(Context context){
+		if(StorageUtils.isExternalStorageWritable() && DEBUG){
+			return  context.getExternalFilesDir(null).getAbsolutePath();
+		}
+		return context.getFilesDir().getAbsolutePath();
+	}
+	/**
+	 * 获得markdown文件根目录 
+	 * <br>
+	 * ROOT_PATH/md
+	 * @param context
+	 * @return
+	 */
+	public static String getMdPath(Context context){
+		String MD_PATH = getRootPath(context) + File.separator + "md"; 
+		File f = new File(MD_PATH);
+		if(!f.exists()){
+			f.mkdir();
+		}
+		return f.getAbsolutePath();
+	}
+	/**
+	 * 获得下载路径
+	 * <br>
+	 * ROOT_PATH/Download
+	 * @param context
+	 * @return
+	 */
+	public static String getDownloadPath(Context context){
+		String DOWNLOAD_PATH = getRootPath(context) + File.separator + "Download";
+		File f = new File(DOWNLOAD_PATH);
+		if(!f.exists()){
+			f.mkdir();
+		}
+		return f.getAbsolutePath();
+	}
 	/**
 	 * 获得文件的扩展名
 	 * @param filename

@@ -3,6 +3,7 @@ package io.github.emanual.app.ui.fragment;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
 import io.github.emanual.app.ui.FileTree;
+import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.ZipUtils;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
@@ -49,10 +50,9 @@ public class ResourceCenter extends BaseFragment {
 		View v = inflater.inflate(R.layout.fragment_resource_center, null);
 		ButterKnife.inject(this, v);
 
-		ROOT_PATH = getActivity().getExternalFilesDir(null).getAbsolutePath();// /Android/data/包名/files
-		MD_PATH = ROOT_PATH + File.separator + "md"; // /Android/data/包名/files/md
-		DOWNLOAD_PATH = getActivity().getExternalFilesDir(     // /Android/data/包名/files/Download/
-				Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
+		ROOT_PATH = EManualUtils.getRootPath(getActivity());// /Android/data/包名/files
+		MD_PATH = EManualUtils.getMdPath(getActivity()); // /Android/data/包名/files/md
+		DOWNLOAD_PATH = EManualUtils.getDownloadPath(getActivity());
 		Log.d("debug", DOWNLOAD_PATH);
 
 		updateStatus();
