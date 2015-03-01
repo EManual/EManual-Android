@@ -236,14 +236,12 @@ public class ResourceCenter extends BaseFragment {
 			mProgressDialog.dismiss();
 			if (result) {
 				// 解压成功
-				Toast.makeText(getActivity(), "操作完成，请点击打开", Toast.LENGTH_SHORT)
-						.show();
+				toast("操作完成，请点击打开");
 				updateStatus();
 				return;
 			}
 			// 解压失败,请求重试
-			Toast.makeText(getActivity(), "数据转换失败，请重试!", Toast.LENGTH_SHORT)
-					.show();
+			toast("数据转换失败，请重试!");
 		}
 	}
 }
