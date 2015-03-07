@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="application_name">编程助手</string>
+    <string name="action_more">更多</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_share">分      享</string>
+    <string name="action_feedback_report">错误反馈</string>
+    <string name="action_favourite">收      藏</string>
+    <string name="action_about">关      于</string>
+    <string name="cleanup">清空</string>
+    <string name="cleanup_selected">删除所选</string>
+
+    <string-array name="title_main">
+        <item>新鲜事</item>
+        <item>学习库</item>
+        <item>发 现</item>
+    </string-array>
+    
+    <!-- Activity -->
+    <string name="acty_about">关于</string>
+    <string name="acty_feedback">用户反馈</string>
+    <string name="acty_browser">浏览</string>
+</resources>

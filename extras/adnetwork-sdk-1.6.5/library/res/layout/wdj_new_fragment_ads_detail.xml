@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@android:color/white"
+              tools:ignore="RtlHardcoded,UnusedAttribute">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:fadingEdge="none">
+
+        <!-- scroll content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- title -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.wandoujia.ads.sdk.volley.toolbox.NetworkImageView
+                    android:id="@+id/wdj_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/wdj_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:textSize="18sp"
+                            android:textColor="#333333"/>
+
+                        <TextView
+                            android:id="@+id/wdj_sub_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:singleLine="true"
+                            android:textSize="16sp"
+                            android:textColor="#cccccc"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <include layout="@layout/wdj_app_detail_hsep"/>
+
+            <!-- editor comment -->
+            <LinearLayout
+                android:id="@+id/wdj_editor_comment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/wdj_editor_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#777777"/>
+
+                <!-- sep -->
+                <include layout="@layout/wdj_app_detail_hsep"/>
+            </LinearLayout>
+
+            <!-- screenshots -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:fadingEdge="none">
+
+                    <LinearLayout
+                        android:id="@+id/wdj_screenshots_container"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </HorizontalScrollView>
+
+                <!-- sep -->
+                <include layout="@layout/wdj_app_detail_hsep"/>
+            </LinearLayout>
+
+            <!-- description -->
+            <TextView
+                android:id="@+id/wdj_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#777777"
+                android:lineSpacingExtra="2dp"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <com.wandoujia.ads.sdk.widget.SafeButton
+        android:id="@+id/wdj_install_button_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginTop="6dip"
+        android:layout_marginBottom="6dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:text="@string/wdj_free_download"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/wdj_ads_action_button_background"/>
+</LinearLayout>

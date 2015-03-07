@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.wandoujia.ads.sdk.AppWallActivity"
+              tools:ignore="MergeRootFrame">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/wdj_ads_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:gravity="center"
+            android:text="精品应用推荐"
+            android:textSize="17dip"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:src="@drawable/wdj_ads_title_back_normal"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/wdj_ads_title_bar"/>
+</LinearLayout>
+
+
+
+
+
+

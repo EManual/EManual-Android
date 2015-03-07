@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AdsSdkSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	
+    
+    <!--<string name="download_count">%1$s人安装</string>
+    <string name="no_result_text">正在为您加载...</string>-->
+</resources>
