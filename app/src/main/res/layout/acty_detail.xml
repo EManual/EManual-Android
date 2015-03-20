@@ -18,10 +18,4 @@
             android:layout_height="match_parent" >
         </WebView>
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <FrameLayout
-        android:id="@+id/banner_ad_container"
-        android:layout_width="match_parent"
-        android:layout_height="60dip" />
-
 </LinearLayout>

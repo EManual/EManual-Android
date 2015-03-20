@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EManual-Android.iml" filepath="$PROJECT_DIR$/EManual-Android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5/adnetwork-sdk-1.6.5.iml" filepath="$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5/adnetwork-sdk-1.6.5.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extras/extras.iml" filepath="$PROJECT_DIR$/extras/extras.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5/library/library.iml" filepath="$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5/library/library.iml" />
     </modules>
   </component>
 </project>

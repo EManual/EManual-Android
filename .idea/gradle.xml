@@ -9,9 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/extras" />
-            <option value="$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5" />
-            <option value="$PROJECT_DIR$/extras/adnetwork-sdk-1.6.5/library" />
           </set>
         </option>
       </GradleProjectSettings>

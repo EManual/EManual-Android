@@ -1,15 +1,5 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.api.RestClient;
-import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
-import io.github.emanual.app.utils._;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.apache.http.Header;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,19 +15,25 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.wandoujia.ads.sdk.Ads;
-import com.wandoujia.ads.sdk.widget.AdBanner;
+
+import org.apache.http.Header;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import io.github.emanual.app.R;
+import io.github.emanual.app.api.RestClient;
+import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
+import io.github.emanual.app.utils._;
 
 /**
  * 查看NewsFeeds or 文章详情
@@ -65,11 +61,6 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	Menu mMenu = null;
 	
 	
-	// 广告
-	private static final String TAG_BANNER = "0733523bed393b3539e9d362b63ff6ec";
-	private AdBanner adBanner;
-	private View adBannerView;
-
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.acty_detail);
@@ -108,19 +99,19 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 
 		onRefresh();
 
-		showBannerAd();
+//		showBannerAd();
 	}
 
-	private void showBannerAd() {
-		ViewGroup containerView = (ViewGroup) findViewById(R.id.banner_ad_container);
-		if (adBannerView != null
-				&& containerView.indexOfChild(adBannerView) >= 0) {
-			containerView.removeView(adBannerView);
-		}
-		adBanner = Ads.showBannerAd(this,
-				(ViewGroup) findViewById(R.id.banner_ad_container), TAG_BANNER);
-		adBannerView = adBanner.getView();
-	}
+//	private void showBannerAd() {
+//		ViewGroup containerView = (ViewGroup) findViewById(R.id.banner_ad_container);
+//		if (adBannerView != null
+//				&& containerView.indexOfChild(adBannerView) >= 0) {
+//			containerView.removeView(adBannerView);
+//		}
+//		adBanner = Ads.showBannerAd(this,
+//				(ViewGroup) findViewById(R.id.banner_ad_container), TAG_BANNER);
+//		adBannerView = adBanner.getView();
+//	}
 
 	/**
 	 * 刷新前
@@ -174,12 +165,12 @@ import com.wandoujia.ads.sdk.widget.AdBanner;
 	}
 
 	@Override protected void onStart() {
-		adBanner.startAutoScroll();
+//		adBanner.startAutoScroll();
 		super.onStart();
 	}
 
 	@Override protected void onStop() {
-		adBanner.stopAutoScroll();
+//		adBanner.stopAutoScroll();
 		super.onStop();
 	}
 

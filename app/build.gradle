@@ -35,5 +35,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.beardedhen:androidbootstrap:+'
     compile 'com.jpardogo.materialtabstrip:library:1.0.9'
-    compile project(':extras:adnetwork-sdk-1.6.5:library')
 }
