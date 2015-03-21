@@ -1,8 +1,8 @@
 package io.github.emanual.app.utils;
 
-import java.io.File;
-
 import android.content.Context;
+
+import java.io.File;
 
 
 /**
@@ -13,7 +13,10 @@ import android.content.Context;
 public class EManualUtils {
 	public static final boolean DEBUG = false; 
 	public static final String URL_HOME_PAGE = "http://www.iemanual.com";
+    /** 使用手册*/
 	public static final String URL_USAGE = "http://iemanual.com/blog/?usage/index.md";
+    /** 赞助作者*/
+    public static final String URL_SPONSOR = "http://iemanual.com/blog/?about/sponsor.md";
 	/**
 	 * 获得应用的根目录
 	 * <br>

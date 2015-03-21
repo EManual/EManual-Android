@@ -8,6 +8,36 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:id="@+id/btn_sponsor"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_item_whit2grey"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="28dp" >
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textColor="@color/app_base_color"
+            android:textSize="32sp"
+            fontawesometext:fa_icon="fa-heart" />
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="赞助作者" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1" />
+
+    <LinearLayout
         android:id="@+id/btn_usage"
         android:layout_width="match_parent"
         android:layout_height="60dp"

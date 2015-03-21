@@ -1,12 +1,5 @@
 package io.github.emanual.app.ui.fragment;
 
-import io.github.emanual.app.CoreService;
-import io.github.emanual.app.R;
-import io.github.emanual.app.ui.About;
-import io.github.emanual.app.ui.Browser;
-import io.github.emanual.app.ui.Feedback;
-import io.github.emanual.app.utils.AndroidUtils;
-import io.github.emanual.app.utils.EManualUtils;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -19,8 +12,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.github.emanual.app.CoreService;
+import io.github.emanual.app.R;
+import io.github.emanual.app.ui.About;
+import io.github.emanual.app.ui.Browser;
+import io.github.emanual.app.ui.Feedback;
+import io.github.emanual.app.utils.AndroidUtils;
+import io.github.emanual.app.utils.EManualUtils;
 
 public class Explore extends BaseFragment {
 
@@ -79,6 +80,11 @@ public class Explore extends BaseFragment {
 		 intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_USAGE);
 		 startActivity(intent);
 	}
+    @OnClick(R.id.btn_sponsor) public void sponsor() {
+        Intent intent = new Intent(getActivity(),Browser.class);
+        intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_SPONSOR);
+        startActivity(intent);
+    }
 
 	@Override public void onPause() {
 		super.onPause();
