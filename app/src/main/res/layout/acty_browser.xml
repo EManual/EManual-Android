@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+              xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <WebView
                 android:id="@+id/webview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" >
+            android:background="@android:color/transparent">
 
             <ProgressBar
                 android:id="@+id/progress"
@@ -36,14 +36,14 @@
                 android:layout_centerInParent="true"
                 android:indeterminateDrawable="@drawable/progressbar_blue"
                 android:indeterminateDuration="1000"
-                android:interpolator="@android:interpolator/accelerate_decelerate" />
+                android:interpolator="@android:interpolator/accelerate_decelerate"/>
         </RelativeLayout>
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/btn_left"
@@ -52,14 +52,14 @@
             android:layout_weight="1"
             android:background="@drawable/btn_item_whit2grey"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <com.beardedhen.androidbootstrap.FontAwesomeText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-chevron-left" />
+                fontawesometext:fa_icon="fa-chevron-left"/>
         </LinearLayout>
 
         <LinearLayout
@@ -69,14 +69,14 @@
             android:layout_weight="1"
             android:background="@drawable/btn_item_whit2grey"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <com.beardedhen.androidbootstrap.FontAwesomeText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-chevron-right" />
+                fontawesometext:fa_icon="fa-chevron-right"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,14 +86,14 @@
             android:layout_weight="1"
             android:background="@drawable/btn_item_whit2grey"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <com.beardedhen.androidbootstrap.FontAwesomeText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-refresh" />
+                fontawesometext:fa_icon="fa-refresh"/>
         </LinearLayout>
     </LinearLayout>
 

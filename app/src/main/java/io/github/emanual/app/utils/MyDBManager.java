@@ -1,7 +1,7 @@
 package io.github.emanual.app.utils;
 
 import android.content.Context;
- 
+
 
 public class MyDBManager {
 

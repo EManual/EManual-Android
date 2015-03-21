@@ -16,7 +16,7 @@
         <item>学习库</item>
         <item>发 现</item>
     </string-array>
-    
+
     <!-- Activity -->
     <string name="acty_about">关于</string>
     <string name="acty_feedback">用户反馈</string>

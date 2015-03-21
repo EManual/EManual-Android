@@ -1,129 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:scrollbars="none" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
-        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_basic">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_basic">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_4"
-                    android:text="基  础" />
+                    android:text="基  础"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_advance">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_advance">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_10"
-                    android:text="进  阶" />
+                    android:text="进  阶"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_pattern">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_pattern">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_1"
-                    android:text="设计模式" />
+                    android:text="设计模式"/>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/ic_line_1" />
+            android:background="@drawable/ic_line_1"/>
 
-        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_database">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_database">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_8"
-                    android:text="数据库" />
+                    android:text="数据库"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_web">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_web">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_2"
-                    android:text="Web" />
+                    android:text="Web"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_webframework">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_webframework">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_6"
-                    android:text="Web框架" />
+                    android:text="Web框架"/>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/ic_line_1" />
+            android:background="@drawable/ic_line_1"/>
 
-        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_arithmetic">
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_arithmetic">
 
                 <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_9"
-                    android:text="算法实践" />
+                    android:text="算法实践"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" android:id="@+id/btn_puzzle" >
-                    <TextView
+            <LinearLayout
+                style="@style/Linerlayout.list_vertical"
+                android:id="@+id/btn_puzzle">
+
+                <TextView
                     style="@style/TextView.item_main"
                     android:drawableTop="@drawable/ic_icon_4"
-                    android:text="谜题" />
+                    android:text="谜题"/>
             </LinearLayout>
 
-            <LinearLayout style="@style/Linerlayout.list_vertical" >
+            <LinearLayout style="@style/Linerlayout.list_vertical">
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/ic_line_1" />
+            android:background="@drawable/ic_line_1"/>
     </LinearLayout>
 
 </ScrollView>

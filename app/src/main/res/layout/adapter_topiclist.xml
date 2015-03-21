@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="@drawable/btn_item_whit2grey"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:background="@drawable/btn_item_whit2grey"
+              android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_title"
@@ -15,6 +15,6 @@
         android:layout_marginBottom="10dp"
         android:gravity="left"
         android:text="Java 基础Java 基础Java 基础Java 基础Java 基础"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
 </LinearLayout>

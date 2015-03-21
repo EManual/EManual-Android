@@ -13,59 +13,61 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 public class FileTreeAdapter extends BaseAdapter {
-	List<FileTreeObject> data;
-	Context context;
-	public FileTreeAdapter(Context context,List<FileTreeObject> data){
-		this.data = data;
-		this.context = context;
-	}
+    List<FileTreeObject> data;
+    Context context;
 
-	@Override
-	public int getCount() {
-		return data.size();
-	}
+    public FileTreeAdapter(Context context, List<FileTreeObject> data) {
+        this.data = data;
+        this.context = context;
+    }
 
-	@Override
-	public Object getItem(int position) {
-		return data.get(position);
-	}
+    @Override
+    public int getCount() {
+        return data.size();
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public Object getItem(int position) {
+        return data.get(position);
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder h =  null;
-		if(convertView == null){
-			convertView = LayoutInflater.from(context).inflate(R.layout.adapter_filetree, null);
-			h = new ViewHolder(convertView);
-			convertView.setTag(h);
-		}else{
-			h =(ViewHolder)convertView.getTag();
-		}
-		FileTreeObject item = data.get(position);
-		h.title.setText(EManualUtils.getFileNameWithouExtAndNumber(item.getRname()));
-		if(item.getMode().equals(FileTreeObject.MODE_FILE)){
-			h.icon.setBackgroundResource(R.drawable.ic_icon_file);
-		}else{
-			h.icon.setBackgroundResource(R.drawable.ic_icon_document);
-		}
-		return convertView;
-	}
-	
-	class ViewHolder{
-		@InjectView(R.id.tv_title) TextView title;
-		@InjectView(R.id.iv_icon) ImageView icon; 
-		
-		public ViewHolder(View view) {
-			ButterKnife.inject(this, view);
-		}
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder h = null;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.adapter_filetree, null);
+            h = new ViewHolder(convertView);
+            convertView.setTag(h);
+        } else {
+            h = (ViewHolder) convertView.getTag();
+        }
+        FileTreeObject item = data.get(position);
+        h.title.setText(EManualUtils.getFileNameWithouExtAndNumber(item.getRname()));
+        if (item.getMode().equals(FileTreeObject.MODE_FILE)) {
+            h.icon.setBackgroundResource(R.drawable.ic_icon_file);
+        } else {
+            h.icon.setBackgroundResource(R.drawable.ic_icon_document);
+        }
+        return convertView;
+    }
+
+    class ViewHolder {
+        @InjectView(R.id.tv_title) TextView title;
+        @InjectView(R.id.iv_icon) ImageView icon;
+
+        public ViewHolder(View view) {
+            ButterKnife.inject(this, view);
+        }
+    }
 
 }

@@ -8,7 +8,7 @@
         <item name="colorPrimaryDark">@color/app_base_color</item>
         <item name="colorAccent">@color/app_base_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
-        
+
 
         <!-- 设置activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>

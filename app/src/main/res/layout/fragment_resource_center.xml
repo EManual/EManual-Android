@@ -1,157 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:scrollbars="none" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
-        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
 
             <!-- item -->
 
             <LinearLayout
                 android:id="@+id/btn_java"
-                style="@style/Linerlayout.list_vertical" >
+                style="@style/Linerlayout.list_vertical">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_java" />
+                    android:background="@drawable/ic_module_java"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="Java" />
+                    android:text="Java"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
             <LinearLayout
                 android:id="@+id/btn_android"
-                style="@style/Linerlayout.list_vertical" >
+                style="@style/Linerlayout.list_vertical">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_android" />
+                    android:background="@drawable/ic_module_android"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="Android" />
+                    android:text="Android"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
             <LinearLayout
                 android:id="@+id/btn_php"
-                style="@style/Linerlayout.list_vertical" >
+                style="@style/Linerlayout.list_vertical">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_php" />
+                    android:background="@drawable/ic_module_php"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="PHP" />
+                    android:text="PHP"/>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/ic_line_1" />
+            android:background="@drawable/ic_line_1"/>
 
-        <LinearLayout style="@style/Linerlayout.list_horizontal" >
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
 
             <!-- item -->
 
             <LinearLayout
                 android:id="@+id/btn_python"
-                style="@style/Linerlayout.list_vertical" >
+                style="@style/Linerlayout.list_vertical">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_python" />
+                    android:background="@drawable/ic_module_python"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="Python" />
+                    android:text="Python"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/ic_line_3" />
+                android:background="@drawable/ic_line_3"/>
 
             <LinearLayout
                 style="@style/Linerlayout.list_vertical"
-                android:visibility="invisible" >
+                android:visibility="invisible">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_android" />
+                    android:background="@drawable/ic_module_android"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="Android" />
+                    android:text="Android"/>
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3"
-                android:visibility="invisible" />
+                android:visibility="invisible"/>
 
             <LinearLayout
                 style="@style/Linerlayout.list_vertical"
-                android:visibility="invisible" >
+                android:visibility="invisible">
 
                 <ImageView
                     style="@style/ImageView.item_main"
-                    android:background="@drawable/ic_widget_download" />
+                    android:background="@drawable/ic_widget_download"/>
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_php" />
+                    android:background="@drawable/ic_module_php"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="PHP" />
+                    android:text="PHP"/>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/ic_line_1" />
+            android:background="@drawable/ic_line_1"/>
     </LinearLayout>
 
 </ScrollView>
