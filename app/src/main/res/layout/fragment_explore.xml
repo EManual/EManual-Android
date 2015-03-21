@@ -1,190 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
+              xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
+              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/btn_sponsor"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-heart" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-heart"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="赞助作者" />
+            android:text="赞助作者"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
     <LinearLayout
         android:id="@+id/btn_usage"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-book" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-book"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="使用手册" />
+            android:text="使用手册"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
     <LinearLayout
         android:id="@+id/btn_feedback"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-pencil-square-o" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-pencil-square-o"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="意见反馈" />
+            android:text="意见反馈"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
     <LinearLayout
         android:id="@+id/btn_rate_app"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-android" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-android"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="评价应用" />
+            android:text="评价应用"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
     <LinearLayout
         android:id="@+id/btn_update"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-cloud-download" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-cloud-download"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="检查更新" />
+            android:text="检查更新"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
     <LinearLayout
         android:id="@+id/btn_about"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_item_whit2grey"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="28dp" >
+        style="@style/Linerlayout.explore">
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:textColor="@color/app_base_color"
-            android:textSize="32sp"
-            fontawesometext:fa_icon="fa-copyright" />
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-copyright"/>
 
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="关 于" />
+            android:text="关 于"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/ic_line_1" />
+        android:background="@drawable/ic_line_1"/>
 
 </LinearLayout>
