@@ -1,11 +1,13 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.entity.FileTreeObject;
-import io.github.emanual.app.ui.adapter.FileTreeAdapter;
-import io.github.emanual.app.utils.EManualUtils;
-import io.github.emanual.app.utils.UmengAnalytics;
-import io.github.emanual.app.utils._;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.ListView;
+
+import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,17 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.umeng.analytics.MobclickAgent;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import io.github.emanual.app.R;
+import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.ui.adapter.FileTreeAdapter;
+import io.github.emanual.app.utils.EManualUtils;
+import io.github.emanual.app.utils.UmengAnalytics;
+import io.github.emanual.app.utils._;
 
 public class FileTree extends BaseActivity {
 	private String root = ""; //根目录
@@ -56,7 +56,9 @@ public class FileTree extends BaseActivity {
 		}
 		getFileTreeInfo();
 		data = new ArrayList<FileTreeObject>();
-		data.addAll(mFileTreeObject.getFiles());
+        if(mFileTreeObject != null){
+            data.addAll(mFileTreeObject.getFiles());
+        }
 		adapter = new FileTreeAdapter(this, data);
 
 		module = root.substring(root.lastIndexOf("/") + 1, root.length());
