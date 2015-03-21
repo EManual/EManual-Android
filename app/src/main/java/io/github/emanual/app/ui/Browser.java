@@ -1,14 +1,11 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.utils.EManualUtils;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,14 +13,18 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import io.github.emanual.app.R;
+import io.github.emanual.app.utils.EManualUtils;
 
 public class Browser extends BaseActivity {
 
 	public static final String EXTRA_URL = "url";
-	
+
+	String url_404="file:///android_asset/404.html";
 	String share_tpl = "我正在浏览: %s %s (来自编程助手)";
 	MyWebChromeClient mWebChromeClient = new MyWebChromeClient();;
 	MyWebViewClient	mWebViewClient = new MyWebViewClient();
@@ -105,7 +106,11 @@ public class Browser extends BaseActivity {
 	}
 	@OnClick(R.id.btn_refresh)
 	public void refresh(){
-		webview.reload();
+        if(webview.getUrl().equals(url_404)){
+            webview.loadUrl(url);
+        }else{
+            webview.reload();
+        }
 	}
 	
 	public void showProgressBar(){
@@ -140,10 +145,9 @@ public class Browser extends BaseActivity {
 
 		@Override public void onReceivedError(WebView view, int errorCode,
 				String description, String failingUrl) {
-			if(description!=null){
-				toast(description);
-			}
+            view.loadUrl(url_404);
 		}
+
 	}
 	
 	class MyWebChromeClient extends WebChromeClient{
@@ -151,6 +155,7 @@ public class Browser extends BaseActivity {
 		@Override public void onReceivedTitle(WebView view, String title) {
 			getSupportActionBar().setTitle(title);
 		}
+
 	}
 
 }
