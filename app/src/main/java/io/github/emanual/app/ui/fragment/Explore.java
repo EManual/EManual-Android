@@ -80,9 +80,16 @@ public class Explore extends BaseFragment {
 		 intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_USAGE);
 		 startActivity(intent);
 	}
+
     @OnClick(R.id.btn_sponsor) public void sponsor() {
         Intent intent = new Intent(getActivity(),Browser.class);
         intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_SPONSOR);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_opensource) public void opensource() {
+        Intent intent = new Intent(getActivity(),Browser.class);
+        intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_OPENSOURCE);
         startActivity(intent);
     }
 

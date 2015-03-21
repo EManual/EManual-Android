@@ -17,6 +17,8 @@ public class EManualUtils {
 	public static final String URL_USAGE = "http://iemanual.com/blog/?usage/index.md";
     /** 赞助作者*/
     public static final String URL_SPONSOR = "http://iemanual.com/blog/?about/sponsor.md";
+    /** */
+    public static final String URL_OPENSOURCE = "http://www.iemanual.com/blog/?about/projects-that-power-emanual.md";
 	/**
 	 * 获得应用的根目录
 	 * <br>

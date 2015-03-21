@@ -13,7 +13,7 @@
 
         <com.beardedhen.androidbootstrap.FontAwesomeText
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-heart"/>
+            fontawesometext:fa_icon="fa-rmb"/>
 
         <TextView
             style="@style/TextView.newfeed"
@@ -105,6 +105,27 @@
             android:layout_weight="1"
             android:gravity="left"
             android:text="检查更新"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1"/>
+
+    <LinearLayout
+        android:id="@+id/btn_opensource"
+        style="@style/Linerlayout.explore">
+
+        <com.beardedhen.androidbootstrap.FontAwesomeText
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            fontawesometext:fa_icon="fa-heart"/>
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="开源项目"/>
     </LinearLayout>
 
     <View
