@@ -63,31 +63,7 @@
         <service android:name=".CoreService">
         </service>
 
-        <!-- For AdsSdk. -->
 
-        <activity
-            android:name="com.wandoujia.ads.sdk.AppWallActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/application_name"
-            android:launchMode="singleTop"
-            android:screenOrientation="landscape"/>
-        <activity
-            android:name="com.wandoujia.ads.sdk.AppWidgetContainerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
-        <service android:name="com.wandoujia.ads.sdk.DownloadService"/>
-
-        <receiver android:name="com.wandoujia.ads.sdk.AppChangedReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED"/>
-
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- AdsSdk End. -->
         <!-- Umeng -->
         <meta-data
             android:name="UMENG_APPKEY"
