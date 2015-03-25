@@ -10,10 +10,45 @@ android {
         targetSdkVersion 21
         versionCode 10
         versionName "2.0.2"
+
+        // dex突破65535的限制
+        multiDexEnabled true
     }
+    //多渠道
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+        meizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+        }
+    }
+
     buildTypes {
-        release {
+        debug{
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+
+            versionNameSuffix "-debug"
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+
+            minifyEnabled false
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -26,6 +61,7 @@ android {
     lintOptions {
         abortOnError false
     }
+
 
 }
 

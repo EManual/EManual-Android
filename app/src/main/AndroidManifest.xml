@@ -71,7 +71,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="wandoujia"/>
+            android:value="${UMENG_CHANNEL_VALUE}"/>
         <!-- Umeng End -->
     </application>
 
