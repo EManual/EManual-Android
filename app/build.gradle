@@ -8,8 +8,8 @@ android {
         applicationId "io.github.emanual.app"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 10
-        versionName "2.0.2"
+        versionCode 12
+        versionName "2.1.0"
 
         // dex突破65535的限制
         multiDexEnabled true

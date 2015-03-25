@@ -3,8 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
 
           package="io.github.emanual.app"
-          android:versionCode="10"
-          android:versionName="2.0.2">
+          android:versionCode="12"
+          android:versionName="2.1.0">
 
     <uses-sdk
         android:minSdkVersion="14"
