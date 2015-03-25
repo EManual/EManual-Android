@@ -28,6 +28,9 @@ android {
         meizu {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
         }
+        iemanual {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "iemanual.com"]
+        }
     }
 
     buildTypes {
@@ -70,4 +73,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.beardedhen:androidbootstrap:+'
     compile 'com.jpardogo.materialtabstrip:library:1.0.9'
+    compile project(':umeng-update')
 }

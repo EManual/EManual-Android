@@ -1,21 +1,6 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.CoreService;
-import io.github.emanual.app.R;
-import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
-import io.github.emanual.app.ui.fragment.Explore;
-import io.github.emanual.app.ui.fragment.NewFeeds;
-import io.github.emanual.app.ui.fragment.ResourceCenter;
-import io.github.emanual.app.utils.AndroidUtils;
-import io.github.emanual.app.widget.NewVersionDialog;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -23,11 +8,25 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.astuetz.PagerSlidingTabStrip;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
+import com.umeng.update.UpdateStatus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
-import com.astuetz.PagerSlidingTabStrip;
+import io.github.emanual.app.R;
+import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
+import io.github.emanual.app.ui.fragment.Explore;
+import io.github.emanual.app.ui.fragment.NewFeeds;
+import io.github.emanual.app.ui.fragment.ResourceCenter;
+import io.github.emanual.app.widget.NewVersionDialog;
 
 public class Main extends BaseActivity {
     @InjectView(R.id.tabs) PagerSlidingTabStrip tabs;
@@ -36,7 +35,6 @@ public class Main extends BaseActivity {
     List<Fragment> fragments = new ArrayList<Fragment>();
     String[] titles;
     NewVersionDialog dialog;
-    MainBroadcastReceiver mReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +44,12 @@ public class Main extends BaseActivity {
         initData();
         initLayout();
 
-        mReceiver = new MainBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(CoreService.Action_CheckVersion);
-        registerReceiver(mReceiver, filter);
-
-        Intent service = new Intent(getContext(), CoreService.class);
-        service.setAction(CoreService.Action_CheckVersion);
-        startService(service);
+        UmengUpdateAgent.setUpdateAutoPopup(true);
+        UmengUpdateAgent.update(this);
     }
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        if (mReceiver != null)
-            unregisterReceiver(mReceiver);
     }
 
     @Override
@@ -98,23 +88,5 @@ public class Main extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-
-    class MainBroadcastReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(CoreService.Action_CheckVersion)) {
-                int version_code = intent.getIntExtra("version_code", 1);
-
-                if (version_code > AndroidUtils.getAppVersionCode(getApplicationContext())) {
-
-                    String description = intent.getStringExtra("change_log");
-                    String url = intent.getStringExtra("download_url");
-
-                    dialog.show(description, url);
-                }
-            }
-        }
     }
 }
