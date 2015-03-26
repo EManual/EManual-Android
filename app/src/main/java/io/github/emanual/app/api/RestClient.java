@@ -66,6 +66,7 @@ public class RestClient {
         if (context != null)
             client.setCookieStore(new PersistentCookieStore(context));
         client.setTimeout(HTTP_Timeout);
+        client.setEnableRedirects(false);
     }
 
     /**

@@ -1,11 +1,11 @@
 package io.github.emanual.app.entity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class NewsFeedsObject implements Serializable {
     private String path;
@@ -17,10 +17,18 @@ public class NewsFeedsObject implements Serializable {
         return new Gson().fromJson(json, NewsFeedsObject.class);
     }
 
-    public static List<NewsFeedsObject> createNewsFeedsObjects(String json) {
+    public static List<NewsFeedsObject> createNewsFeedsObjects(String json) throws Exception{
         Type collectionType = new TypeToken<List<NewsFeedsObject>>() {
         }.getType();
-        return new Gson().fromJson(json, collectionType);
+        List<NewsFeedsObject> result = null;
+
+        try{
+            //json格式不一定对，应为网络原因
+            result = new Gson().fromJson(json, collectionType);
+            return result;
+        }catch (Exception e){
+            throw e;
+        }
     }
 
     public String getPath() {

@@ -1,22 +1,5 @@
 package io.github.emanual.app.ui.fragment;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.api.NewFeedsAPI;
-import io.github.emanual.app.api.RestClient;
-import io.github.emanual.app.entity.NewsFeedsObject;
-import io.github.emanual.app.ui.Detail;
-import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
-import io.github.emanual.app.utils.EManualUtils;
-import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
-import io.github.emanual.app.utils.UmengAnalytics;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.http.Header;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -31,11 +14,27 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.umeng.analytics.MobclickAgent;
+
+import org.apache.http.Header;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import io.github.emanual.app.R;
+import io.github.emanual.app.api.NewFeedsAPI;
+import io.github.emanual.app.api.RestClient;
+import io.github.emanual.app.entity.NewsFeedsObject;
+import io.github.emanual.app.ui.Detail;
+import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
+import io.github.emanual.app.utils.EManualUtils;
+import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
+import io.github.emanual.app.utils.UmengAnalytics;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener {
     @InjectView(R.id.lv_newfeeds) ListView lv;
@@ -144,20 +143,23 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
         }
 
         @Override public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-            if (mPage == 1) {
-                //refresh
+            try{
                 List<NewsFeedsObject> names = NewsFeedsObject.createNewsFeedsObjects(new String(response));
-                data.clear();
-                data.addAll(names);
-                adapter.notifyDataSetChanged();
-                page = mPage;
-                hasMore = true;
-            } else {
-                //loadmore
-                List<NewsFeedsObject> names = NewsFeedsObject.createNewsFeedsObjects(new String(response));
-                data.addAll(names);
-                adapter.notifyDataSetChanged();
-                page = mPage;
+                if (mPage == 1) {
+                    //refresh
+                    data.clear();
+                    data.addAll(names);
+                    adapter.notifyDataSetChanged();
+                    page = mPage;
+                    hasMore = true;
+                } else {
+                    //loadmore
+                    data.addAll(names);
+                    adapter.notifyDataSetChanged();
+                    page = mPage;
+                }
+            }catch (Exception e){
+                toast("哎呀,网络异常!");
             }
         }
 
@@ -176,6 +178,4 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
             SwipeRefreshLayoutUtils.setRefreshing(swipeRefreshLayout, false);
         }
     }
-
-
 }
