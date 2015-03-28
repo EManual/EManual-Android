@@ -121,6 +121,7 @@
     <orderEntry type="library" exported="" name="avoscloud-sdk-v2.6.11" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.2.4" level="project" />
     <orderEntry type="module" module-name="umeng-update" exported="" />
+    <orderEntry type="module" module-name="library" exported="" />
   </component>
 </module>
 
