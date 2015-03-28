@@ -4,7 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EManual-Android.iml" filepath="$PROJECT_DIR$/EManual-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/umeng-update/umeng-update.iml" filepath="$PROJECT_DIR$/umeng-update/umeng-update.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extras/extras.iml" filepath="$PROJECT_DIR$/extras/extras.iml" />
+      <module fileurl="file://$PROJECT_DIR$/extras/umeng-update/umeng-update.iml" filepath="$PROJECT_DIR$/extras/umeng-update/umeng-update.iml" />
     </modules>
   </component>
 </project>

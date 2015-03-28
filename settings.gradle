@@ -1,1 +1,1 @@
-include ':app', ':umeng-update'
+include ':app', ':extras:umeng-update'

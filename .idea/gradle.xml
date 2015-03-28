@@ -9,7 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/umeng-update" />
+            <option value="$PROJECT_DIR$/extras" />
+            <option value="$PROJECT_DIR$/extras/umeng-update" />
           </set>
         </option>
       </GradleProjectSettings>
