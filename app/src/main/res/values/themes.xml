@@ -9,6 +9,12 @@
         <item name="colorAccent">@color/app_base_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
 
+        <!--swipback Activity require-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+
 
         <!-- 设置activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>

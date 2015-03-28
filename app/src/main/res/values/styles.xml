@@ -2,6 +2,13 @@
 
     <style name="Linerlayout"></style>
 
+    <style name="Linerlayout.container_main">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
     <style name="Linerlayout.list_horizontal">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
