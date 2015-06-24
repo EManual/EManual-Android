@@ -74,6 +74,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
                     if (firstVisibleItem + visibleItemCount >= totalItemCount
                             && totalItemCount != 0 && hasMore) {
                         onLoadMore();
+                        swipeRefreshLayout.setRefreshing(true);
                     }
                 }
             }
