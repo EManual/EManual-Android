@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
-              style="@style/Linerlayout.container_main">
+<LinearLayout style="@style/Linerlayout.container_main"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/tools"
+              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/toolbar"/>
 
@@ -52,12 +52,13 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.beardedhen.androidbootstrap.FontAwesomeText
+            <com.beardedhen.androidbootstrap.AwesomeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-chevron-left"/>
+                app:fontAwesomeIcon="fa_chevron_left"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -69,12 +70,13 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.beardedhen.androidbootstrap.FontAwesomeText
+            <com.beardedhen.androidbootstrap.AwesomeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-chevron-right"/>
+                app:fontAwesomeIcon="fa_chevron_right"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -86,12 +88,13 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.beardedhen.androidbootstrap.FontAwesomeText
+            <com.beardedhen.androidbootstrap.AwesomeTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="20sp"
-                fontawesometext:fa_icon="fa-refresh"/>
+                app:fontAwesomeIcon="fa_refresh"
+                />
         </LinearLayout>
     </LinearLayout>
 

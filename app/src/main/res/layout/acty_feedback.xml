@@ -8,20 +8,20 @@
 
     <include layout="@layout/toolbar"/>
 
+
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/et_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:gravity="left"
         android:hint="在这里写下你的意见和想法吧"
         android:lines="6"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
-        bootstrapbutton:be_state="primary">
+        app:bootstrapBrand="primary"
+        app:bootstrapSize="md"
+        />
 
-        <requestFocus/>
-    </com.beardedhen.androidbootstrap.BootstrapEditText>
+    <requestFocus/>
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/et_user_contact"
@@ -30,12 +30,12 @@
         android:layout_margin="10dp"
         android:gravity="left|center_vertical"
         android:hint="你的联系方式(邮箱,选填)"
+        android:lines="6"
         android:singleLine="true"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
-        bootstrapbutton:be_state="primary">
-
-    </com.beardedhen.androidbootstrap.BootstrapEditText>
+        app:bootstrapBrand="primary"
+        app:bootstrapSize="md"
+        />
 
     <RadioGroup
         android:id="@+id/rg_type"
@@ -65,9 +65,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:hint="你的联系方式(邮箱,选填)"
+        android:lines="6"
+        android:singleLine="true"
         android:text="提  交"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
-        bootstrapbutton:bb_type="primary"/>
+        app:bootstrapBrand="primary"
+        app:bootstrapSize="md"
+        />
 
     <TextView
         android:layout_width="wrap_content"

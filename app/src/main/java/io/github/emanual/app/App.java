@@ -3,6 +3,7 @@ package io.github.emanual.app;
 import android.app.Application;
 
 import com.avos.avoscloud.AVOSCloud;
+import com.beardedhen.androidbootstrap.TypefaceProvider;
 
 import io.github.emanual.app.api.RestClient;
 
@@ -17,5 +18,8 @@ public class App extends Application {
 
         //init leancloud
         AVOSCloud.initialize(this, LeanCloud_App_Id, LeanCloud_App_Key);
+
+        //android bootstrap
+        TypefaceProvider.registerDefaultIconSets();
     }
 }

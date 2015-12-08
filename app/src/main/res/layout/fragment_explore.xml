@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:bootstrapbutton="http://schemas.android.com/apk/res-auto"
-              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@android:color/white"
@@ -11,9 +10,10 @@
         android:id="@+id/btn_sponsor"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-rmb"/>
+            app:fontAwesomeIcon="fa_rmb"
+            />
 
         <TextView
             style="@style/TextView.newfeed"
@@ -32,9 +32,10 @@
         android:id="@+id/btn_usage"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-book"/>
+            app:fontAwesomeIcon="fa_book"
+            />
 
         <TextView
             style="@style/TextView.newfeed"
@@ -53,9 +54,10 @@
         android:id="@+id/btn_feedback"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-pencil-square-o"/>
+            app:fontAwesomeIcon="fa_pencil_square_o"
+            />
 
         <TextView
             style="@style/TextView.newfeed"
@@ -74,10 +76,10 @@
         android:id="@+id/btn_rate_app"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-android"/>
-
+            app:fontAwesomeIcon="fa_android"
+            />
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"
@@ -95,9 +97,10 @@
         android:id="@+id/btn_update"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-cloud-download"/>
+            app:fontAwesomeIcon="fa_cloud_download"
+            />
 
         <TextView
             style="@style/TextView.newfeed"
@@ -116,9 +119,12 @@
         android:id="@+id/btn_opensource"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-heart"/>
+            app:fontAwesomeIcon="fa_heart"
+            />
+
 
         <TextView
             style="@style/TextView.newfeed"
@@ -137,9 +143,10 @@
         android:id="@+id/btn_about"
         style="@style/Linerlayout.explore">
 
-        <com.beardedhen.androidbootstrap.FontAwesomeText
+        <com.beardedhen.androidbootstrap.AwesomeTextView
             style="@style/AndroidBootstrap.FontAwesomeText"
-            fontawesometext:fa_icon="fa-copyright"/>
+            app:fontAwesomeIcon="fa_copyright"
+            />
 
         <TextView
             style="@style/TextView.newfeed"
