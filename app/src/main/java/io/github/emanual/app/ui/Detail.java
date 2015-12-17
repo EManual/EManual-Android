@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.ActionBar;
@@ -178,7 +179,7 @@ public class Detail extends BaseActivity
         try {
             String tpl = _.readFile(getAssets().open("preview.html"));
             webview.loadDataWithBaseURL("about:blank",
-                    tpl.replace("{markdown}", content), "text/html", "UTF-8",
+                     tpl.replace("{markdown}", TextUtilsCompat.htmlEncode(content)), "text/html", "UTF-8",
                     null);
         } catch (IOException e) {
             e.printStackTrace();
