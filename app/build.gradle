@@ -11,8 +11,6 @@ android {
         versionCode 13
         versionName "2.1.1"
 
-        // dex突破65535的限制
-        multiDexEnabled true
     }
     //多渠道
     productFlavors {
@@ -39,9 +37,7 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "true"
 
             versionNameSuffix "-debug"
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
+
         }
         release {
             // 不显示Log
@@ -50,7 +46,7 @@ android {
             minifyEnabled false
             zipAlignEnabled true
             // 移除无用的resource文件
-            shrinkResources true
+            shrinkResources false
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
