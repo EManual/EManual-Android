@@ -1,6 +1,8 @@
 package io.github.emanual.app;
 
 import android.app.Application;
+import android.os.Build;
+import android.webkit.WebView;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
@@ -21,5 +23,12 @@ public class App extends Application {
 
         //android bootstrap
         TypefaceProvider.registerDefaultIconSets();
+
+        if(BuildConfig.DEBUG){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebView.setWebContentsDebuggingEnabled(true);
+            }
+        }
+
     }
 }
