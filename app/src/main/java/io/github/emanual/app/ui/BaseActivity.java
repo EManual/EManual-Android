@@ -3,20 +3,19 @@ package io.github.emanual.app.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-import com.liuguangqiang.swipeback.SwipeBackActivity;
-import com.liuguangqiang.swipeback.SwipeBackLayout;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.Serializable;
 
 
-public abstract class BaseActivity extends SwipeBackActivity implements
+public abstract class BaseActivity extends ActionBarActivity implements
         OnClickListener {
 
     protected abstract void initData();
@@ -29,7 +28,6 @@ public abstract class BaseActivity extends SwipeBackActivity implements
 
     @Override public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        setDragEdge(SwipeBackLayout.DragEdge.LEFT);
     }
 
     /**

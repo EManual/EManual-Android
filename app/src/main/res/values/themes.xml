@@ -12,12 +12,12 @@
         <!--swipback Activity require-->
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
 
 
         <!-- 设置activity切换动画 -->
-        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+        <!--<item name="android:windowAnimationStyle">@style/activityAnimation</item>-->
 
         <!-- <item name="android:actionBarStyle">@style/ActionBarStyle</item> -->
         <!-- <item name="android:homeAsUpIndicator">@drawable/ic_navigation_previous_item</item> -->
@@ -36,10 +36,10 @@
 
     <!-- Activity animation  -->
     <style name="activityAnimation" parent="@android:style/Animation">
-        <item name="android:activityOpenEnterAnimation">@anim/right_in</item>
+        <item name="android:activityOpenEnterAnimation">@anim/stay</item>
         <item name="android:activityOpenExitAnimation">@anim/stay</item>
-        <item name="android:activityCloseEnterAnimation">@null</item>
-        <item name="android:activityCloseExitAnimation">@anim/right_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/stay</item>
+        <item name="android:activityCloseExitAnimation">@anim/stay</item>
     </style>
 
 </resources>

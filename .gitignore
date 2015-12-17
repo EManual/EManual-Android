@@ -3,7 +3,7 @@
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
-/build
+build
 
 # Built application files
 *.apk
@@ -32,3 +32,5 @@ proguard/
 
 # Log Files
 *.log
+
+#iml

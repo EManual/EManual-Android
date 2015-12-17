@@ -1,1 +1,1 @@
-include ':app', ':extras:umeng-update', ':extras:SwipeBack:library'
+include ':app', ':extras:umeng-update'
