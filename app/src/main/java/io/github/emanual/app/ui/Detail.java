@@ -24,13 +24,12 @@ import android.webkit.WebViewClient;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.apache.http.Header;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
@@ -179,7 +178,7 @@ public class Detail extends BaseActivity
         try {
             String tpl = _.readFile(getAssets().open("preview.html"));
             webview.loadDataWithBaseURL("about:blank",
-                     tpl.replace("{markdown}", TextUtilsCompat.htmlEncode(content)), "text/html", "UTF-8",
+                    tpl.replace("{markdown}", TextUtilsCompat.htmlEncode(content)), "text/html", "UTF-8",
                     null);
         } catch (IOException e) {
             e.printStackTrace();

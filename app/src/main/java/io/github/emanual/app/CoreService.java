@@ -7,11 +7,11 @@ import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.api.EmanualAPI;
 
 public class CoreService extends Service {

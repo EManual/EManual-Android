@@ -15,5 +15,11 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+
+        //这里是 LeanCloud 的包仓库
+        maven {
+            url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
+        }
     }
+
 }

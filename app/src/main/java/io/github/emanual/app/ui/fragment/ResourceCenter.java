@@ -1,19 +1,5 @@
 package io.github.emanual.app.ui.fragment;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.api.EmanualAPI;
-import io.github.emanual.app.ui.FileTree;
-import io.github.emanual.app.utils.EManualUtils;
-import io.github.emanual.app.utils.ZipUtils;
-import io.github.emanual.app.widget.DownloadConfirmDialog;
-
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.util.List;
-
-import org.apache.http.Header;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -21,20 +7,30 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.loopj.android.http.FileAsyncHttpResponseHandler;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectViews;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-
-import com.loopj.android.http.FileAsyncHttpResponseHandler;
+import cz.msebera.android.httpclient.Header;
+import io.github.emanual.app.R;
+import io.github.emanual.app.api.EmanualAPI;
+import io.github.emanual.app.ui.FileTree;
+import io.github.emanual.app.utils.EManualUtils;
+import io.github.emanual.app.utils.ZipUtils;
+import io.github.emanual.app.widget.DownloadConfirmDialog;
 
 public class ResourceCenter extends BaseFragment {
     @InjectViews({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) List<View> names;
@@ -193,13 +189,15 @@ public class ResourceCenter extends BaseFragment {
                 mProgressDialog.dismiss();
             }
 
-            @Override public void onProgress(int bytesWritten, int totalSize) {
+            @Override public void onProgress(long bytesWritten, long totalSize) {
+                super.onProgress(bytesWritten, totalSize);
+
                 Log.d("debug", bytesWritten + "/" + totalSize);
                 mProgressDialog.setMessage(String.format("大小:%.2f M", 1.0 * totalSize / 1024 / 1024));
-                mProgressDialog.setMax(totalSize);
-                mProgressDialog.setProgress(bytesWritten);
-
+                mProgressDialog.setMax((int)totalSize);
+                mProgressDialog.setProgress((int)bytesWritten);
             }
+
         });
     }
 

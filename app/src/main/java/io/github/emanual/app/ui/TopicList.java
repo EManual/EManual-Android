@@ -7,7 +7,8 @@ import io.github.emanual.app.ui.adapter.TopicListAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
