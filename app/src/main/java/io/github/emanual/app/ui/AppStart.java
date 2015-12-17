@@ -1,11 +1,11 @@
-package io.github.emanual.app;
-
-import io.github.emanual.app.ui.Main;
+package io.github.emanual.app.ui;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import io.github.emanual.app.R;
 
 public class AppStart extends Activity {
 
@@ -22,7 +22,7 @@ public class AppStart extends Activity {
                     finish();
                 }
             }
-        }, 500);
+        }, 1000);
     }
 
 
