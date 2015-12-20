@@ -87,7 +87,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.beardedhen:androidbootstrap:2.0.1'
     //https://github.com/jpardogo/PagerSlidingTabStrip
-    compile 'com.jpardogo.materialtabstrip:library:1.0.9'
+    compile 'com.jpardogo.materialtabstrip:library:1.1.0'
     //https://github.com/loopj/android-async-http
     compile 'com.loopj.android:android-async-http:1.4.9'
 
