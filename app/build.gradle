@@ -12,6 +12,19 @@ android {
         versionName "2.1.1"
 
     }
+    signingConfigs {
+        //这里是读取`app/local.properties`文件，用于提取keystroe_storeFile等key的值
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+        releaseConfig {
+            // relase签名
+            storeFile file(properties.getProperty("keystroe_storeFile"))
+            storePassword properties.getProperty("keystroe_storePassword")
+            keyAlias properties.getProperty("keystroe_keyAlias")
+            keyPassword properties.getProperty("keystroe_keyPassword")
+        }
+    }
     //多渠道
     productFlavors {
         xiaomi {
@@ -32,7 +45,10 @@ android {
     }
 
     buildTypes {
+
+
         debug{
+            signingConfig signingConfigs.releaseConfig
             // 显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
 
@@ -40,6 +56,8 @@ android {
 
         }
         release {
+            signingConfig signingConfigs.releaseConfig
+
             // 不显示Log
             buildConfigField "boolean", "LOG_DEBUG", "false"
 
