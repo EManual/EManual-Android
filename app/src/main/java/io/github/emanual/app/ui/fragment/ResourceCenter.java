@@ -33,7 +33,7 @@ import io.github.emanual.app.utils.ZipUtils;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
 public class ResourceCenter extends BaseFragment {
-    @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) List<View> names;
+    @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) List<View> names;
 
     public String ROOT_PATH;
     public String DOWNLOAD_PATH;
@@ -125,7 +125,7 @@ public class ResourceCenter extends BaseFragment {
         return btn.findViewWithTag("img").getVisibility() == View.VISIBLE;
     }
 
-    @OnClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) public void click_lang(
+    @OnClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) public void click_lang(
             final View v) {
         String lang = "java";
         switch (v.getId()) {
@@ -141,6 +141,11 @@ public class ResourceCenter extends BaseFragment {
             case R.id.btn_python:
                 lang = "python";
                 break;
+            case R.id.btn_javascript:
+                lang = "javascript";
+                break;
+            case R.id.btn_c:
+                lang = "c";
             default:
                 break;
         }

@@ -108,8 +108,9 @@
                 android:background="@drawable/ic_line_3"/>
 
             <LinearLayout
+                android:id="@+id/btn_javascript"
                 style="@style/Linerlayout.list_vertical"
-                android:visibility="invisible">
+                >
 
                 <ImageView
                     style="@style/ImageView.item_main"
@@ -117,11 +118,11 @@
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_android"/>
+                    android:background="@drawable/ic_module_javascript"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="Android"/>
+                    android:text="JavaScript"/>
             </LinearLayout>
 
             <View
@@ -131,8 +132,9 @@
                 android:visibility="invisible"/>
 
             <LinearLayout
+                android:id="@+id/btn_c"
                 style="@style/Linerlayout.list_vertical"
-                android:visibility="invisible">
+                >
 
                 <ImageView
                     style="@style/ImageView.item_main"
@@ -140,11 +142,11 @@
 
                 <ImageView
                     style="@style/ImageView.item_main_module"
-                    android:background="@drawable/ic_module_php"/>
+                    android:background="@drawable/ic_module_c"/>
 
                 <TextView
                     style="@style/TextView.item_main"
-                    android:text="PHP"/>
+                    android:text="C"/>
             </LinearLayout>
         </LinearLayout>
 
