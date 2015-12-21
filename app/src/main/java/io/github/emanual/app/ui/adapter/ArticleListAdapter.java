@@ -1,13 +1,5 @@
 package io.github.emanual.app.ui.adapter;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.utils.ParseUtils;
-
-import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import io.github.emanual.app.R;
+import io.github.emanual.app.utils.ParseUtils;
 
 public class ArticleListAdapter extends BaseAdapter {
     List<String> data;
@@ -58,11 +57,11 @@ public class ArticleListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        @InjectView(R.id.tv_title)
+        @Bind(R.id.tv_title)
         TextView title;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

@@ -14,8 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.EManualUtils;
@@ -31,14 +31,14 @@ public class Browser extends BaseActivity {
     MyWebViewClient mWebViewClient = new MyWebViewClient();
 
 
-    @InjectView(R.id.webview) WebView webview;
-    @InjectView(R.id.progress) ProgressBar mProgressBar;
+    @Bind(R.id.webview) WebView webview;
+    @Bind(R.id.progress) ProgressBar mProgressBar;
     String url;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_browser);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }

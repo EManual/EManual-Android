@@ -20,8 +20,8 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectViews;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import cz.msebera.android.httpclient.Header;
@@ -33,7 +33,7 @@ import io.github.emanual.app.utils.ZipUtils;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
 public class ResourceCenter extends BaseFragment {
-    @InjectViews({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) List<View> names;
+    @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) List<View> names;
 
     public String ROOT_PATH;
     public String DOWNLOAD_PATH;
@@ -45,7 +45,7 @@ public class ResourceCenter extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_resource_center, null);
-        ButterKnife.inject(this, v);
+        ButterKnife.bind(this, v);
 
         ROOT_PATH = EManualUtils.getRootPath(getActivity());// /Android/data/包名/files
         MD_PATH = EManualUtils.getMdPath(getActivity()); // /Android/data/包名/files/md

@@ -1,11 +1,5 @@
 package io.github.emanual.app.ui.adapter;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.entity.FileTreeObject;
-import io.github.emanual.app.utils.EManualUtils;
-
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
+import io.github.emanual.app.R;
+import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.utils.EManualUtils;
 
 public class FileTreeAdapter extends BaseAdapter {
     List<FileTreeObject> data;
@@ -62,11 +61,11 @@ public class FileTreeAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        @InjectView(R.id.tv_title) TextView title;
-        @InjectView(R.id.iv_icon) ImageView icon;
+        @Bind(R.id.tv_title) TextView title;
+        @Bind(R.id.iv_icon) ImageView icon;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

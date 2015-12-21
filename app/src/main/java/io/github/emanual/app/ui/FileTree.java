@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnItemClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.FileTreeObject;
@@ -32,7 +32,7 @@ public class FileTree extends BaseActivity {
     private FileTreeObject mFileTreeObject;
     private String module; //模块
 
-    @InjectView(R.id.lv_filetree) ListView lv;
+    @Bind(R.id.lv_filetree) ListView lv;
     private List<FileTreeObject> data;
     private FileTreeAdapter adapter;
 
@@ -41,7 +41,7 @@ public class FileTree extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_filetree);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }

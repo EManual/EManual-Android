@@ -1,12 +1,5 @@
 package io.github.emanual.app.ui;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.SaveCallback;
-
-import io.github.emanual.app.R;
-import io.github.emanual.app.utils.AndroidUtils;
-
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
@@ -16,9 +9,15 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
+import io.github.emanual.app.R;
+import io.github.emanual.app.utils.AndroidUtils;
 
 public class Feedback extends BaseActivity {
     public static final String EXTRA_CONTENT = "content";//反馈内容
@@ -29,9 +28,9 @@ public class Feedback extends BaseActivity {
     public static final int MAX_CONTENT_LENGTH = 400; //反馈内容最长为400
 
 
-    @InjectView(R.id.et_content) EditText et_content;
-    @InjectView(R.id.et_user_contact) EditText et_user_contact;
-    @InjectView(R.id.rg_type) RadioGroup rg_type;
+    @Bind(R.id.et_content) EditText et_content;
+    @Bind(R.id.et_user_contact) EditText et_user_contact;
+    @Bind(R.id.rg_type) RadioGroup rg_type;
 
     ProgressDialog mProgressDialog;
     String _content;
@@ -40,7 +39,7 @@ public class Feedback extends BaseActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_feedback);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }

@@ -85,6 +85,9 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    //https://github.com/JakeWharton/butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
     compile 'com.beardedhen:androidbootstrap:2.0.1'
     //https://github.com/jpardogo/PagerSlidingTabStrip
     compile 'com.jpardogo.materialtabstrip:library:1.1.0'

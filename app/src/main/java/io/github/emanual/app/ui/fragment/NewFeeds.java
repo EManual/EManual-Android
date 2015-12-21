@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.NewFeedsAPI;
@@ -36,8 +36,8 @@ import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 
 public class NewFeeds extends BaseFragment implements OnRefreshListener {
-    @InjectView(R.id.lv_newfeeds) ListView lv;
-    @InjectView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.lv_newfeeds) ListView lv;
+    @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     boolean hasMore = true;
     int page = 1, maxPage = 1;
     long last_motify = 0;
@@ -49,7 +49,7 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
-        ButterKnife.inject(this, v);
+        ButterKnife.bind(this, v);
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_blue_light,

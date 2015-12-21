@@ -27,8 +27,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
@@ -52,8 +52,8 @@ public class Detail extends BaseActivity
 
     ActionBar mActionBar;
     Toolbar mToolbar;
-    @InjectView(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
-    @InjectView(R.id.webview) WebView webview;
+    @Bind(R.id.swipeRefresh) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.webview) WebView webview;
     String link;// 接受2种URL,一种是url,另一种文件路径path
     String title;
     String sharePath; //分享路径
@@ -64,7 +64,7 @@ public class Detail extends BaseActivity
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_detail);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }

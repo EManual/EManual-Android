@@ -8,19 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
 import io.github.emanual.app.ui.fragment.Explore;
@@ -29,8 +25,8 @@ import io.github.emanual.app.ui.fragment.ResourceCenter;
 import io.github.emanual.app.widget.NewVersionDialog;
 
 public class Main extends BaseActivity {
-    @InjectView(R.id.tabs) PagerSlidingTabStrip tabs;
-    @InjectView(R.id.viewpager) ViewPager viewPager;
+    @Bind(R.id.tabs) PagerSlidingTabStrip tabs;
+    @Bind(R.id.viewpager) ViewPager viewPager;
 
     List<Fragment> fragments = new ArrayList<Fragment>();
     String[] titles;
@@ -40,7 +36,7 @@ public class Main extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
 

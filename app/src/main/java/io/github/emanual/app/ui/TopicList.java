@@ -1,18 +1,5 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.api.JavaAPI;
-import io.github.emanual.app.ui.adapter.TopicListAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,17 +12,28 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.umeng.analytics.MobclickAgent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
+import io.github.emanual.app.R;
+import io.github.emanual.app.api.JavaAPI;
+import io.github.emanual.app.ui.adapter.TopicListAdapter;
 
 public class TopicList extends BaseActivity implements OnRefreshListener,
         OnItemClickListener {
     ActionBar mActionBar;
-    @InjectView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
-    @InjectView(R.id.listview) ListView lv;
+    @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.listview) ListView lv;
     String kind = null, title = null;
     List<String> data;
     TopicListAdapter adapter;
@@ -45,7 +43,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_topiclist);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }

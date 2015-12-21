@@ -23,8 +23,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
@@ -34,8 +34,8 @@ import io.github.emanual.app.ui.adapter.ArticleListAdapter;
 public class ArticleList extends BaseActivity implements OnRefreshListener,
         OnItemClickListener, OnScrollListener {
     ActionBar mActionBar;
-    @InjectView(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
-    @InjectView(R.id.listview) ListView lv;
+    @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.listview) ListView lv;
     String kind = null, topic = null;
     List<String> data;
     ArticleListAdapter adapter;
@@ -47,7 +47,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acty_articlelist);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initData();
         initLayout();
     }
