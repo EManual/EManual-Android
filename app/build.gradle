@@ -8,8 +8,8 @@ android {
         applicationId "io.github.emanual.app"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 13
-        versionName "2.1.1"
+        versionCode 14
+        versionName "2.2.0"
 
     }
     signingConfigs {
