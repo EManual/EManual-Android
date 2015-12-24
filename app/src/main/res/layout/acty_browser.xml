@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/Linerlayout.container_main"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/tools"
-              xmlns:fontawesometext="http://schemas.android.com/apk/res-auto">
+<LinearLayout
+    style="@style/Linerlayout.container_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include layout="@layout/toolbar"/>
 
