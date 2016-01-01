@@ -129,7 +129,7 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_line_3"
-                android:visibility="invisible"/>
+                />
 
             <LinearLayout
                 android:id="@+id/btn_c"
