@@ -24,5 +24,14 @@ public class EmanualAPI {
         RestClient.get("/md-release/dist/info.json", null, responseHandler);
     }
 
+    /**
+     * 获取对应语言的信息
+     * @param lang
+     * @param responseHandler
+     */
+    public static void getLangInfo(String lang, AsyncHttpResponseHandler responseHandler ){
+        RestClient.get(String.format("/md-%s/dist/%s/info.json", lang.toLowerCase(), lang.toLowerCase()), null, responseHandler);
+    }
+
 
 }

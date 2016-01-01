@@ -1,9 +1,9 @@
 package io.github.emanual.app.entity;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
 
 public class FileTreeObject {
 
@@ -106,5 +106,14 @@ public class FileTreeObject {
         this.files = files;
     }
 
-
+    @Override public String toString() {
+        return "FileTreeObject{" +
+                "files=" + files +
+                ", mode='" + mode + '\'' +
+                ", mtime='" + mtime + '\'' +
+                ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
+                ", rname='" + rname + '\'' +
+                '}';
+    }
 }
