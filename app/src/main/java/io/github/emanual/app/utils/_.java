@@ -70,6 +70,15 @@ public class _ {
     }
 
     /**
+     * 检测文件是否存在
+     * @param path
+     * @return
+     */
+    public static boolean exists(String path) {
+        File f = new File(path);
+        return f.exists();
+    }
+    /**
      * 读文件
      */
     public static String readFile(String path) throws FileNotFoundException {

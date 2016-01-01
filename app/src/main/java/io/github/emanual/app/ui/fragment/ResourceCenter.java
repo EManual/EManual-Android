@@ -13,9 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
@@ -27,9 +30,11 @@ import butterknife.OnLongClick;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
+import io.github.emanual.app.entity.FileTreeObject;
 import io.github.emanual.app.ui.FileTree;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.ZipUtils;
+import io.github.emanual.app.utils._;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
 public class ResourceCenter extends BaseFragment {
@@ -99,6 +104,7 @@ public class ResourceCenter extends BaseFragment {
                             .equals(_n.toLowerCase())) {
                         // 有这个目录
                         setDownloadVisibility(v, View.INVISIBLE);
+                        checkoutUpdate(v, _n);
                     }
                 }
             }
@@ -113,16 +119,7 @@ public class ResourceCenter extends BaseFragment {
      */
     private void setDownloadVisibility(View btn, int visibility) {
         btn.findViewWithTag("img").setVisibility(visibility);
-    }
-
-    /**
-     * 下载的logo是否显示
-     *
-     * @param btn
-     * @return
-     */
-    private boolean downloadVisible(View btn) {
-        return btn.findViewWithTag("img").getVisibility() == View.VISIBLE;
+        btn.findViewWithTag("img").setBackgroundResource(R.drawable.ic_widget_download);
     }
 
     @OnClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) public void click_lang(
@@ -149,7 +146,7 @@ public class ResourceCenter extends BaseFragment {
             default:
                 break;
         }
-        if (!downloadVisible(v)) {
+        if (_.exists(MD_PATH+File.separator+lang)) {
             // 已下载
             Intent intent = new Intent(getActivity(), FileTree.class);
             intent.putExtra("LANG_PATH", MD_PATH + File.separator + lang);
@@ -161,10 +158,34 @@ public class ResourceCenter extends BaseFragment {
         }
     }
 
-    @OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python}) public boolean update_lang(View v) {
+    @OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) public boolean update_lang(View v) {
         TextView tv = (TextView) v.findViewWithTag("lang");
         mDownloadConfirmDialog.show(tv.getText().toString().toLowerCase());
         return true;
+    }
+
+    private void checkoutUpdate(final View langContainer,final String lang){
+        EmanualAPI.getLangInfo(lang, new AsyncHttpResponseHandler(){
+            @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Gson gson = new Gson();
+                FileTreeObject remote = FileTreeObject.create(new String(responseBody));
+                FileTreeObject local = null;
+                try {
+                    String json = _.readFile(MD_PATH+File.separator+String.format("%s/info.json",lang));
+                    local = FileTreeObject.create(json);
+                    if(!remote.getMtime().equals(local.getMtime())){
+                        langContainer.findViewWithTag("img").setVisibility(View.VISIBLE);
+                        langContainer.findViewWithTag("img").setBackgroundResource(R.drawable.ic_notify_new);
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
     }
 
     private void downloadLang(String lang) {
@@ -199,8 +220,8 @@ public class ResourceCenter extends BaseFragment {
 
                 Log.d("debug", bytesWritten + "/" + totalSize);
                 mProgressDialog.setMessage(String.format("大小:%.2f M", 1.0 * totalSize / 1024 / 1024));
-                mProgressDialog.setMax((int)totalSize);
-                mProgressDialog.setProgress((int)bytesWritten);
+                mProgressDialog.setMax((int) totalSize);
+                mProgressDialog.setProgress((int) bytesWritten);
             }
 
         });
@@ -248,4 +269,6 @@ public class ResourceCenter extends BaseFragment {
             toast("数据转换失败，请重试!");
         }
     }
+
+
 }
