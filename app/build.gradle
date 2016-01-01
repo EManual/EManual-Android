@@ -95,6 +95,6 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.9'
 
     //avoscloud-sdk 为 LeanCloud基础包 https://leancloud.cn/docs/sdk_down.html
-    compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
+    compile 'cn.leancloud.android:avoscloud-sdk:v3.12.1'
     compile project(':extras:umeng-update')
 }
