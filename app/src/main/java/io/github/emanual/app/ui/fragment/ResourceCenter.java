@@ -38,7 +38,7 @@ import io.github.emanual.app.utils._;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
 public class ResourceCenter extends BaseFragment {
-    @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) List<View> names;
+    @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c, R.id.btn_angular, R.id.btn_scala, R.id.btn_http2}) List<View> names;
 
     public String ROOT_PATH;
     public String DOWNLOAD_PATH;
@@ -122,7 +122,7 @@ public class ResourceCenter extends BaseFragment {
         btn.findViewWithTag("img").setBackgroundResource(R.drawable.ic_widget_download);
     }
 
-    @OnClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) public void click_lang(
+    @OnClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c, R.id.btn_angular, R.id.btn_scala, R.id.btn_http2}) public void click_lang(
             final View v) {
         String lang = "java";
         switch (v.getId()) {
@@ -143,6 +143,16 @@ public class ResourceCenter extends BaseFragment {
                 break;
             case R.id.btn_c:
                 lang = "c";
+                break;
+            case R.id.btn_angular:
+                lang = "angular";
+                break;
+            case R.id.btn_scala:
+                lang = "scala";
+                break;
+            case R.id.btn_http2:
+                lang = "http2";
+                break;
             default:
                 break;
         }
@@ -158,7 +168,7 @@ public class ResourceCenter extends BaseFragment {
         }
     }
 
-    @OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c}) public boolean update_lang(View v) {
+    @OnLongClick({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c, R.id.btn_angular, R.id.btn_scala, R.id.btn_http2}) public boolean update_lang(View v) {
         TextView tv = (TextView) v.findViewWithTag("lang");
         mDownloadConfirmDialog.show(tv.getText().toString().toLowerCase());
         return true;

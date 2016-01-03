@@ -154,6 +154,81 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@drawable/ic_line_1"/>
+        <LinearLayout style="@style/Linerlayout.list_horizontal">
+
+            <!-- item -->
+
+            <LinearLayout
+                android:id="@+id/btn_angular"
+                style="@style/Linerlayout.list_vertical">
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download"/>
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_angular"/>
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:text="Angular"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3"/>
+
+            <LinearLayout
+                android:id="@+id/btn_scala"
+                style="@style/Linerlayout.list_vertical"
+                >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download"/>
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_scala"/>
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:text="Scala"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_line_3"
+                />
+
+            <LinearLayout
+                android:id="@+id/btn_http2"
+                style="@style/Linerlayout.list_vertical"
+                >
+
+                <ImageView
+                    style="@style/ImageView.item_main"
+                    android:background="@drawable/ic_widget_download"/>
+
+                <ImageView
+                    style="@style/ImageView.item_main_module"
+                    android:background="@drawable/ic_module_http2"/>
+
+                <TextView
+                    style="@style/TextView.item_main"
+                    android:text="Http2"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/ic_line_1"/>
+
+
     </LinearLayout>
 
 </ScrollView>
