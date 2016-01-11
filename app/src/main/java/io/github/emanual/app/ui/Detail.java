@@ -63,10 +63,6 @@ public class Detail extends BaseActivity
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_detail);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override protected void initData() {
@@ -100,6 +96,10 @@ public class Detail extends BaseActivity
         onRefresh();
 
 //		showBannerAd();
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_detail;
     }
 
 //	private void showBannerAd() {

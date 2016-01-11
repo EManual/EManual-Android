@@ -1,26 +1,22 @@
 package io.github.emanual.app.ui;
 
-import io.github.emanual.app.R;
-import io.github.emanual.app.utils.AndroidUtils;
-
-import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import io.github.emanual.app.R;
+import io.github.emanual.app.utils.AndroidUtils;
 
 public class About extends BaseActivity {
 
+    @Bind(R.id.tv_version) TextView tv_version;
+
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_about);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override protected void initData() {
@@ -36,10 +32,14 @@ public class About extends BaseActivity {
             String text = String.format("%s v%s",
                     getResources().getString(R.string.application_name),
                     AndroidUtils.getAppVersionName(getContext()));
-            ((TextView) _getView(R.id.tv_version)).setText(text);
+            tv_version.setText(text);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_about;
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {

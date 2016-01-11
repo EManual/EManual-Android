@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.FileTreeObject;
@@ -40,10 +39,6 @@ public class FileTree extends BaseActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_filetree);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @SuppressLint("DefaultLocale") @Override protected void initData() {
@@ -76,6 +71,10 @@ public class FileTree extends BaseActivity {
         getSupportActionBar().setTitle(rnames.get(rnames.size() - 1));
 
         lv.setAdapter(adapter);
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_filetree;
     }
 
     // read cur_path/info.json

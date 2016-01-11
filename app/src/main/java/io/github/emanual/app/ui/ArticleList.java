@@ -46,10 +46,6 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_articlelist);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override
@@ -77,6 +73,10 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
         lv.setOnScrollListener(this);
         lv.setOnItemClickListener(this);
         onRefresh();
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_articlelist;
     }
 
     @Override

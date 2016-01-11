@@ -37,10 +37,6 @@ public class Browser extends BaseActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_browser);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override protected void initData() {
@@ -67,6 +63,10 @@ public class Browser extends BaseActivity {
         }
 
 
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_browser;
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {

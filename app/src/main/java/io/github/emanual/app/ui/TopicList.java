@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
@@ -42,10 +41,6 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_topiclist);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override
@@ -72,6 +67,10 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(this);
         onRefresh();
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_topiclist;
     }
 
     @Override
