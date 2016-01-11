@@ -28,7 +28,7 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
 import io.github.emanual.app.ui.adapter.TopicListAdapter;
 
-public class TopicList extends BaseActivity implements OnRefreshListener,
+public class TopicList extends SwipeBackActivity implements OnRefreshListener,
         OnItemClickListener {
     ActionBar mActionBar;
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
@@ -45,6 +45,7 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
 
     @Override
     protected void initData() {
+        super.initData();
         kind = getStringExtra("kind");
         title = getStringExtra("title");
         if (kind == null || title == null) {
@@ -56,14 +57,16 @@ public class TopicList extends BaseActivity implements OnRefreshListener,
 
     @Override
     protected void initLayout() {
+        super.initLayout();
         mActionBar = getActionBar();
         mActionBar.setTitle(title);
         mActionBar.setDisplayHomeAsUpEnabled(true);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light,
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light);
+//        swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+//                android.R.color.holo_blue_light,
+//                android.R.color.holo_blue_bright,
+//                android.R.color.holo_blue_light);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(this);
         onRefresh();

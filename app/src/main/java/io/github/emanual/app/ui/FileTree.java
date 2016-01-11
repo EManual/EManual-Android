@@ -25,7 +25,7 @@ import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;
 
-public class FileTree extends BaseActivity {
+public class FileTree extends SwipeBackActivity {
     private String root = ""; //根目录
     private String cur_path = "";  //当前路径
     private FileTreeObject mFileTreeObject;
@@ -42,6 +42,7 @@ public class FileTree extends BaseActivity {
     }
 
     @SuppressLint("DefaultLocale") @Override protected void initData() {
+        super.initData();
         if (getIntent().getStringExtra("LANG_PATH") != null) {
             cur_path = root = getIntent().getStringExtra("LANG_PATH");// ->
             // MD_PATH/lang
@@ -66,6 +67,7 @@ public class FileTree extends BaseActivity {
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(rnames.get(rnames.size() - 1));

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    style="@style/Linerlayout.container_main"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<io.github.emanual.app.widget.SwipeBackLayout
+    android:id="@+id/swipBackLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <include layout="@layout/toolbar"/>
+    <LinearLayout
+        style="@style/Linerlayout.container_main">
 
-    <ListView
-        android:id="@+id/lv_filetree"
-        style="@style/ListView.default">
-    </ListView>
+        <include layout="@layout/toolbar"/>
 
-</LinearLayout>
+        <ListView
+            android:id="@+id/lv_filetree"
+            style="@style/ListView.default">
+        </ListView>
+    </LinearLayout>
+</io.github.emanual.app.widget.SwipeBackLayout>

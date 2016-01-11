@@ -25,6 +25,14 @@
         <item name="android:actionModeBackground">@color/blue_nav_bg_nomal</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_navigation_previous_item</item>
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.TransparentActivity" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
     <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:displayOptions">showTitle</item>

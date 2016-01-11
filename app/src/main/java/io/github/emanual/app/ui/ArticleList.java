@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
@@ -65,10 +64,11 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
         mActionBar.setTitle(topic);
         mActionBar.setDisplayHomeAsUpEnabled(true);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light,
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light);
+//        swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_bright,
+//                android.R.color.holo_blue_light,
+//                android.R.color.holo_blue_bright,
+//                android.R.color.holo_blue_light);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light);
         lv.setAdapter(adapter);
         lv.setOnScrollListener(this);
         lv.setOnItemClickListener(this);

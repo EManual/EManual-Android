@@ -28,7 +28,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
@@ -41,7 +40,7 @@ import io.github.emanual.app.utils._;
  * @author jayin
  */
 @SuppressLint("SetJavaScriptEnabled")
-public class Detail extends BaseActivity
+public class Detail extends SwipeBackActivity
         implements OnRefreshListener {
     public static final String EXTRA_LINK = "link";
     public static final String EXTRA_TITLE = "title";
@@ -66,6 +65,7 @@ public class Detail extends BaseActivity
     }
 
     @Override protected void initData() {
+        super.initData();
         link = getIntent().getStringExtra(EXTRA_LINK);
         title = getIntent().getStringExtra(EXTRA_TITLE);
         sharePath = getIntent().getStringExtra(EXTRA_SHARE_PATH);
@@ -77,6 +77,7 @@ public class Detail extends BaseActivity
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_blue_light,

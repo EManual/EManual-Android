@@ -18,7 +18,7 @@ import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.AndroidUtils;
 
-public class Feedback extends BaseActivity {
+public class Feedback extends SwipeBackActivity {
     public static final String EXTRA_CONTENT = "content";//反馈内容
     public static final String EXTRA_TYPE = "type"; // 反馈类型
     public static final String TYPE_REPORT = "report"; // 报告错误
@@ -40,11 +40,13 @@ public class Feedback extends BaseActivity {
     }
 
     @Override protected void initData() {
+        super.initData();
         _type = getStringExtra(EXTRA_TYPE);
         _content = getStringExtra(EXTRA_CONTENT);
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_feedback);

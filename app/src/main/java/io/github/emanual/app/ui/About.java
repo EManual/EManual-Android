@@ -7,11 +7,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.AndroidUtils;
 
-public class About extends BaseActivity {
+public class About extends SwipeBackActivity {
 
     @Bind(R.id.tv_version) TextView tv_version;
 
@@ -20,10 +19,11 @@ public class About extends BaseActivity {
     }
 
     @Override protected void initData() {
-
+        super.initData();
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_about);
