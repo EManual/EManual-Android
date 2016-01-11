@@ -1,13 +1,5 @@
 package io.github.emanual.app.utils;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.apache.http.conn.util.InetAddressUtils;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -22,6 +14,14 @@ import android.net.wifi.WifiManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import cz.msebera.android.httpclient.conn.util.InetAddressUtils;
 
 /**
  * 安卓设备工具类
