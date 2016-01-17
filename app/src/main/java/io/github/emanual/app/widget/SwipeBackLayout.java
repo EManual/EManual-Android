@@ -52,7 +52,7 @@ public class SwipeBackLayout extends FrameLayout {
             //返回true表示可以拖动
             @Override
             public boolean tryCaptureView(View child, int pointerId) {
-                return child == mContentView;//如果child==mContentView，返回true，也就是说mContentView可以移动
+                return child == mContentView && isEdgeDrag;//如果child==mContentView，返回true，也就是说mContentView可以移动 NOTE: 从边界开始滑动才算退出当前页
             }
 
             //记录值的变化
@@ -85,6 +85,8 @@ public class SwipeBackLayout extends FrameLayout {
                 }
                 //通知重绘界面
                 invalidate();
+                //边界判断还原
+                isEdgeDrag = false;
             }
 
             //重新定位水平移动的位置
