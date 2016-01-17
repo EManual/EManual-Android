@@ -14,12 +14,11 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.AndroidUtils;
 
-public class Feedback extends BaseActivity {
+public class Feedback extends SwipeBackActivity {
     public static final String EXTRA_CONTENT = "content";//反馈内容
     public static final String EXTRA_TYPE = "type"; // 反馈类型
     public static final String TYPE_REPORT = "report"; // 报告错误
@@ -38,18 +37,16 @@ public class Feedback extends BaseActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_feedback);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override protected void initData() {
+        super.initData();
         _type = getStringExtra(EXTRA_TYPE);
         _content = getStringExtra(EXTRA_CONTENT);
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_feedback);
@@ -71,6 +68,10 @@ public class Feedback extends BaseActivity {
         mProgressDialog.setCancelable(false);
         mProgressDialog.setMessage("正在发送请求.....");
 
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_feedback;
     }
 
     @OnClick(R.id.btn_submit) public void submit() {

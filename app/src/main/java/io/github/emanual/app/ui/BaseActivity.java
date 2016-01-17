@@ -6,28 +6,27 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.Serializable;
 
+import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends ActionBarActivity implements
-        OnClickListener {
+
+public abstract class BaseActivity extends ActionBarActivity {
 
     protected abstract void initData();
-
     protected abstract void initLayout();
+    protected abstract int getContentViewId();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
+        setContentView(getContentViewId());
+        ButterKnife.bind(this);
+        initData();
+        initLayout();
     }
 
     /**
@@ -49,22 +48,6 @@ public abstract class BaseActivity extends ActionBarActivity implements
      */
     public void toast(String content) {
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * @param id
-     * @return
-     */
-    public View _getView(int id) {
-        return this.findViewById(id);
-    }
-
-    /**
-     * @param cls
-     * @return
-     */
-    public Intent wrapIntent(Class<?> cls) {
-        return new Intent(this, cls);
     }
 
     /**
@@ -124,9 +107,6 @@ public abstract class BaseActivity extends ActionBarActivity implements
         return getIntent().getStringArrayExtra(name);
     }
 
-    @Override public void onClick(View v) {
-
-    }
 
     @Override protected void onDestroy() {
         super.onDestroy();

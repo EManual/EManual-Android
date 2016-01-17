@@ -15,12 +15,11 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.utils.EManualUtils;
 
-public class Browser extends BaseActivity {
+public class Browser extends SwipeBackActivity {
 
     public static final String EXTRA_URL = "url";
 
@@ -37,13 +36,10 @@ public class Browser extends BaseActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_browser);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @Override protected void initData() {
+        super.initData();
         if (getIntent().getStringExtra(EXTRA_URL) != null) {
             url = getIntent().getStringExtra(EXTRA_URL);
         } else {
@@ -53,6 +49,8 @@ public class Browser extends BaseActivity {
     }
 
     @SuppressLint("SetJavaScriptEnabled") @Override protected void initLayout() {
+        super.initLayout
+                ();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_browser);
@@ -67,6 +65,10 @@ public class Browser extends BaseActivity {
         }
 
 
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_browser;
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {

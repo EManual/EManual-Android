@@ -35,10 +35,6 @@ public class Main extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_main);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
 
         UmengUpdateAgent.setUpdateAutoPopup(true);
         UmengUpdateAgent.update(this);
@@ -67,6 +63,10 @@ public class Main extends BaseActivity {
         viewPager.setAdapter(new MainFragmentPagerAdapter(
                 getSupportFragmentManager(), fragments, titles));
         tabs.setViewPager(viewPager);
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_main;
     }
 
     @Override

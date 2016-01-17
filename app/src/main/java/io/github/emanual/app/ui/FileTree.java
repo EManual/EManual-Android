@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.FileTreeObject;
@@ -26,7 +25,7 @@ import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;
 
-public class FileTree extends BaseActivity {
+public class FileTree extends SwipeBackActivity {
     private String root = ""; //根目录
     private String cur_path = "";  //当前路径
     private FileTreeObject mFileTreeObject;
@@ -40,13 +39,10 @@ public class FileTree extends BaseActivity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_filetree);
-        ButterKnife.bind(this);
-        initData();
-        initLayout();
     }
 
     @SuppressLint("DefaultLocale") @Override protected void initData() {
+        super.initData();
         if (getIntent().getStringExtra("LANG_PATH") != null) {
             cur_path = root = getIntent().getStringExtra("LANG_PATH");// ->
             // MD_PATH/lang
@@ -71,11 +67,16 @@ public class FileTree extends BaseActivity {
     }
 
     @Override protected void initLayout() {
+        super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(rnames.get(rnames.size() - 1));
 
         lv.setAdapter(adapter);
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.acty_filetree;
     }
 
     // read cur_path/info.json

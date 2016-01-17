@@ -36,23 +36,28 @@
         </activity>
         <activity
             android:name=".ui.Detail"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
             android:name=".ui.About"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
             android:name=".ui.FileTree"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
             android:name=".ui.Feedback"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
             android:name=".ui.Browser"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
         </activity>
 
         <service android:name=".CoreService">

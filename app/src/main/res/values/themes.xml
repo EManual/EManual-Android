@@ -10,8 +10,8 @@
         <item name="android:textColorPrimary">@android:color/white</item>
 
         <!--swipback Activity require-->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
         <!--<item name="windowActionBar">false</item>-->
         <!--<item name="android:windowNoTitle">true</item>-->
 
@@ -24,6 +24,14 @@
         <!-- 放在这里才有效 -->
         <item name="android:actionModeBackground">@color/blue_nav_bg_nomal</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_navigation_previous_item</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.TransparentActivity" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
