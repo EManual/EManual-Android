@@ -16,6 +16,7 @@ public class RestClient {
     public static final String URL_Preview = BASE_URL + "/assets/preview.html";
     public static final String URL_NewsFeeds = BASE_URL + "/md-newsfeeds/dist/%s";
     public static final String URL_Java = BASE_URL + "/java";
+    public static final String URL_FEEDS = " http://emanualresource.github.io";
     private static int HTTP_Timeout = 12 * 1000;
     public static Context context;
 
@@ -39,8 +40,13 @@ public class RestClient {
      */
     public static void get(String url, RequestParams params,
                            AsyncHttpResponseHandler responseHandler) {
+        get(BASE_URL, url,params, responseHandler);
+    }
+
+    public static void get(String baseUrl, String url, RequestParams params,
+                           AsyncHttpResponseHandler responseHandler) {
         initClient();
-        client.get(getAbsoluteUrl(url), params, responseHandler);
+        client.get(baseUrl+url, params, responseHandler);
     }
 
     /**

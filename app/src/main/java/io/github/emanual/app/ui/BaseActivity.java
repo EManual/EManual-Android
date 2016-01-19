@@ -3,7 +3,7 @@ package io.github.emanual.app.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 import butterknife.ButterKnife;
 
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract void initData();
     protected abstract void initLayout();

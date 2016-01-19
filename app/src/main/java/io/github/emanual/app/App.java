@@ -6,6 +6,7 @@ import android.webkit.WebView;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import io.github.emanual.app.api.RestClient;
 
@@ -17,6 +18,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         RestClient.init(getApplicationContext());
+
+        //
+        Fresco.initialize(getApplicationContext());
 
         //init leancloud
         AVOSCloud.initialize(this, LeanCloud_App_Id, LeanCloud_App_Key);

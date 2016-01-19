@@ -21,6 +21,7 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.ui.About;
 import io.github.emanual.app.ui.Browser;
 import io.github.emanual.app.ui.Feedback;
+import io.github.emanual.app.ui.FeedsList;
 import io.github.emanual.app.utils.EManualUtils;
 
 public class Explore extends BaseFragment {
@@ -95,6 +96,11 @@ public class Explore extends BaseFragment {
     @OnClick(R.id.btn_opensource) public void opensource() {
         Intent intent = new Intent(getActivity(), Browser.class);
         intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_OPENSOURCE);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_feeds) public void feeds(){
+        Intent intent = new Intent(getActivity(), FeedsList.class);
         startActivity(intent);
     }
 

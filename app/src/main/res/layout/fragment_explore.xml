@@ -7,6 +7,28 @@
               android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/btn_feeds"
+        style="@style/Linerlayout.explore">
+
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            style="@style/AndroidBootstrap.FontAwesomeText"
+            app:fontAwesomeIcon="fa_building"
+            />
+
+        <TextView
+            style="@style/TextView.newfeed"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="资源下载"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1"/>
+
+    <LinearLayout
         android:id="@+id/btn_sponsor"
         style="@style/Linerlayout.explore">
 
@@ -80,6 +102,7 @@
             style="@style/AndroidBootstrap.FontAwesomeText"
             app:fontAwesomeIcon="fa_android"
             />
+
         <TextView
             style="@style/TextView.newfeed"
             android:layout_marginLeft="8dp"

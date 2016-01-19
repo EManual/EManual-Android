@@ -33,5 +33,11 @@ public class EmanualAPI {
         RestClient.get(String.format("/md-%s/dist/%s/info.json", lang.toLowerCase(), lang.toLowerCase()), null, responseHandler);
     }
 
-
+    /**
+     * 获取feeds
+     * @param responseHandler
+     */
+    public static void getFeeds(AsyncHttpResponseHandler responseHandler){
+        RestClient.get(RestClient.URL_FEEDS,"/feeds-book/feeds/all.min.json", null, responseHandler);
+    }
 }

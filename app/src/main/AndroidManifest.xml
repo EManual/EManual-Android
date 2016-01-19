@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="io.github.emanual.app"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-    >
-
+<manifest
+    package="io.github.emanual.app"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -13,7 +12,7 @@
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
 
     <application
-        android:name="io.github.emanual.app.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/ic_icon_code"
         android:label="@string/application_name"
@@ -59,10 +58,14 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
+        <activity
+            android:name=".ui.FeedsList"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.TransparentActivity">
+        </activity>
 
         <service android:name=".CoreService">
         </service>
-
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService">
@@ -82,6 +85,7 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}"/>
         <!-- Umeng End -->
+
     </application>
 
 </manifest>
