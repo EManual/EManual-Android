@@ -20,7 +20,14 @@ public class RestClient {
     private static int HTTP_Timeout = 12 * 1000;
     public static Context context;
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static AsyncHttpClient client;
+
+    public static AsyncHttpClient getHttpClient() {
+        if (client == null) {
+            client = new AsyncHttpClient();
+        }
+        return client;
+    }
 
     /**
      * 初始化:如果需要调用登录验证记录session的函数前，必须调用这个方法，否则请求失败
@@ -29,6 +36,7 @@ public class RestClient {
      */
     public static void init(Context context) {
         RestClient.context = context;
+        client = getHttpClient();
     }
 
     /**
@@ -40,13 +48,13 @@ public class RestClient {
      */
     public static void get(String url, RequestParams params,
                            AsyncHttpResponseHandler responseHandler) {
-        get(BASE_URL, url,params, responseHandler);
+        get(BASE_URL, url, params, responseHandler);
     }
 
     public static void get(String baseUrl, String url, RequestParams params,
                            AsyncHttpResponseHandler responseHandler) {
         initClient();
-        client.get(baseUrl+url, params, responseHandler);
+        client.get(baseUrl + url, params, responseHandler);
     }
 
     /**
