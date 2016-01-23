@@ -5,17 +5,12 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.About;
@@ -28,16 +23,18 @@ public class Explore extends BaseFragment {
 
     ProgressDialog mProgressDialog;
 
-    @Override public View onCreateView(LayoutInflater inflater,
-                                       @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_explore, null);
-        ButterKnife.bind(this, v);
+    @Override protected void initData(Bundle savedInstanceState) {
 
+    }
+
+    @Override protected void initLayout(Bundle savedInstanceState) {
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setTitle("检查更新");
         mProgressDialog.setMessage("正在检查更新....");
+    }
 
-        return v;
+    @Override protected int getContentViewId() {
+        return R.layout.fragment_explore;
     }
 
     @OnClick(R.id.btn_rate_app) public void rate_app() {

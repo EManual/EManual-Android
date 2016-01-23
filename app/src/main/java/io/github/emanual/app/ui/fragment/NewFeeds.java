@@ -45,11 +45,11 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
     NewFeedsAdapter adapter;
     ArrayList<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
 
-    @SuppressWarnings("unchecked") @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_newfeeds, container, false);
-        ButterKnife.bind(this, v);
+    @Override protected void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override protected void initLayout(Bundle savedInstanceState) {
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_blue_light,
@@ -105,7 +105,10 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
         if (data.size() == 0) {
             onRefresh();
         }
-        return v;
+    }
+
+    @Override protected int getContentViewId() {
+        return R.layout.fragment_newfeeds;
     }
 
     @Override public void onSaveInstanceState(Bundle outState) {

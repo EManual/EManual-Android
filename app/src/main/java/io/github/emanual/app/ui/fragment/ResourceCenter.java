@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -24,7 +22,6 @@ import java.io.IOException;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
 import cz.msebera.android.httpclient.Header;
@@ -47,11 +44,11 @@ public class ResourceCenter extends BaseFragment {
     private ProgressDialog mProgressDialog;
     private DownloadConfirmDialog mDownloadConfirmDialog;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_resource_center, null);
-        ButterKnife.bind(this, v);
+    @Override protected void initData(Bundle savedInstanceState) {
 
+    }
+
+    @Override protected void initLayout(Bundle savedInstanceState) {
         ROOT_PATH = EManualUtils.getRootPath(getActivity());// /Android/data/包名/files
         MD_PATH = EManualUtils.getMdPath(getActivity()); // /Android/data/包名/files/md
         DOWNLOAD_PATH = EManualUtils.getDownloadPath(getActivity());
@@ -60,8 +57,10 @@ public class ResourceCenter extends BaseFragment {
         updateStatus();
 
         initDialog();
+    }
 
-        return v;
+    @Override protected int getContentViewId() {
+        return R.layout.fragment_resource_center;
     }
 
     private void initDialog() {
