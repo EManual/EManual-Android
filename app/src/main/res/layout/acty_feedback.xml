@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<io.github.emanual.app.widget.SwipeBackLayout
     android:id="@+id/swipBackLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -91,4 +91,4 @@
             android:text="* 你的错误反馈/意见建议能帮我们打造更好的应用"
             android:textSize="12sp"/>
     </LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+</io.github.emanual.app.widget.SwipeBackLayout>
