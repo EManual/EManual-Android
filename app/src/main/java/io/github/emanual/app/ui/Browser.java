@@ -38,7 +38,7 @@ public class Browser extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override protected void initData() {
+    @Override protected void initData(Bundle savedInstanceState) {
         super.initData();
         if (getIntent().getStringExtra(EXTRA_URL) != null) {
             url = getIntent().getStringExtra(EXTRA_URL);
@@ -48,7 +48,7 @@ public class Browser extends SwipeBackActivity {
         }
     }
 
-    @SuppressLint("SetJavaScriptEnabled") @Override protected void initLayout() {
+    @SuppressLint("SetJavaScriptEnabled") @Override protected void initLayout(Bundle savedInstanceState) {
         super.initLayout
                 ();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));

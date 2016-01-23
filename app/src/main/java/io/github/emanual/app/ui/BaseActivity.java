@@ -20,8 +20,8 @@ import io.github.emanual.app.event.EmptyEvent;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected abstract void initData();
-    protected abstract void initLayout();
+    protected abstract void initData(Bundle savedInstanceState);
+    protected abstract void initLayout(Bundle savedInstanceState);
     protected abstract int getContentViewId();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getContentViewId());
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        initData();
-        initLayout();
+        initData(savedInstanceState);
+        initLayout(savedInstanceState);
     }
 
     /**

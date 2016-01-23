@@ -44,7 +44,7 @@ public class TopicList extends SwipeBackActivity implements OnRefreshListener,
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         super.initData();
         kind = getStringExtra("kind");
         title = getStringExtra("title");
@@ -56,7 +56,7 @@ public class TopicList extends SwipeBackActivity implements OnRefreshListener,
     }
 
     @Override
-    protected void initLayout() {
+    protected void initLayout(Bundle savedInstanceState) {
         super.initLayout();
         mActionBar = getActionBar();
         mActionBar.setTitle(title);

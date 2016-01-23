@@ -39,13 +39,13 @@ public class Feedback extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override protected void initData() {
+    @Override protected void initData(Bundle savedInstanceState) {
         super.initData();
         _type = getStringExtra(EXTRA_TYPE);
         _content = getStringExtra(EXTRA_CONTENT);
     }
 
-    @Override protected void initLayout() {
+    @Override protected void initLayout(Bundle savedInstanceState) {
         super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -1,5 +1,6 @@
 package io.github.emanual.app.ui;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -29,11 +30,11 @@ public class FeedsList extends SwipeBackActivity {
 
     @Bind(R.id.recylerview) RecyclerView recyclerView;
 
-    @Override protected void initData() {
+    @Override protected void initData(Bundle savedInstanceState) {
         super.initData();
     }
 
-    @Override protected void initLayout() {
+    @Override protected void initLayout(Bundle savedInstanceState) {
         super.initLayout();
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));

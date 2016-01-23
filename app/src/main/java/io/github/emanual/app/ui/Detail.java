@@ -64,7 +64,7 @@ public class Detail extends SwipeBackActivity
         super.onCreate(savedInstanceState);
     }
 
-    @Override protected void initData() {
+    @Override protected void initData(Bundle savedInstanceState) {
         super.initData();
         link = getIntent().getStringExtra(EXTRA_LINK);
         title = getIntent().getStringExtra(EXTRA_TITLE);
@@ -76,7 +76,7 @@ public class Detail extends SwipeBackActivity
         }
     }
 
-    @Override protected void initLayout() {
+    @Override protected void initLayout(Bundle savedInstanceState) {
         super.initLayout();
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,

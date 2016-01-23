@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
 import io.github.emanual.app.ui.fragment.Explore;
@@ -45,12 +44,12 @@ public class Main extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         titles = getResources().getStringArray(R.array.title_main);
     }
 
     @Override
-    protected void initLayout() {
+    protected void initLayout(Bundle savedInstanceState) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setIcon(R.drawable.ic_icon_code_small_pure);
 

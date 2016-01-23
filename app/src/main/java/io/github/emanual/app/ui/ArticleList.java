@@ -48,7 +48,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         kind = getStringExtra("kind");
         topic = getStringExtra("topic");
         if (kind == null || topic == null) {
@@ -59,7 +59,7 @@ public class ArticleList extends BaseActivity implements OnRefreshListener,
     }
 
     @Override
-    protected void initLayout() {
+    protected void initLayout(Bundle savedInstanceState) {
         mActionBar = getActionBar();
         mActionBar.setTitle(topic);
         mActionBar.setDisplayHomeAsUpEnabled(true);

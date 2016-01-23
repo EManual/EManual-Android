@@ -41,7 +41,7 @@ public class FileTree extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @SuppressLint("DefaultLocale") @Override protected void initData() {
+    @SuppressLint("DefaultLocale") @Override protected void initData(Bundle savedInstanceState) {
         super.initData();
         if (getIntent().getStringExtra("LANG_PATH") != null) {
             cur_path = root = getIntent().getStringExtra("LANG_PATH");// ->
@@ -66,7 +66,7 @@ public class FileTree extends SwipeBackActivity {
 
     }
 
-    @Override protected void initLayout() {
+    @Override protected void initLayout(Bundle savedInstanceState) {
         super.initLayout();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
