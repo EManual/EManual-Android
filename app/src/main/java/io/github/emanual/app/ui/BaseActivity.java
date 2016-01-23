@@ -13,6 +13,9 @@ import com.umeng.analytics.MobclickAgent;
 import java.io.Serializable;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import io.github.emanual.app.event.EmptyEvent;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -25,8 +28,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         initData();
         initLayout();
+    }
+
+    /**
+     * EventBus 3必须要有一个@Subscribe
+     */
+    @Subscribe
+    public void onEmpty(EmptyEvent event){
+
     }
 
     /**
@@ -110,6 +122,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
+
     }
 
     @Override protected void onPause() {

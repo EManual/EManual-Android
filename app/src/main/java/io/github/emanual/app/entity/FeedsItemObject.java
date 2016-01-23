@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class FeedsItemObject implements Serializable{
     private String name;
+    private String name_cn;
     private String md5;
     private String icon_url;
     private String url;
@@ -75,6 +76,14 @@ public class FeedsItemObject implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName_cn() {
+        return name_cn;
+    }
+
+    public void setName_cn(String name_cn) {
+        this.name_cn = name_cn;
     }
 
     public String getUrl() {

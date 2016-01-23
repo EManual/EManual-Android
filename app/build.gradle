@@ -103,5 +103,9 @@ dependencies {
     compile 'cn.leancloud.android:avoscloud-sdk:v3.12.1'
     //https://github.com/facebook/fresco
     compile 'com.facebook.fresco:fresco:0.9.0'
+    //https://github.com/greenrobot/EventBus/tree/annotations
+    compile 'de.greenrobot:eventbus:3.0.0-beta1'
+    //https://github.com/lingochamp/FileDownloader
+    compile 'com.liulishuo.filedownloader:library:0.1.5'
     compile project(':extras:umeng-update')
 }
