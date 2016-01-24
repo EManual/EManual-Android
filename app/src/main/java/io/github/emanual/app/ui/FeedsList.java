@@ -31,11 +31,9 @@ public class FeedsList extends SwipeBackActivity {
     @Bind(R.id.recylerview) RecyclerView recyclerView;
 
     @Override protected void initData(Bundle savedInstanceState) {
-        super.initData();
     }
 
     @Override protected void initLayout(Bundle savedInstanceState) {
-        super.initLayout();
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

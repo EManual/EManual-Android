@@ -60,12 +60,8 @@ public class Detail extends SwipeBackActivity
     Menu mMenu = null;
 
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override protected void initData(Bundle savedInstanceState) {
-        super.initData();
+
         link = getIntent().getStringExtra(EXTRA_LINK);
         title = getIntent().getStringExtra(EXTRA_TITLE);
         sharePath = getIntent().getStringExtra(EXTRA_SHARE_PATH);
@@ -77,7 +73,6 @@ public class Detail extends SwipeBackActivity
     }
 
     @Override protected void initLayout(Bundle savedInstanceState) {
-        super.initLayout();
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_blue_light,

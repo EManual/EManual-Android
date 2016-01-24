@@ -19,11 +19,11 @@ public class About extends SwipeBackActivity {
     }
 
     @Override protected void initData(Bundle savedInstanceState) {
-        super.initData();
+
     }
 
     @Override protected void initLayout(Bundle savedInstanceState) {
-        super.initLayout();
+
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_about);

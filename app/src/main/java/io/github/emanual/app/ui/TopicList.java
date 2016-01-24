@@ -45,7 +45,6 @@ public class TopicList extends SwipeBackActivity implements OnRefreshListener,
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        super.initData();
         kind = getStringExtra("kind");
         title = getStringExtra("title");
         if (kind == null || title == null) {
@@ -57,7 +56,6 @@ public class TopicList extends SwipeBackActivity implements OnRefreshListener,
 
     @Override
     protected void initLayout(Bundle savedInstanceState) {
-        super.initLayout();
         mActionBar = getActionBar();
         mActionBar.setTitle(title);
         mActionBar.setDisplayHomeAsUpEnabled(true);

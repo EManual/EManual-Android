@@ -34,12 +34,8 @@ public class Browser extends SwipeBackActivity {
     @Bind(R.id.progress) ProgressBar mProgressBar;
     String url;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override protected void initData(Bundle savedInstanceState) {
-        super.initData();
         if (getIntent().getStringExtra(EXTRA_URL) != null) {
             url = getIntent().getStringExtra(EXTRA_URL);
         } else {
@@ -49,8 +45,7 @@ public class Browser extends SwipeBackActivity {
     }
 
     @SuppressLint("SetJavaScriptEnabled") @Override protected void initLayout(Bundle savedInstanceState) {
-        super.initLayout
-                ();
+
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_browser);
