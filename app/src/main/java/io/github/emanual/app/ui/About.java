@@ -14,10 +14,6 @@ public class About extends SwipeBackActivity {
 
     @Bind(R.id.tv_version) TextView tv_version;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override protected void initData(Bundle savedInstanceState) {
 
     }

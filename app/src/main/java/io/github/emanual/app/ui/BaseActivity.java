@@ -3,6 +3,7 @@ package io.github.emanual.app.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
+import io.github.emanual.app.R;
 import io.github.emanual.app.event.EmptyEvent;
 
 
@@ -28,7 +30,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getContentViewId());
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
+        if(!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         initData(savedInstanceState);
         initLayout(savedInstanceState);
     }
@@ -59,7 +63,12 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param content content of your want to Toast
      */
     public void toast(String content) {
-        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
+        try{
+            Snackbar.make(findViewById(R.id.layout_container), content, Snackbar.LENGTH_LONG).show();
+        }catch(Exception e){
+            Toast.makeText(this, content, Toast.LENGTH_LONG).show();
+        }
+
     }
 
     /**
@@ -122,7 +131,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        if(EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
+
 
     }
 

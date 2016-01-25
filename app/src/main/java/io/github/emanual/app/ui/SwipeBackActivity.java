@@ -13,17 +13,14 @@ import io.github.emanual.app.widget.SwipeBackLayout;
 public abstract class SwipeBackActivity extends BaseActivity{
     @Bind(R.id.swipBackLayout) SwipeBackLayout mSwipeBackLayout;
 
-    @Override protected void initData(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    }
-
-    @Override protected void initLayout(Bundle savedInstanceState) {
         mSwipeBackLayout.setCallBack(new SwipeBackLayout.CallBack() {
             @Override
             public void onFinish() {
                 finish();
             }
         });
-
     }
 }

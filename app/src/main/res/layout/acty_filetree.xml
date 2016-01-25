@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.github.emanual.app.widget.SwipeBackLayout
-    android:id="@+id/swipBackLayout"
+<LinearLayout
+    android:id="@+id/layout_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        style="@style/Linerlayout.container_main">
+    <io.github.emanual.app.widget.SwipeBackLayout
+        android:id="@+id/swipBackLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <include layout="@layout/toolbar"/>
+        <LinearLayout
+            style="@style/Linerlayout.container_main">
 
-        <ListView
-            android:id="@+id/lv_filetree"
-            style="@style/ListView.default">
-        </ListView>
-    </LinearLayout>
-</io.github.emanual.app.widget.SwipeBackLayout>
+            <include layout="@layout/toolbar"/>
+
+            <ListView
+                android:id="@+id/lv_filetree"
+                style="@style/ListView.default">
+            </ListView>
+        </LinearLayout>
+    </io.github.emanual.app.widget.SwipeBackLayout>
+</LinearLayout>
