@@ -18,9 +18,9 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
+import io.github.emanual.app.ui.fragment.BookList;
 import io.github.emanual.app.ui.fragment.Explore;
 import io.github.emanual.app.ui.fragment.NewFeeds;
-import io.github.emanual.app.ui.fragment.ResourceCenter;
 import io.github.emanual.app.widget.NewVersionDialog;
 
 public class Main extends BaseActivity {
@@ -56,7 +56,7 @@ public class Main extends BaseActivity {
         dialog = new NewVersionDialog(getContext());
 
         fragments.add(new NewFeeds());
-        fragments.add(new ResourceCenter());
+        fragments.add(new BookList());
         fragments.add(new Explore());
         if (viewPager == null) Log.d("debug", "viewPager is null");
         viewPager.setAdapter(new MainFragmentPagerAdapter(
