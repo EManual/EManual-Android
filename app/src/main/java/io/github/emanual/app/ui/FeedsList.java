@@ -28,7 +28,7 @@ import io.github.emanual.app.utils.ZipUtils;
 
 public class FeedsList extends SwipeBackActivity {
 
-    @Bind(R.id.recylerview) RecyclerView recyclerView;
+    @Bind(R.id.recyclerView) RecyclerView recyclerView;
 
     @Override protected void initData(Bundle savedInstanceState) {
     }
