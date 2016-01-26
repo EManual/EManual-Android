@@ -15,7 +15,7 @@ public class BookResource {
 
     public static List<String> getBookList(Context context){
         List<String> result = new ArrayList<String>();
-        File bookDir = new File(AppPath.getBookPath(context));
+        File bookDir = new File(AppPath.getBooksPath(context));
         if(!bookDir.exists()){
             bookDir.mkdirs();
         }

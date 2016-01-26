@@ -26,11 +26,31 @@ public class AppPath {
         return getAppFilesPath(context) + File.separator + "download";
     }
     /**
-     * 获取文档目录,/data/data/<App Name>/files/book
+     * 获取文档目录,/data/data/<App Name>/files/books
      * @param context
      * @return
      */
-    public static String getBookPath(Context context){
-        return getAppFilesPath(context) + File.separator + "book";
+    public static String getBooksPath(Context context){
+        return getAppFilesPath(context) + File.separator + "books";
+    }
+
+    /**
+     * 获取教程的根目录
+     * @param context
+     * @param bookName 书名
+     * @return
+     */
+    public static String getBookPath(Context context, String bookName){
+        return getBooksPath(context) + File.separator + bookName;
+    }
+
+    /**
+     * 获取教程的入口文件(index.html)
+     * @param context
+     * @param bookName 书名
+     * @return
+     */
+    public static String getBookIndexURL(Context context, String bookName){
+        return "file:///"+getBookPath(context, bookName) + File.separator + "book" + File.separator + "index.html";
     }
 }

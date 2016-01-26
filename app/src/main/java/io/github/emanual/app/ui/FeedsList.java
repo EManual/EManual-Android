@@ -68,7 +68,7 @@ public class FeedsList extends SwipeBackActivity {
     @Subscribe(threadMode = ThreadMode.Async)
     public void onBookDownloaded(BookDownloadedEvent event) {
         try {
-            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBookPath(getContext()) + File.separator + event.getFeedsItemObject().getName() + File.separator);
+            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBooksPath(getContext()) + File.separator + event.getFeedsItemObject().getName() + File.separator);
             //删除压缩包
             if (event.getFile().exists()) {
                 event.getFile().delete();
