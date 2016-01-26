@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -51,6 +52,12 @@ public class Browser extends SwipeBackActivity {
         getSupportActionBar().setTitle(R.string.acty_browser);
 
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setDomStorageEnabled(true);
+        webview.getSettings().setAppCacheEnabled(true);
+        webview.getSettings().setDatabaseEnabled(true);
+        webview.getSettings().setGeolocationEnabled(true);
+        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
         webview.setWebViewClient(mWebViewClient);
         webview.setWebChromeClient(mWebChromeClient);
 
@@ -143,8 +150,9 @@ public class Browser extends SwipeBackActivity {
         }
 
         @Override public void onReceivedError(WebView view, int errorCode,
-                                              String description, String failingUrl) {
+                                              String description, String onReceivedError) {
             view.loadUrl(url_404);
+            Log.d("debug", "onReceivedError--> errorCode:" + errorCode + "  ->" + onReceivedError);
         }
 
     }
@@ -155,6 +163,13 @@ public class Browser extends SwipeBackActivity {
             getSupportActionBar().setTitle(title);
         }
 
+        @Override public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+            Log.d("debug",
+                    consoleMessage.message() + " -- From line "
+                            + consoleMessage.lineNumber() + " of "
+                            + consoleMessage.sourceId());
+            return true;
+        }
     }
 
 }
