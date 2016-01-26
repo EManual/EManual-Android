@@ -85,9 +85,9 @@ public class FeedsList extends SwipeBackActivity {
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void onUnpackFinishEvent(UnPackFinishEvent event) {
         if (event.getException() != null) {
-            Toast.makeText(getContext(), event.getException().getMessage(), Toast.LENGTH_SHORT).show();
+            toast(event.getException().getMessage());
             return;
         }
-        Toast.makeText(getContext(), "下载并解压成功", Toast.LENGTH_SHORT).show();
+        toast("下载并解压成功");
     }
 }
