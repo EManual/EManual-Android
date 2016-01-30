@@ -38,6 +38,16 @@ public class FeedsItemObject implements Serializable{
         }
     }
 
+    /**
+     * 获取book的下载url
+     * NOTE:
+     *  在url上加上`?v=xxxx`
+     * @return
+     */
+    public String getDownloadUrl(){
+        return String.format("%s?v=%s", getUrl(), getMd5());
+    }
+
     public String getAuthor() {
         return author;
     }

@@ -58,7 +58,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
         holder.btn_download.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 String tarFileName = item.getUrl().split("/")[item.getUrl().split("/").length-1];
-                RestClient.getHttpClient().get(item.getUrl(), new FileAsyncHttpResponseHandler(new File(AppPath.getDownloadPath(getContext()), tarFileName)) {
+                RestClient.getHttpClient().get(item.getDownloadUrl(), new FileAsyncHttpResponseHandler(new File(AppPath.getDownloadPath(getContext()), tarFileName)) {
                     @Override public void onStart() {
                         super.onStart();
                         Toast.makeText(getContext(), "正在下载....", Toast.LENGTH_LONG).show();
