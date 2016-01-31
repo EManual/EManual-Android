@@ -81,15 +81,20 @@ public class _ {
     /**
      * 读文件
      */
-    public static String readFile(String path) throws FileNotFoundException {
+    public static String readFile(String path){
         return readFile(new File(path));
     }
 
     /**
      * 读文件
      */
-    public static String readFile(File file) throws FileNotFoundException {
-        return readFile(new FileInputStream(file));
+    public static String readFile(File file) {
+        try {
+            return readFile(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**

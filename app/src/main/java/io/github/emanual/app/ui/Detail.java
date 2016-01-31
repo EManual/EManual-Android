@@ -24,7 +24,7 @@ import android.webkit.WebViewClient;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.IOException;
 
 import butterknife.Bind;
@@ -303,13 +303,13 @@ public class Detail extends SwipeBackActivity
         }
 
         @Override protected String doInBackground(Void... params) {
-            try {
+            if(new File(this.path).exists()){
                 return _.readFile(this.path);
-            } catch (FileNotFoundException e) {
+            }else{
                 try {
                     return _.readFile(getAssets().open("404.md"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             return null;

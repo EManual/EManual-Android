@@ -10,7 +10,6 @@ import android.widget.ListView;
 import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,17 +79,12 @@ public class FileTree extends SwipeBackActivity {
     // read cur_path/info.json
     private void getFileTreeInfo() {
         String info_json = null;
-        try {
-            info_json = _.readFile(cur_path + File.separator + "info.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (info_json == null) {
-            // 不存在info.json，后端生成错误，理论上是闪退，但是为了更友好还是关闭
+        String infoFile = cur_path + File.separator + "info.json";
+        if(new File(infoFile).exists()){
+            mFileTreeObject = FileTreeObject.create(_.readFile(infoFile));
+        }else{
             toast("目录出错:不存在该文件");
             finish();
-        } else {
-            mFileTreeObject = FileTreeObject.create(info_json);
         }
     }
 

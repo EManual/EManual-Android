@@ -16,7 +16,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
@@ -186,7 +185,7 @@ public class ResourceCenter extends BaseFragment {
                         langContainer.findViewWithTag("img").setVisibility(View.VISIBLE);
                         langContainer.findViewWithTag("img").setBackgroundResource(R.drawable.ic_notify_new);
                     }
-                } catch (FileNotFoundException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
