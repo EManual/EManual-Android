@@ -45,19 +45,20 @@ public class BookList extends BaseFragment {
     }
 
     @Subscribe(threadMode = ThreadMode.Async)
-    public void onQueryBookList(QueryBookListEvent event){
-        List<String> bookNameList = BookResource.getBookList(getContext());
+    public void onQueryBookList(QueryBookListEvent event) {
+        List<String> bookNameList = BookResource.getBookNameList(getContext());
         List<BookInfoObject> bookInfoObjectList = new ArrayList<>();
-        for(String name : bookNameList){
+        for (int i=0; i < bookNameList.size(); i++) {
             BookInfoObject bookInfoObject = new BookInfoObject();
-            bookInfoObject.setName(name);
+            bookInfoObject.setName(bookNameList.get(i));
             bookInfoObjectList.add(bookInfoObject);
+
         }
         EventBus.getDefault().post(new FinishQueryBookListEvent(bookInfoObjectList));
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
-    public void onFinishQueryBookList(FinishQueryBookListEvent event){
+    public void onFinishQueryBookList(FinishQueryBookListEvent event) {
         Log.d("debug", event.getBookInfoObjectList().toString());
         recyclerView.setAdapter(new BookListAdapter(getContext(), event.getBookInfoObjectList()));
     }

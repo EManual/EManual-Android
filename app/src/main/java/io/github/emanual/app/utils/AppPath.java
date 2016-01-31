@@ -34,14 +34,34 @@ public class AppPath {
         return getAppFilesPath(context) + File.separator + "books";
     }
 
+
+
     /**
-     * 获取教程的根目录
+     * 获取教程的根目录/data/data/<App Name>/files/books/<bookName>
      * @param context
      * @param bookName 书名
      * @return
      */
-    public static String getBookPath(Context context, String bookName){
+    public static String getBookRootPath(Context context, String bookName){
         return getBooksPath(context) + File.separator + bookName;
+    }
+
+    /**
+     * 获取教程的book目录：/data/data/<App Name>/files/books/<bookName>/book
+     * @param context
+     * @param bookname
+     * @return
+     */
+    public static String getBookPath(Context context, String bookname) {
+        return getBookRootPath(context, bookname) + File.separator + "book";
+    }
+    /**
+     * 获取教程的book.json /data/data/<App Name>/files/books/<bookName>/bookbook.json
+     * @param context
+     * @return
+     */
+    public static String getBookJSONFilePath(Context context, String bookName){
+        return getBookPath(context, bookName) + File.separator + "book.json";
     }
 
     /**
@@ -51,6 +71,6 @@ public class AppPath {
      * @return
      */
     public static String getBookIndexURL(Context context, String bookName){
-        return "file:///"+getBookPath(context, bookName) + File.separator + "book" + File.separator + "index.html";
+        return "file:///"+getBookPath(context, bookName) + File.separator + "index.html";
     }
 }
