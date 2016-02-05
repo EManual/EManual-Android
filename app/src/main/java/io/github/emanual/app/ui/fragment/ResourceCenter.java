@@ -28,6 +28,7 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
 import io.github.emanual.app.entity.FileTreeObject;
 import io.github.emanual.app.ui.FileTree;
+import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.ZipUtils;
 import io.github.emanual.app.utils._;

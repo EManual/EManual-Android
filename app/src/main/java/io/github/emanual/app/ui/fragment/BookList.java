@@ -18,6 +18,7 @@ import io.github.emanual.app.entity.BookInfoObject;
 import io.github.emanual.app.event.FinishQueryBookListEvent;
 import io.github.emanual.app.event.QueryBookListEvent;
 import io.github.emanual.app.ui.adapter.BookListAdapter;
+import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.BookResource;
 
 

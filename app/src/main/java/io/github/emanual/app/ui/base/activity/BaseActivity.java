@@ -1,4 +1,4 @@
-package io.github.emanual.app.ui;
+package io.github.emanual.app.ui.base.activity;
 
 import android.content.Context;
 import android.content.Intent;

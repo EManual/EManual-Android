@@ -17,6 +17,7 @@ import io.github.emanual.app.ui.About;
 import io.github.emanual.app.ui.Browser;
 import io.github.emanual.app.ui.Feedback;
 import io.github.emanual.app.ui.FeedsList;
+import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 
 public class Explore extends BaseFragment {

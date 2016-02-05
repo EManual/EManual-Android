@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
+import io.github.emanual.app.ui.base.activity.BaseActivity;
 import io.github.emanual.app.ui.fragment.BookList;
 import io.github.emanual.app.ui.fragment.Explore;
 import io.github.emanual.app.ui.fragment.NewFeeds;

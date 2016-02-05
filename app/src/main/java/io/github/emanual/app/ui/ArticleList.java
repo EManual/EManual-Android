@@ -29,6 +29,7 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.ui.adapter.ArticleListAdapter;
+import io.github.emanual.app.ui.base.activity.BaseActivity;
 
 public class ArticleList extends BaseActivity implements OnRefreshListener,
         OnItemClickListener, OnScrollListener {

@@ -1,4 +1,4 @@
-package io.github.emanual.app.ui.fragment;
+package io.github.emanual.app.ui.base.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
