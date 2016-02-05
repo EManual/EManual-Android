@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import io.github.emanual.app.R;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.AndroidUtils;
 
 public class About extends SwipeBackActivity {

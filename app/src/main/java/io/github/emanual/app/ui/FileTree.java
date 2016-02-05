@@ -20,6 +20,7 @@ import butterknife.OnItemClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.FileTreeObject;
 import io.github.emanual.app.ui.adapter.FileTreeAdapter;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;

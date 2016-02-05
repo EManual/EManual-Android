@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
 
 public class Browser extends SwipeBackActivity {

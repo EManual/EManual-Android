@@ -16,6 +16,7 @@ import com.avos.avoscloud.SaveCallback;
 import butterknife.Bind;
 import butterknife.OnClick;
 import io.github.emanual.app.R;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.AndroidUtils;
 
 public class Feedback extends SwipeBackActivity {

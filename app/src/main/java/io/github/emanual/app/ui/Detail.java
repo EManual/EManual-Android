@@ -31,6 +31,7 @@ import butterknife.Bind;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils._;
 

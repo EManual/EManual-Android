@@ -27,6 +27,7 @@ import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.JavaAPI;
 import io.github.emanual.app.ui.adapter.TopicListAdapter;
+import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 
 public class TopicList extends SwipeBackActivity implements OnRefreshListener,
         OnItemClickListener {
