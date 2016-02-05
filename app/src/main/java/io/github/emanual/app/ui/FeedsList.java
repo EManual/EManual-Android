@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -23,10 +22,12 @@ import io.github.emanual.app.entity.FeedsItemObject;
 import io.github.emanual.app.event.BookDownloadedEvent;
 import io.github.emanual.app.event.UnPackFinishEvent;
 import io.github.emanual.app.ui.adapter.FeedsListAdapter;
+import io.github.emanual.app.ui.base.activity.SwipeRefreshActivity;
 import io.github.emanual.app.utils.AppPath;
+import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.ZipUtils;
 
-public class FeedsList extends SwipeBackActivity {
+public class FeedsList extends SwipeRefreshActivity {
 
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
 
@@ -50,6 +51,11 @@ public class FeedsList extends SwipeBackActivity {
 
     private void fetchData() {
         EmanualAPI.getFeeds(new AsyncHttpResponseHandler() {
+            @Override public void onStart() {
+                super.onStart();
+                SwipeRefreshLayoutUtils.setRefreshing(getSwipeRefreshLayout(), true);
+            }
+
             @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
                     List<FeedsItemObject> feeds = FeedsItemObject.createFeedsItemObjects(new String(responseBody));
@@ -60,7 +66,11 @@ public class FeedsList extends SwipeBackActivity {
             }
 
             @Override public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            }
 
+            @Override public void onFinish() {
+                super.onFinish();
+                SwipeRefreshLayoutUtils.setRefreshing(getSwipeRefreshLayout(), false);
             }
         });
     }
@@ -89,5 +99,9 @@ public class FeedsList extends SwipeBackActivity {
             return;
         }
         toast("下载并解压成功");
+    }
+
+    @Override public void onRefresh() {
+        fetchData();
     }
 }

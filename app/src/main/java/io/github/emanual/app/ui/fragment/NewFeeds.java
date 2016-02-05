@@ -3,7 +3,6 @@ package io.github.emanual.app.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -28,12 +27,12 @@ import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.entity.NewsFeedsObject;
 import io.github.emanual.app.ui.Detail;
 import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
-import io.github.emanual.app.ui.base.fragment.BaseFragment;
+import io.github.emanual.app.ui.base.fragment.SwipeRefreshFragment;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 
-public class NewFeeds extends BaseFragment implements OnRefreshListener {
+public class NewFeeds extends SwipeRefreshFragment {
     @Bind(R.id.lv_newfeeds) ListView lv;
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     boolean hasMore = true;
@@ -48,12 +47,6 @@ public class NewFeeds extends BaseFragment implements OnRefreshListener {
     }
 
     @Override protected void initLayout(Bundle savedInstanceState) {
-        swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light,
-                android.R.color.holo_blue_bright,
-                android.R.color.holo_blue_light);
-
         adapter = new NewFeedsAdapter(getActivity(), data);
         lv.setAdapter(adapter);
 

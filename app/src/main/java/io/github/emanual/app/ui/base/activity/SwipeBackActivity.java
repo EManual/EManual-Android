@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import butterknife.Bind;
 import io.github.emanual.app.R;
-import io.github.emanual.app.ui.base.activity.BaseActivity;
 import io.github.emanual.app.widget.SwipeBackLayout;
 
 /**
@@ -23,5 +22,9 @@ public abstract class SwipeBackActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    public SwipeBackLayout getSwipeBackLayout() {
+        return mSwipeBackLayout;
     }
 }
