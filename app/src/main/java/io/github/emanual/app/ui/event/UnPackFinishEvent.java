@@ -1,11 +1,11 @@
-package io.github.emanual.app.event;
+package io.github.emanual.app.ui.event;
 
 /**
  * 教程下载后解压完成事件
  * Author: jayin
  * Date: 1/22/16
  */
-public class UnPackFinishEvent {
+public class UnPackFinishEvent extends BaseEvent {
     private Exception exception;
 
     public UnPackFinishEvent() {

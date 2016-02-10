@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import io.github.emanual.app.R;
-import io.github.emanual.app.event.EmptyEvent;
+import io.github.emanual.app.ui.event.EmptyEvent;
 
 
 public abstract class BaseActivity extends AppCompatActivity {

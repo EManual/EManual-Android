@@ -1,4 +1,4 @@
-package io.github.emanual.app.event;
+package io.github.emanual.app.ui.event;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import io.github.emanual.app.entity.BookJSONObject;
  * Author: jayin
  * Date: 1/25/16
  */
-public class FinishQueryBookListEvent {
+public class FinishQueryBookListEvent extends BaseEvent {
 
     List<BookJSONObject> data;
 

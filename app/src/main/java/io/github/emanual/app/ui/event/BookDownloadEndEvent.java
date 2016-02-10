@@ -1,4 +1,4 @@
-package io.github.emanual.app.event;
+package io.github.emanual.app.ui.event;
 
 import java.io.File;
 
@@ -9,11 +9,11 @@ import io.github.emanual.app.entity.FeedsItemObject;
  * Author: jayin
  * Date: 1/22/16
  */
-public class BookDownloadedEvent {
+public class BookDownloadEndEvent extends BaseEvent{
     private File file;
     private  FeedsItemObject feedsItemObject;
 
-    public BookDownloadedEvent(File file, FeedsItemObject feedsItemObject){
+    public BookDownloadEndEvent(File file, FeedsItemObject feedsItemObject){
         this.file = file;
         this.feedsItemObject = feedsItemObject;
     }
