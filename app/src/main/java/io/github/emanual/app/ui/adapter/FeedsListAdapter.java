@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
@@ -23,7 +22,10 @@ import de.greenrobot.event.EventBus;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.entity.FeedsItemObject;
-import io.github.emanual.app.event.BookDownloadedEvent;
+import io.github.emanual.app.ui.event.BookDownloadEndEvent;
+import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
+import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
+import io.github.emanual.app.ui.event.BookDownloadStartEvent;
 import io.github.emanual.app.utils.AppPath;
 
 /**
@@ -61,23 +63,28 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
                 RestClient.getHttpClient().get(item.getDownloadUrl(), new FileAsyncHttpResponseHandler(new File(AppPath.getDownloadPath(getContext()), tarFileName)) {
                     @Override public void onStart() {
                         super.onStart();
-                        Toast.makeText(getContext(), "正在下载....", Toast.LENGTH_LONG).show();
+                        EventBus.getDefault().post(new BookDownloadStartEvent());
+
                     }
 
                     @Override public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                        Toast.makeText(getContext(), "出错了，错误码："+statusCode, Toast.LENGTH_LONG).show();
+                        EventBus.getDefault().post(new BookDownloadFaildEvent(statusCode, headers, throwable));
                     }
 
                     @Override public void onSuccess(int statusCode, Header[] headers, File file) {
-//                        Toast.makeText(getContext(), file.getAbsolutePath(), Toast.LENGTH_LONG).show();
                         Log.d("debug","下载完成" );
                         //发消息通知下载完毕，继续解压
-                        EventBus.getDefault().post(new BookDownloadedEvent(file, item));
+                        EventBus.getDefault().post(new BookDownloadEndEvent(file, item));
                     }
 
                     @Override public void onFinish() {
                         super.onFinish();
-//                        Toast.makeText(getContext(), "下载完毕。。。", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override public void onProgress(long bytesWritten, long totalSize) {
+                        super.onProgress(bytesWritten, totalSize);
+
+                        EventBus.getDefault().post(new BookDownloadProgressEvent(bytesWritten, totalSize));
                     }
                 });
             }

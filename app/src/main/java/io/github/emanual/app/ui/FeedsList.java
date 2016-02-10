@@ -1,9 +1,12 @@
 package io.github.emanual.app.ui;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -19,8 +22,11 @@ import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
 import io.github.emanual.app.entity.FeedsItemObject;
-import io.github.emanual.app.event.BookDownloadedEvent;
-import io.github.emanual.app.event.UnPackFinishEvent;
+import io.github.emanual.app.ui.event.BookDownloadEndEvent;
+import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
+import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
+import io.github.emanual.app.ui.event.BookDownloadStartEvent;
+import io.github.emanual.app.ui.event.UnPackFinishEvent;
 import io.github.emanual.app.ui.adapter.FeedsListAdapter;
 import io.github.emanual.app.ui.base.activity.SwipeRefreshActivity;
 import io.github.emanual.app.utils.AppPath;
@@ -31,6 +37,8 @@ import io.github.emanual.app.utils.ZipUtils;
  * Book Feeds
  */
 public class FeedsList extends SwipeRefreshActivity {
+
+    ProgressDialog mProgressDialog;
 
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
 
@@ -43,10 +51,76 @@ public class FeedsList extends SwipeRefreshActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.acty_feeds_list);
 
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         fetchData();
     }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onBookDownloadStart(BookDownloadStartEvent event) {
+        mProgressDialog.setTitle("正在下载..");
+        mProgressDialog.setProgress(0);
+        mProgressDialog.setMax(100);
+        mProgressDialog.show();
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onBookDownloadProgress(BookDownloadProgressEvent event) {
+
+        Log.d("debug", event.getBytesWritten() + "/" + event.getTotalSize());
+        mProgressDialog.setMessage(String.format("大小:%.2f M", 1.0 * event.getTotalSize() / 1024 / 1024));
+        mProgressDialog.setMax((int) event.getTotalSize());
+        mProgressDialog.setProgress((int) event.getBytesWritten());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onBookdownloadFaild(BookDownloadFaildEvent event) {
+        Toast.makeText(getContext(), "出错了，错误码：" + event.getStatusCode(), Toast.LENGTH_LONG).show();
+        mProgressDialog.dismiss();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onBookdownloadEnd2(BookDownloadEndEvent event) {
+        mProgressDialog.setTitle("正在解压..");
+    }
+
+    /**
+     * 下载完毕
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.Async)
+    public void onBookDownloadEnd(BookDownloadEndEvent event) {
+        try {
+            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBooksPath(getContext()) + File.separator + event.getFeedsItemObject().getName() + File.separator);
+            //删除压缩包
+            if (event.getFile().exists()) {
+                event.getFile().delete();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            EventBus.getDefault().post(new UnPackFinishEvent(e));
+            return;
+
+        }
+        EventBus.getDefault().post(new UnPackFinishEvent(null));
+    }
+
+
+
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onUnpackFinishEvent(UnPackFinishEvent event) {
+        if (event.getException() != null) {
+            toast(event.getException().getMessage());
+            return;
+        }
+        toast("下载并解压成功");
+        mProgressDialog.dismiss();
+    }
+
 
     @Override protected int getContentViewId() {
         return R.layout.acty_feeds_list;
@@ -75,38 +149,14 @@ public class FeedsList extends SwipeRefreshActivity {
                 super.onFinish();
                 SwipeRefreshLayoutUtils.setRefreshing(getSwipeRefreshLayout(), false);
             }
+
+            @Override public void onProgress(long bytesWritten, long totalSize) {
+                super.onProgress(bytesWritten, totalSize);
+
+            }
         });
     }
 
-    /**
-     * 下载完毕
-     * @param event
-     */
-    @Subscribe(threadMode = ThreadMode.Async)
-    public void onBookDownloaded(BookDownloadedEvent event) {
-        try {
-            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBooksPath(getContext()) + File.separator + event.getFeedsItemObject().getName() + File.separator);
-            //删除压缩包
-            if (event.getFile().exists()) {
-                event.getFile().delete();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            EventBus.getDefault().post(new UnPackFinishEvent(e));
-            return;
-
-        }
-        EventBus.getDefault().post(new UnPackFinishEvent(null));
-    }
-
-    @Subscribe(threadMode = ThreadMode.MainThread)
-    public void onUnpackFinishEvent(UnPackFinishEvent event) {
-        if (event.getException() != null) {
-            toast(event.getException().getMessage());
-            return;
-        }
-        toast("下载并解压成功");
-    }
 
     @Override public void onRefresh() {
         fetchData();
