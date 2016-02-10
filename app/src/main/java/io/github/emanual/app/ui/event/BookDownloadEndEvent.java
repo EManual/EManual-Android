@@ -2,7 +2,7 @@ package io.github.emanual.app.ui.event;
 
 import java.io.File;
 
-import io.github.emanual.app.entity.FeedsItemObject;
+import io.github.emanual.app.entity.FeedsItemEntity;
 
 /**
  * 书下载完毕事件
@@ -11,11 +11,11 @@ import io.github.emanual.app.entity.FeedsItemObject;
  */
 public class BookDownloadEndEvent extends BaseEvent{
     private File file;
-    private  FeedsItemObject feedsItemObject;
+    private FeedsItemEntity feedsItemEntity;
 
-    public BookDownloadEndEvent(File file, FeedsItemObject feedsItemObject){
+    public BookDownloadEndEvent(File file, FeedsItemEntity feedsItemEntity){
         this.file = file;
-        this.feedsItemObject = feedsItemObject;
+        this.feedsItemEntity = feedsItemEntity;
     }
 
     public File getFile() {
@@ -26,11 +26,11 @@ public class BookDownloadEndEvent extends BaseEvent{
         this.file = file;
     }
 
-    public FeedsItemObject getFeedsItemObject() {
-        return feedsItemObject;
+    public FeedsItemEntity getFeedsItemEntity() {
+        return feedsItemEntity;
     }
 
-    public void setFeedsItemObject(FeedsItemObject feedsItemObject) {
-        this.feedsItemObject = feedsItemObject;
+    public void setFeedsItemEntity(FeedsItemEntity feedsItemEntity) {
+        this.feedsItemEntity = feedsItemEntity;
     }
 }

@@ -21,7 +21,7 @@ import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
-import io.github.emanual.app.entity.FeedsItemObject;
+import io.github.emanual.app.entity.FeedsItemEntity;
 import io.github.emanual.app.ui.event.BookDownloadEndEvent;
 import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
 import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
@@ -95,7 +95,7 @@ public class FeedsList extends SwipeRefreshActivity {
     @Subscribe(threadMode = ThreadMode.Async)
     public void onBookDownloadEnd(BookDownloadEndEvent event) {
         try {
-            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBooksPath(getContext()) + File.separator + event.getFeedsItemObject().getName() + File.separator);
+            ZipUtils.unZipFiles(event.getFile().getAbsolutePath(), AppPath.getBooksPath(getContext()) + File.separator + event.getFeedsItemEntity().getName() + File.separator);
             //删除压缩包
             if (event.getFile().exists()) {
                 event.getFile().delete();
@@ -135,7 +135,7 @@ public class FeedsList extends SwipeRefreshActivity {
 
             @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
-                    List<FeedsItemObject> feeds = FeedsItemObject.createFeedsItemObjects(new String(responseBody));
+                    List<FeedsItemEntity> feeds = FeedsItemEntity.createFeedsItemObjects(new String(responseBody));
                     recyclerView.setAdapter(new FeedsListAdapter(getContext(), feeds));
                 } catch (Exception e) {
                     toast("哎呀,网络异常!");

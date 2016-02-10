@@ -24,7 +24,7 @@ import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.NewFeedsAPI;
 import io.github.emanual.app.api.RestClient;
-import io.github.emanual.app.entity.NewsFeedsObject;
+import io.github.emanual.app.entity.NewsFeedsEntity;
 import io.github.emanual.app.ui.Detail;
 import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
 import io.github.emanual.app.ui.base.fragment.SwipeRefreshFragment;
@@ -40,7 +40,7 @@ public class NewFeeds extends SwipeRefreshFragment {
     long last_motify = 0;
     NewFeedsAPI api = new NewFeedsAPI();
     NewFeedsAdapter adapter;
-    ArrayList<NewsFeedsObject> data = new ArrayList<NewsFeedsObject>();
+    ArrayList<NewsFeedsEntity> data = new ArrayList<NewsFeedsEntity>();
 
     @Override protected void initData(Bundle savedInstanceState) {
 
@@ -90,7 +90,7 @@ public class NewFeeds extends SwipeRefreshFragment {
         });
 
         if (savedInstanceState != null) {
-            ArrayList<NewsFeedsObject> save_data = (ArrayList<NewsFeedsObject>) savedInstanceState.getSerializable("data");
+            ArrayList<NewsFeedsEntity> save_data = (ArrayList<NewsFeedsEntity>) savedInstanceState.getSerializable("data");
             this.data.addAll(save_data);
         }
         if (data.size() == 0) {
@@ -138,7 +138,7 @@ public class NewFeeds extends SwipeRefreshFragment {
 
         @Override public void onSuccess(int statusCode, Header[] headers, byte[] response) {
             try{
-                List<NewsFeedsObject> names = NewsFeedsObject.createNewsFeedsObjects(new String(response));
+                List<NewsFeedsEntity> names = NewsFeedsEntity.createNewsFeedsObjects(new String(response));
                 if (mPage == 1) {
                     //refresh
                     data.clear();

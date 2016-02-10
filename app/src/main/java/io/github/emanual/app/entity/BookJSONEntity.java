@@ -8,15 +8,15 @@ import java.io.Serializable;
  * Author: jayin
  * Date: 1/31/16
  */
-public class BookJSONObject  extends BaseEntity implements Serializable {
+public class BookJSONEntity extends BaseEntity implements Serializable {
     private String title;
-    private BookInfoObject info;
+    private BookInfoEntity info;
 
-    public BookInfoObject getInfo() {
+    public BookInfoEntity getInfo() {
         return info;
     }
 
-    public void setInfo(BookInfoObject info) {
+    public void setInfo(BookInfoEntity info) {
         this.info = info;
     }
 

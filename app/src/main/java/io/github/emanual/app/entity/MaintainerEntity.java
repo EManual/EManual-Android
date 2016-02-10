@@ -4,7 +4,7 @@ package io.github.emanual.app.entity;
  * Author: jayin
  * Date: 2/10/16
  */
-public class MaintainerObject extends BaseEntity {
+public class MaintainerEntity extends BaseEntity {
     private String name;
     private String email;
 
@@ -25,7 +25,7 @@ public class MaintainerObject extends BaseEntity {
     }
 
     @Override public String toString() {
-        return "MaintainerObject{" +
+        return "MaintainerEntity{" +
                 "email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 '}';

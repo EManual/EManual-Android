@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import io.github.emanual.app.entity.BookJSONObject;
+import io.github.emanual.app.entity.BookJSONEntity;
 
 /**
  * Author: jayin
@@ -34,16 +34,16 @@ public class BookResource {
      * @param context
      * @return
      */
-    public static List<BookJSONObject> getBookJSONList(Context context) {
-        List<BookJSONObject> books = new ArrayList<>();
+    public static List<BookJSONEntity> getBookJSONList(Context context) {
+        List<BookJSONEntity> books = new ArrayList<>();
         File bookDir = new File(AppPath.getBooksPath(context));
         if (!bookDir.exists()) {
             bookDir.mkdirs();
         }
         for (String bookName : bookDir.list()) {
             String json = _.readFile(AppPath.getBookJSONFilePath(context, bookName));
-            BookJSONObject bookJSONObject = BookJSONObject.createByJSON(json, BookJSONObject.class);
-            books.add(bookJSONObject);
+            BookJSONEntity bookJSONEntity = BookJSONEntity.createByJSON(json, BookJSONEntity.class);
+            books.add(bookJSONEntity);
 
         }
         return books;

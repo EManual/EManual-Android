@@ -26,7 +26,7 @@ import butterknife.OnLongClick;
 import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
-import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.entity.FileTreeEntity;
 import io.github.emanual.app.ui.FileTree;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
@@ -177,11 +177,11 @@ public class ResourceCenter extends BaseFragment {
         EmanualAPI.getLangInfo(lang, new AsyncHttpResponseHandler(){
             @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 Gson gson = new Gson();
-                FileTreeObject remote = FileTreeObject.create(new String(responseBody));
-                FileTreeObject local = null;
+                FileTreeEntity remote = FileTreeEntity.create(new String(responseBody));
+                FileTreeEntity local = null;
                 try {
                     String json = _.readFile(MD_PATH+File.separator+String.format("%s/info.json",lang));
-                    local = FileTreeObject.create(json);
+                    local = FileTreeEntity.create(json);
                     if(!remote.getMtime().equals(local.getMtime())){
                         langContainer.findViewWithTag("img").setVisibility(View.VISIBLE);
                         langContainer.findViewWithTag("img").setBackgroundResource(R.drawable.ic_notify_new);

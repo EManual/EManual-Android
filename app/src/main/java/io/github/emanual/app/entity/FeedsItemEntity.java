@@ -11,7 +11,7 @@ import java.util.List;
  * Author: jayin
  * Date: 1/19/16
  */
-public class FeedsItemObject implements Serializable{
+public class FeedsItemEntity implements Serializable{
     private String name;
     private String name_cn;
     private String md5;
@@ -20,14 +20,14 @@ public class FeedsItemObject implements Serializable{
     private String author;
     private String homepage;
 
-    public static FeedsItemObject create(String json) {
-        return new Gson().fromJson(json, FeedsItemObject.class);
+    public static FeedsItemEntity create(String json) {
+        return new Gson().fromJson(json, FeedsItemEntity.class);
     }
 
-    public static List<FeedsItemObject> createFeedsItemObjects(String json) throws Exception{
-        Type collectionType = new TypeToken<List<FeedsItemObject>>() {
+    public static List<FeedsItemEntity> createFeedsItemObjects(String json) throws Exception{
+        Type collectionType = new TypeToken<List<FeedsItemEntity>>() {
         }.getType();
-        List<FeedsItemObject> result = null;
+        List<FeedsItemEntity> result = null;
 
         try{
             //json格式不一定对，应为网络原因

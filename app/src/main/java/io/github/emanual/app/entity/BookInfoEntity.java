@@ -8,7 +8,7 @@ import java.util.List;
  * Author: jayin
  * Date: 1/23/16
  */
-public class BookInfoObject implements Serializable{
+public class BookInfoEntity implements Serializable{
     private String name;
     private String name_cn;
     private String md5;
@@ -16,7 +16,7 @@ public class BookInfoObject implements Serializable{
     private String url;
     private String author;
     private String homepage;
-    private List<MaintainerObject> maintainers;
+    private List<MaintainerEntity> maintainers;
 
     public String getAuthor() {
         return author;
@@ -42,11 +42,11 @@ public class BookInfoObject implements Serializable{
         this.icon_url = icon_url;
     }
 
-    public List<MaintainerObject> getMaintainers() {
+    public List<MaintainerEntity> getMaintainers() {
         return maintainers;
     }
 
-    public void setMaintainers(List<MaintainerObject> maintainers) {
+    public void setMaintainers(List<MaintainerEntity> maintainers) {
         this.maintainers = maintainers;
     }
 
@@ -83,7 +83,7 @@ public class BookInfoObject implements Serializable{
     }
 
     @Override public String toString() {
-        return "BookInfoObject{" +
+        return "BookInfoEntity{" +
                 "author='" + author + '\'' +
                 ", name='" + name + '\'' +
                 ", name_cn='" + name_cn + '\'' +

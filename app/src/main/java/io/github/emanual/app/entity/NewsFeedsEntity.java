@@ -7,20 +7,20 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class NewsFeedsObject implements Serializable {
+public class NewsFeedsEntity implements Serializable {
     private String path;
     private String name;
     private String rname;
     private String description;
 
-    public static NewsFeedsObject create(String json) {
-        return new Gson().fromJson(json, NewsFeedsObject.class);
+    public static NewsFeedsEntity create(String json) {
+        return new Gson().fromJson(json, NewsFeedsEntity.class);
     }
 
-    public static List<NewsFeedsObject> createNewsFeedsObjects(String json) throws Exception{
-        Type collectionType = new TypeToken<List<NewsFeedsObject>>() {
+    public static List<NewsFeedsEntity> createNewsFeedsObjects(String json) throws Exception{
+        Type collectionType = new TypeToken<List<NewsFeedsEntity>>() {
         }.getType();
-        List<NewsFeedsObject> result = null;
+        List<NewsFeedsEntity> result = null;
 
         try{
             //json格式不一定对，应为网络原因

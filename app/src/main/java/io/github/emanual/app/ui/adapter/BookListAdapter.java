@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.BookJSONObject;
+import io.github.emanual.app.entity.BookJSONEntity;
 import io.github.emanual.app.ui.Browser;
 import io.github.emanual.app.utils.AppPath;
 
@@ -26,18 +26,18 @@ import io.github.emanual.app.utils.AppPath;
  */
 public class BookListAdapter extends  RecyclerView.Adapter<BookListAdapter.ViewHolder>{
     Context context;
-    List<BookJSONObject> data;
+    List<BookJSONEntity> data;
 
-    public BookListAdapter(Context context, List<BookJSONObject> bookJSONObjects){
+    public BookListAdapter(Context context, List<BookJSONEntity> bookJSONEntities){
         this.context = context;
-        this.data = bookJSONObjects;
+        this.data = bookJSONEntities;
     }
 
     public Context getContext() {
         return context;
     }
 
-    public List<BookJSONObject> getData() {
+    public List<BookJSONEntity> getData() {
         return data;
     }
 
@@ -46,7 +46,7 @@ public class BookListAdapter extends  RecyclerView.Adapter<BookListAdapter.ViewH
     }
 
     @Override public void onBindViewHolder(ViewHolder holder, int position) {
-        final BookJSONObject item = data.get(position);
+        final BookJSONEntity item = data.get(position);
         holder.tv_name.setText(item.getInfo().getName());
         holder.iv_icon.setImageURI(Uri.parse(item.getInfo().getIcon_url()));
         holder.layout_container.setOnClickListener(new View.OnClickListener() {

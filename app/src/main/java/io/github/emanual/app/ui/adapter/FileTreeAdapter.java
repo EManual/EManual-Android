@@ -13,14 +13,14 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.entity.FileTreeEntity;
 import io.github.emanual.app.utils.EManualUtils;
 
 public class FileTreeAdapter extends BaseAdapter {
-    List<FileTreeObject> data;
+    List<FileTreeEntity> data;
     Context context;
 
-    public FileTreeAdapter(Context context, List<FileTreeObject> data) {
+    public FileTreeAdapter(Context context, List<FileTreeEntity> data) {
         this.data = data;
         this.context = context;
     }
@@ -50,9 +50,9 @@ public class FileTreeAdapter extends BaseAdapter {
         } else {
             h = (ViewHolder) convertView.getTag();
         }
-        FileTreeObject item = data.get(position);
+        FileTreeEntity item = data.get(position);
         h.title.setText(EManualUtils.getFileNameWithouExtAndNumber(item.getRname()));
-        if (item.getMode().equals(FileTreeObject.MODE_FILE)) {
+        if (item.getMode().equals(FileTreeEntity.MODE_FILE)) {
             h.icon.setBackgroundResource(R.drawable.ic_icon_file);
         } else {
             h.icon.setBackgroundResource(R.drawable.ic_icon_document);

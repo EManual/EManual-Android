@@ -21,7 +21,7 @@ import cz.msebera.android.httpclient.Header;
 import de.greenrobot.event.EventBus;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.RestClient;
-import io.github.emanual.app.entity.FeedsItemObject;
+import io.github.emanual.app.entity.FeedsItemEntity;
 import io.github.emanual.app.ui.event.BookDownloadEndEvent;
 import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
 import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
@@ -34,9 +34,9 @@ import io.github.emanual.app.utils.AppPath;
  */
 public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.ViewHolder> {
     Context context;
-    List<FeedsItemObject> data;
+    List<FeedsItemEntity> data;
 
-    public FeedsListAdapter(Context context, List<FeedsItemObject> data) {
+    public FeedsListAdapter(Context context, List<FeedsItemEntity> data) {
         this.context = context;
         this.data = data;
     }
@@ -45,7 +45,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
         return context;
     }
 
-    public List<FeedsItemObject> getData() {
+    public List<FeedsItemEntity> getData() {
         return data;
     }
 
@@ -54,7 +54,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
     }
 
     @Override public void onBindViewHolder(ViewHolder holder, final int position) {
-        final FeedsItemObject item = data.get(position);
+        final FeedsItemEntity item = data.get(position);
         holder.tv_name.setText(item.getName_cn());
         holder.iv_icon.setImageURI(Uri.parse(item.getIcon_url()));
         holder.btn_download.setOnClickListener(new View.OnClickListener() {

@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileTreeObject {
+public class FileTreeEntity {
 
     public static final String MODE_TREE = "tree";
     public static final String MODE_FILE = "file";
@@ -15,15 +15,15 @@ public class FileTreeObject {
     private String name;//拼音后的名称
     private String mtime;//最后修改时间
     private String mode;//类型
-    private List<FileTreeObject> files;
+    private List<FileTreeEntity> files;
 
     /**
      * 生成一个上级目录("..")
      *
      * @return
      */
-    public static FileTreeObject getParentDirectory() {
-        FileTreeObject f = new FileTreeObject();
+    public static FileTreeEntity getParentDirectory() {
+        FileTreeEntity f = new FileTreeEntity();
         f.setPath(null);
         f.setRname("..");
         f.setName("..");
@@ -32,15 +32,15 @@ public class FileTreeObject {
         return f;
     }
 
-    public static FileTreeObject create(String json) {
-        return new Gson().fromJson(json, FileTreeObject.class);
+    public static FileTreeEntity create(String json) {
+        return new Gson().fromJson(json, FileTreeEntity.class);
     }
 
-    public FileTreeObject findFileByRName(String rname) {
+    public FileTreeEntity findFileByRName(String rname) {
         if (this.files == null || this.files.size() == 0) {
             return null;
         }
-        for (FileTreeObject f : this.files) {
+        for (FileTreeEntity f : this.files) {
             if (f.getRname().equals(rname)) {
                 return f;
             }
@@ -52,7 +52,7 @@ public class FileTreeObject {
         if (this.files == null)
             return null;
         List<String> names = new ArrayList<String>();
-        for (FileTreeObject f : this.files) {
+        for (FileTreeEntity f : this.files) {
             names.add(f.getRname());
         }
         return names;
@@ -98,16 +98,16 @@ public class FileTreeObject {
         this.mode = mode;
     }
 
-    public List<FileTreeObject> getFiles() {
+    public List<FileTreeEntity> getFiles() {
         return files;
     }
 
-    public void setFiles(List<FileTreeObject> files) {
+    public void setFiles(List<FileTreeEntity> files) {
         this.files = files;
     }
 
     @Override public String toString() {
-        return "FileTreeObject{" +
+        return "FileTreeEntity{" +
                 "files=" + files +
                 ", mode='" + mode + '\'' +
                 ", mtime='" + mtime + '\'' +

@@ -13,7 +13,7 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.BookJSONObject;
+import io.github.emanual.app.entity.BookJSONEntity;
 import io.github.emanual.app.ui.event.FinishQueryBookListEvent;
 import io.github.emanual.app.ui.event.QueryBookListEvent;
 import io.github.emanual.app.ui.event.UnPackFinishEvent;
@@ -56,8 +56,8 @@ public class BookList extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.Async)
     public void onQueryBookList(QueryBookListEvent event) {
-        List<BookJSONObject> bookJSONObjects = BookResource.getBookJSONList(getContext());
-        EventBus.getDefault().post(new FinishQueryBookListEvent(bookJSONObjects));
+        List<BookJSONEntity> bookJSONEntities = BookResource.getBookJSONList(getContext());
+        EventBus.getDefault().post(new FinishQueryBookListEvent(bookJSONEntities));
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)

@@ -18,7 +18,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.OnItemClick;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.FileTreeObject;
+import io.github.emanual.app.entity.FileTreeEntity;
 import io.github.emanual.app.ui.adapter.FileTreeAdapter;
 import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
@@ -31,11 +31,11 @@ import io.github.emanual.app.utils._;
 public class FileTree extends SwipeBackActivity {
     private String root = ""; //根目录
     private String cur_path = "";  //当前路径
-    private FileTreeObject mFileTreeObject;
+    private FileTreeEntity mFileTreeObject;
     private String module; //模块
 
     @Bind(R.id.lv_filetree) ListView lv;
-    private List<FileTreeObject> data;
+    private List<FileTreeEntity> data;
     private FileTreeAdapter adapter;
 
     private ArrayList<String> rnames = new ArrayList<String>(); // 记录目录的原名称
@@ -53,7 +53,7 @@ public class FileTree extends SwipeBackActivity {
             finish();
         }
         getFileTreeInfo();
-        data = new ArrayList<FileTreeObject>();
+        data = new ArrayList<FileTreeEntity>();
         if (mFileTreeObject != null) {
             data.addAll(mFileTreeObject.getFiles());
         }
@@ -85,7 +85,7 @@ public class FileTree extends SwipeBackActivity {
         String info_json = null;
         String infoFile = cur_path + File.separator + "info.json";
         if(new File(infoFile).exists()){
-            mFileTreeObject = FileTreeObject.create(_.readFile(infoFile));
+            mFileTreeObject = FileTreeEntity.create(_.readFile(infoFile));
         }else{
             toast("目录出错:不存在该文件");
             finish();
@@ -95,7 +95,7 @@ public class FileTree extends SwipeBackActivity {
     private void updateTree() {
         data.clear();
         if (!cur_path.equals(root)) {
-            data.add(FileTreeObject.getParentDirectory());
+            data.add(FileTreeEntity.getParentDirectory());
         }
         getFileTreeInfo();
         data.addAll(mFileTreeObject.getFiles());

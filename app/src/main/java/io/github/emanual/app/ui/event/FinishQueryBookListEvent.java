@@ -2,7 +2,7 @@ package io.github.emanual.app.ui.event;
 
 import java.util.List;
 
-import io.github.emanual.app.entity.BookJSONObject;
+import io.github.emanual.app.entity.BookJSONEntity;
 
 /**
  * 完成查询本地的BookList事件
@@ -11,17 +11,17 @@ import io.github.emanual.app.entity.BookJSONObject;
  */
 public class FinishQueryBookListEvent extends BaseEvent {
 
-    List<BookJSONObject> data;
+    List<BookJSONEntity> data;
 
-    public FinishQueryBookListEvent(List<BookJSONObject> data) {
+    public FinishQueryBookListEvent(List<BookJSONEntity> data) {
         this.data = data;
     }
 
-    public List<BookJSONObject> getData() {
+    public List<BookJSONEntity> getData() {
         return data;
     }
 
-    public void setData(List<BookJSONObject> data) {
+    public void setData(List<BookJSONEntity> data) {
         this.data = data;
     }
 

@@ -12,14 +12,14 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.NewsFeedsObject;
+import io.github.emanual.app.entity.NewsFeedsEntity;
 import io.github.emanual.app.utils.EManualUtils;
 
 public class NewFeedsAdapter extends BaseAdapter {
-    List<NewsFeedsObject> data;
+    List<NewsFeedsEntity> data;
     Context context;
 
-    public NewFeedsAdapter(Context context, List<NewsFeedsObject> data) {
+    public NewFeedsAdapter(Context context, List<NewsFeedsEntity> data) {
         this.data = data;
         this.context = context;
     }
