@@ -21,6 +21,9 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
 
+/**
+ * 通用浏览器页
+ */
 public class Browser extends SwipeBackActivity {
 
     public static final String EXTRA_URL = "url";

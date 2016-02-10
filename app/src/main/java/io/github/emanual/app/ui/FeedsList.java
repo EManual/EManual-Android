@@ -27,6 +27,9 @@ import io.github.emanual.app.utils.AppPath;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.ZipUtils;
 
+/**
+ * Book Feeds
+ */
 public class FeedsList extends SwipeRefreshActivity {
 
     @Bind(R.id.recyclerView) RecyclerView recyclerView;

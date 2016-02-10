@@ -7,6 +7,9 @@ import android.os.Handler;
 
 import io.github.emanual.app.R;
 
+/**
+ * 启动页
+ */
 public class AppStart extends Activity {
 
     @Override

@@ -25,6 +25,9 @@ import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;
 
+/**
+ * 文件目录
+ */
 public class FileTree extends SwipeBackActivity {
     private String root = ""; //根目录
     private String cur_path = "";  //当前路径
