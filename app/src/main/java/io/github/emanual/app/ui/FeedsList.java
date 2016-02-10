@@ -75,6 +75,10 @@ public class FeedsList extends SwipeRefreshActivity {
         });
     }
 
+    /**
+     * 下载完毕
+     * @param event
+     */
     @Subscribe(threadMode = ThreadMode.Async)
     public void onBookDownloaded(BookDownloadedEvent event) {
         try {

@@ -1,6 +1,7 @@
 package io.github.emanual.app.event;
 
 /**
+ * 空事件
  * Author: jayin
  * Date: 1/22/16
  */

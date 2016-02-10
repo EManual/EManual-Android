@@ -5,6 +5,7 @@ import java.util.List;
 import io.github.emanual.app.entity.BookJSONObject;
 
 /**
+ * 完成查询本地的BookList事件
  * Author: jayin
  * Date: 1/25/16
  */

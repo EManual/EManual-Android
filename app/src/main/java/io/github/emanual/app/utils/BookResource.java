@@ -15,7 +15,7 @@ import io.github.emanual.app.entity.BookJSONObject;
  */
 public class BookResource {
     /**
-     * 获取所有books/<*bookName>
+     * 获取所有books/* 所有文件名(英文书名)列表
      * @param context
      * @return
      */

@@ -5,6 +5,7 @@ import java.io.File;
 import io.github.emanual.app.entity.FeedsItemObject;
 
 /**
+ * 书下载完毕事件
  * Author: jayin
  * Date: 1/22/16
  */

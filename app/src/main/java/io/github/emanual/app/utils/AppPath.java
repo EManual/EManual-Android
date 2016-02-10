@@ -56,7 +56,7 @@ public class AppPath {
         return getBookRootPath(context, bookname) + File.separator + "book";
     }
     /**
-     * 获取教程的book.json /data/data/<App Name>/files/books/<bookName>/bookbook.json
+     * 获取教程的book.json /data/data/<App Name>/files/books/<bookName>/book/book.json
      * @param context
      * @return
      */
