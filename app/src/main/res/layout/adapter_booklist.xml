@@ -1,18 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/layout_container"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="54dp"
-              android:gravity="center_vertical|left">
-    <TextView
-        android:layout_marginLeft="8dp"
-        android:text="12312312"
-        android:id="@+id/tv_name"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<RelativeLayout
+    android:id="@+id/layout_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:background="@drawable/btn_item_whit2grey"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="6dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="2dp"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/iv_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            fresco:placeholderImage="@drawable/ic_icon_code"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="6dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ruby"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_marginLeft="2dp"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_keyboard_arrow_right_black_36dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/ic_line_1"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

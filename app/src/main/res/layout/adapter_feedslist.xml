@@ -7,15 +7,15 @@
     android:layout_height="54dp"
     android:background="@drawable/btn_item_whit2grey"
     android:orientation="vertical"
-    android:paddingBottom="4dp"
-    android:paddingLeft="6dp"
+    android:paddingBottom="2dp"
+    android:paddingLeft="12dp"
     android:paddingRight="6dp"
     android:paddingTop="6dp"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -28,7 +28,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -46,8 +46,8 @@
 
         <LinearLayout
             android:id="@+id/btn_download"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:gravity="center">
 
             <ImageView
