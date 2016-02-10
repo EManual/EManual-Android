@@ -2,7 +2,7 @@ package io.github.emanual.app.event;
 
 import java.util.List;
 
-import io.github.emanual.app.entity.BookInfoObject;
+import io.github.emanual.app.entity.BookJSONObject;
 
 /**
  * Author: jayin
@@ -10,23 +10,23 @@ import io.github.emanual.app.entity.BookInfoObject;
  */
 public class FinishQueryBookListEvent {
 
-    List<BookInfoObject> bookInfoObjectList;
+    List<BookJSONObject> data;
 
-    public FinishQueryBookListEvent(List<BookInfoObject> bookInfoObjectList) {
-        this.bookInfoObjectList = bookInfoObjectList;
+    public FinishQueryBookListEvent(List<BookJSONObject> data) {
+        this.data = data;
     }
 
-    public List<BookInfoObject> getBookInfoObjectList() {
-        return bookInfoObjectList;
+    public List<BookJSONObject> getData() {
+        return data;
     }
 
-    public void setBookInfoObjectList(List<BookInfoObject> bookInfoObjectList) {
-        this.bookInfoObjectList = bookInfoObjectList;
+    public void setData(List<BookJSONObject> data) {
+        this.data = data;
     }
 
     @Override public String toString() {
         return "FinishQueryBookListEvent{" +
-                "bookInfoObjectList=" + bookInfoObjectList +
+                "data=" + data +
                 '}';
     }
 }

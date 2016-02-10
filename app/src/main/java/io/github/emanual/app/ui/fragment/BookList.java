@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -14,9 +13,10 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
-import io.github.emanual.app.entity.BookInfoObject;
+import io.github.emanual.app.entity.BookJSONObject;
 import io.github.emanual.app.event.FinishQueryBookListEvent;
 import io.github.emanual.app.event.QueryBookListEvent;
+import io.github.emanual.app.event.UnPackFinishEvent;
 import io.github.emanual.app.ui.adapter.BookListAdapter;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.BookResource;
@@ -45,22 +45,24 @@ public class BookList extends BaseFragment {
         return R.layout.fragment_book_list;
     }
 
+    /**
+     * 新书下载解压完成后更新书本列表
+     * @param event
+     */
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onUnPackFinish(UnPackFinishEvent event){
+        EventBus.getDefault().post(new QueryBookListEvent());
+    }
+
     @Subscribe(threadMode = ThreadMode.Async)
     public void onQueryBookList(QueryBookListEvent event) {
-        List<String> bookNameList = BookResource.getBookNameList(getContext());
-        List<BookInfoObject> bookInfoObjectList = new ArrayList<>();
-        for (int i=0; i < bookNameList.size(); i++) {
-            BookInfoObject bookInfoObject = new BookInfoObject();
-            bookInfoObject.setName(bookNameList.get(i));
-            bookInfoObjectList.add(bookInfoObject);
-
-        }
-        EventBus.getDefault().post(new FinishQueryBookListEvent(bookInfoObjectList));
+        List<BookJSONObject> bookJSONObjects = BookResource.getBookJSONList(getContext());
+        EventBus.getDefault().post(new FinishQueryBookListEvent(bookJSONObjects));
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void onFinishQueryBookList(FinishQueryBookListEvent event) {
-        Log.d("debug", event.getBookInfoObjectList().toString());
-        recyclerView.setAdapter(new BookListAdapter(getContext(), event.getBookInfoObjectList()));
+        Log.d("debug", event.getData().toString());
+        recyclerView.setAdapter(new BookListAdapter(getContext(), event.getData()));
     }
 }
