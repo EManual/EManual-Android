@@ -81,6 +81,12 @@ public class Detail extends SwipeBackActivity
                 android.R.color.holo_blue_light);
 
         webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setDomStorageEnabled(true);
+        webview.getSettings().setAppCacheEnabled(true);
+        webview.getSettings().setDatabaseEnabled(true);
+        webview.getSettings().setGeolocationEnabled(true);
+        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
         webview.setWebChromeClient(new MyWebChromeClient());
         webview.setWebViewClient(new MyWebViewClient());
 
