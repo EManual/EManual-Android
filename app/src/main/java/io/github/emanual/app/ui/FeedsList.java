@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -22,16 +21,17 @@ import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
 import io.github.emanual.app.entity.FeedsItemEntity;
+import io.github.emanual.app.ui.adapter.FeedsListAdapter;
+import io.github.emanual.app.ui.base.activity.SwipeRefreshActivity;
 import io.github.emanual.app.ui.event.BookDownloadEndEvent;
 import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
 import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
 import io.github.emanual.app.ui.event.BookDownloadStartEvent;
 import io.github.emanual.app.ui.event.UnPackFinishEvent;
-import io.github.emanual.app.ui.adapter.FeedsListAdapter;
-import io.github.emanual.app.ui.base.activity.SwipeRefreshActivity;
 import io.github.emanual.app.utils.AppPath;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.ZipUtils;
+import timber.log.Timber;
 
 /**
  * Book Feeds
@@ -71,7 +71,7 @@ public class FeedsList extends SwipeRefreshActivity {
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void onBookDownloadProgress(BookDownloadProgressEvent event) {
 
-        Log.d("debug", event.getBytesWritten() + "/" + event.getTotalSize());
+        Timber.d(event.getBytesWritten() + "/" + event.getTotalSize());
         mProgressDialog.setMessage(String.format("大小:%.2f M", 1.0 * event.getTotalSize() / 1024 / 1024));
         mProgressDialog.setMax((int) event.getTotalSize());
         mProgressDialog.setProgress((int) event.getBytesWritten());

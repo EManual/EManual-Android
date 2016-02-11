@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +19,7 @@ import butterknife.OnClick;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
+import timber.log.Timber;
 
 /**
  * 通用浏览器页
@@ -135,7 +135,7 @@ public class Browser extends SwipeBackActivity {
     class MyWebViewClient extends WebViewClient {
 
         @Override public void onLoadResource(WebView view, String url) {
-            Log.d("debug", "onLoadResource--> " + url);
+            Timber.d("onLoadResource--> " + url);
         }
 
         @Override public void onPageFinished(WebView view, String url) {
@@ -156,7 +156,7 @@ public class Browser extends SwipeBackActivity {
         @Override public void onReceivedError(WebView view, int errorCode,
                                               String description, String onReceivedError) {
             view.loadUrl(url_404);
-            Log.d("debug", "onReceivedError--> errorCode:" + errorCode + "  ->" + onReceivedError);
+            Timber.d("onReceivedError--> errorCode:" + errorCode + "  ->" + onReceivedError);
         }
 
     }
@@ -168,8 +168,7 @@ public class Browser extends SwipeBackActivity {
         }
 
         @Override public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-            Log.d("debug",
-                    consoleMessage.message() + " -- From line "
+            Timber.d(consoleMessage.message() + " -- From line "
                             + consoleMessage.lineNumber() + " of "
                             + consoleMessage.sourceId());
             return true;

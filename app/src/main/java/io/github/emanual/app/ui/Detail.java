@@ -12,7 +12,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +33,7 @@ import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils._;
+import timber.log.Timber;
 
 /**
  * 查看NewsFeeds or 文章详情
@@ -129,7 +129,7 @@ public class Detail extends SwipeBackActivity
                 @Override public void onSuccess(int statusCode,
                                                 Header[] headers, byte[] data) {
                     load(new String(data));
-                    debug("onSuccess");
+                    Timber.d("onSuccess");
                 }
 
                 @Override public void onFailure(int statusCode,
@@ -139,7 +139,7 @@ public class Detail extends SwipeBackActivity
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    debug("onFailure");
+                    Timber.d("onFailure");
                 }
 
                 @Override public void onFinish() {
@@ -213,7 +213,6 @@ public class Detail extends SwipeBackActivity
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         mMenu = menu;
-        Log.i("debug", "onCreateOptionsMenu");
         return displayMenu(mMenu);
     }
 
@@ -247,8 +246,7 @@ public class Detail extends SwipeBackActivity
         }
 
         @Override public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-            Log.d("debug",
-                    consoleMessage.message() + " -- From line "
+            Timber.d(consoleMessage.message() + " -- From line "
                             + consoleMessage.lineNumber() + " of "
                             + consoleMessage.sourceId());
             return true;
@@ -258,18 +256,18 @@ public class Detail extends SwipeBackActivity
     class MyWebViewClient extends WebViewClient {
 
         @Override public void onLoadResource(WebView view, String url) {
-            Log.d("debug", "onLoadResource--> " + url);
+            Timber.d("onLoadResource--> " + url);
         }
 
         @Override public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            Log.d("debug", "onPageFinished--> " + url);
+            Timber.d("onPageFinished--> " + url);
         }
 
         @Override public void onPageStarted(WebView view, String url,
                                             Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            Log.d("debug", "onPageStarted--> " + url);
+            Timber.d("onPageStarted--> " + url);
         }
 
         @Override public boolean shouldOverrideKeyEvent(WebView view,

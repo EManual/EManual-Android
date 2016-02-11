@@ -24,6 +24,7 @@ import io.github.emanual.app.ui.base.activity.SwipeBackActivity;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 import io.github.emanual.app.utils._;
+import timber.log.Timber;
 
 /**
  * 文件目录
@@ -142,8 +143,8 @@ public class FileTree extends SwipeBackActivity {
                 startActivity(intent);
             }
         }
-        debug("cur--> " + cur_path);
-        debug("root--> " + root);
+        Timber.d("cur--> " + cur_path);
+        Timber.d("root--> " + root);
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {

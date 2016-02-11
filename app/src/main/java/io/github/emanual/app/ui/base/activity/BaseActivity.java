@@ -79,15 +79,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 调试
-     *
-     * @param content
-     */
-    public void debug(String content) {
-        Log.i("debug", this.getClass().getName() + ":" + content);
-    }
-
-    /**
      * Get intent extra
      *
      * @param name

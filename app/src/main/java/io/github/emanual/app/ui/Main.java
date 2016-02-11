@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,6 +22,7 @@ import io.github.emanual.app.ui.fragment.BookList;
 import io.github.emanual.app.ui.fragment.Explore;
 import io.github.emanual.app.ui.fragment.NewFeeds;
 import io.github.emanual.app.widget.NewVersionDialog;
+import timber.log.Timber;
 
 public class Main extends BaseActivity {
     @Bind(R.id.tabs) PagerSlidingTabStrip tabs;
@@ -59,7 +59,6 @@ public class Main extends BaseActivity {
         fragments.add(new NewFeeds());
         fragments.add(new BookList());
         fragments.add(new Explore());
-        if (viewPager == null) Log.d("debug", "viewPager is null");
         viewPager.setAdapter(new MainFragmentPagerAdapter(
                 getSupportFragmentManager(), fragments, titles));
         tabs.setViewPager(viewPager);

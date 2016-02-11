@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "io.github.emanual.app"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 17
         versionName "2.3.2"
@@ -106,6 +106,8 @@ dependencies {
     //https://github.com/greenrobot/EventBus/tree/annotations
     compile 'de.greenrobot:eventbus:3.0.0-beta1'
     //https://github.com/lingochamp/FileDownloader
-    compile 'com.liulishuo.filedownloader:library:0.1.5'
+    //compile 'com.liulishuo.filedownloader:library:0.1.5'
+    //https://github.com/JakeWharton/timber
+    compile 'com.jakewharton.timber:timber:4.1.0'
     compile project(':extras:umeng-update')
 }

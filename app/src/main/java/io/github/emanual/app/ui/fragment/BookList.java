@@ -4,7 +4,6 @@ package io.github.emanual.app.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.List;
 
@@ -14,12 +13,13 @@ import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.BookJSONEntity;
+import io.github.emanual.app.ui.adapter.BookListAdapter;
+import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.ui.event.FinishQueryBookListEvent;
 import io.github.emanual.app.ui.event.QueryBookListEvent;
 import io.github.emanual.app.ui.event.UnPackFinishEvent;
-import io.github.emanual.app.ui.adapter.BookListAdapter;
-import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.BookResource;
+import timber.log.Timber;
 
 
 public class BookList extends BaseFragment {
@@ -62,7 +62,7 @@ public class BookList extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void onFinishQueryBookList(FinishQueryBookListEvent event) {
-        Log.d("debug", event.getData().toString());
+        Timber.d(event.getData().toString());
         recyclerView.setAdapter(new BookListAdapter(getContext(), event.getData()));
     }
 }

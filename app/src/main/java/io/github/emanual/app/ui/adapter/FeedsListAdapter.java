@@ -3,7 +3,6 @@ package io.github.emanual.app.ui.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
 import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
 import io.github.emanual.app.ui.event.BookDownloadStartEvent;
 import io.github.emanual.app.utils.AppPath;
+import timber.log.Timber;
 
 /**
  * Author: jayin
@@ -72,7 +72,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
                     }
 
                     @Override public void onSuccess(int statusCode, Header[] headers, File file) {
-                        Log.d("debug","下载完成" );
+                        Timber.d("下载完成");
                         //发消息通知下载完毕，继续解压
                         EventBus.getDefault().post(new BookDownloadEndEvent(file, item));
                     }
