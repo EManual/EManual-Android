@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,7 +79,7 @@ public class Browser extends SwipeBackActivity {
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.browser, menu);
+//        getMenuInflater().inflate(R.menu.browser, menu);
         return true;
     }
 
@@ -130,6 +131,14 @@ public class Browser extends SwipeBackActivity {
     public void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
 
+    }
+
+    @Override public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            goBack();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     class MyWebViewClient extends WebViewClient {
