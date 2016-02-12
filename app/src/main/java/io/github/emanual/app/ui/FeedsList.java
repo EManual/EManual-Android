@@ -135,7 +135,8 @@ public class FeedsList extends SwipeRefreshActivity {
 
             @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 try {
-                    List<FeedsItemEntity> feeds = FeedsItemEntity.createFeedsItemObjects(new String(responseBody));
+                    List<FeedsItemEntity> feeds = FeedsItemEntity.createByJSONArray(new String(responseBody), FeedsItemEntity.class);
+                    Timber.d(feeds.toString());
                     recyclerView.setAdapter(new FeedsListAdapter(getContext(), feeds));
                 } catch (Exception e) {
                     toast("哎呀,网络异常!");
