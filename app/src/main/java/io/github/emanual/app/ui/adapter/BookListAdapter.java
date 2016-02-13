@@ -47,7 +47,7 @@ public class BookListAdapter extends  RecyclerView.Adapter<BookListAdapter.ViewH
 
     @Override public void onBindViewHolder(ViewHolder holder, int position) {
         final BookJSONEntity item = data.get(position);
-        holder.tv_name.setText(item.getInfo().getName());
+        holder.tv_name.setText(item.getInfo().getName_cn());
         holder.iv_icon.setImageURI(Uri.parse(item.getInfo().getIcon_url()));
         holder.layout_container.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
