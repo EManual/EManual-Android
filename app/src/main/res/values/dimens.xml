@@ -13,5 +13,6 @@
 
     <!-- Toolbar -->
     <dimen name="toobal_padingTop">0dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

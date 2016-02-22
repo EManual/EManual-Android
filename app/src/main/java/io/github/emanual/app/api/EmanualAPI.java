@@ -34,10 +34,18 @@ public class EmanualAPI {
     }
 
     /**
-     * 获取feeds
+     * 获取Book feeds
      * @param responseHandler
      */
     public static void getBookFeeds(AsyncHttpResponseHandler responseHandler){
         RestClient.get(RestClient.URL_FEEDS,"/feeds-book/feeds/all.min.json", null, responseHandler);
+    }
+
+    /**
+     * 获取Interview feeds
+     * @param responseHandler
+     */
+    public static void getInterviewFeeds(AsyncHttpResponseHandler responseHandler){
+        RestClient.get(RestClient.URL_FEEDS,"/feeds-interview/feeds/all.min.json", null, responseHandler);
     }
 }

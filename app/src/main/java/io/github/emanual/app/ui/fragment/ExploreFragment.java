@@ -17,6 +17,7 @@ import io.github.emanual.app.ui.AboutActivity;
 import io.github.emanual.app.ui.BrowserActivity;
 import io.github.emanual.app.ui.FeedbackActivity;
 import io.github.emanual.app.ui.BookFeedsListActivity;
+import io.github.emanual.app.ui.InterviewFeedsActivity;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 
@@ -97,10 +98,14 @@ public class ExploreFragment extends BaseFragment {
         startActivity(intent);
     }
 
-    @OnClick(R.id.btn_feeds) public void feeds(){
+    @OnClick(R.id.btn_feeds) public void bookFeeds(){
         Intent intent = new Intent(getActivity(), BookFeedsListActivity.class);
         startActivity(intent);
     }
 
-
+    @OnClick(R.id.btn_interview)
+    public void interviewFeeds(){
+        Intent intent = new Intent(getActivity(), InterviewFeedsActivity.class);
+        startActivity(intent);
+    }
 }
