@@ -37,7 +37,7 @@ public class EmanualAPI {
      * 获取feeds
      * @param responseHandler
      */
-    public static void getFeeds(AsyncHttpResponseHandler responseHandler){
+    public static void getBookFeeds(AsyncHttpResponseHandler responseHandler){
         RestClient.get(RestClient.URL_FEEDS,"/feeds-book/feeds/all.min.json", null, responseHandler);
     }
 }

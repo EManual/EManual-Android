@@ -127,7 +127,7 @@ public class FeedsList extends SwipeRefreshActivity {
     }
 
     private void fetchData() {
-        EmanualAPI.getFeeds(new AsyncHttpResponseHandler() {
+        EmanualAPI.getBookFeeds(new AsyncHttpResponseHandler() {
             @Override public void onStart() {
                 super.onStart();
                 SwipeRefreshLayoutUtils.setRefreshing(getSwipeRefreshLayout(), true);
