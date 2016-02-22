@@ -14,7 +14,7 @@ import io.github.emanual.app.utils.AndroidUtils;
 /**
  * 关于
  */
-public class About extends SwipeBackActivity {
+public class AboutActivity extends SwipeBackActivity {
 
     @Bind(R.id.tv_version) TextView tv_version;
 

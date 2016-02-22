@@ -36,7 +36,7 @@ import timber.log.Timber;
 /**
  * Book Feeds
  */
-public class FeedsList extends SwipeRefreshActivity {
+public class BookFeedsListActivity extends SwipeRefreshActivity {
 
     ProgressDialog mProgressDialog;
 

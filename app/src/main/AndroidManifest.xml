@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:label">
         <activity
-            android:name=".ui.AppStart"
+            android:name=".ui.AppStartActivity"
             android:label="@string/application_name"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Holo.NoActionBar">
@@ -30,36 +30,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Main"
+            android:name=".ui.MainActivity"
             android:launchMode="singleTask">
         </activity>
         <activity
-            android:name=".ui.Detail"
+            android:name=".ui.DetailActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
-            android:name=".ui.About"
+            android:name=".ui.AboutActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
-            android:name=".ui.FileTree"
+            android:name=".ui.FileTreeActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
-            android:name=".ui.Feedback"
+            android:name=".ui.FeedbackActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
-            android:name=".ui.Browser"
+            android:name=".ui.BrowserActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
         <activity
-            android:name=".ui.FeedsList"
+            android:name=".ui.BookFeedsListActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>

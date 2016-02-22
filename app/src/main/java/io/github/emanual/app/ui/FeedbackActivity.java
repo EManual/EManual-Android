@@ -22,7 +22,7 @@ import io.github.emanual.app.utils.AndroidUtils;
 /**
  * 反馈页
  */
-public class Feedback extends SwipeBackActivity {
+public class FeedbackActivity extends SwipeBackActivity {
     public static final String EXTRA_CONTENT = "content";//反馈内容
     public static final String EXTRA_TYPE = "type"; // 反馈类型
     public static final String TYPE_REPORT = "report"; // 报告错误

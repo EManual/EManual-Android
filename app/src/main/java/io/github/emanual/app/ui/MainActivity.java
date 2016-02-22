@@ -22,9 +22,8 @@ import io.github.emanual.app.ui.fragment.BookList;
 import io.github.emanual.app.ui.fragment.Explore;
 import io.github.emanual.app.ui.fragment.NewFeeds;
 import io.github.emanual.app.widget.NewVersionDialog;
-import timber.log.Timber;
 
-public class Main extends BaseActivity {
+public class MainActivity extends BaseActivity {
     @Bind(R.id.tabs) PagerSlidingTabStrip tabs;
     @Bind(R.id.viewpager) ViewPager viewPager;
 
@@ -72,7 +71,7 @@ public class Main extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
-                startActivity(new Intent(getContext(), About.class));
+                startActivity(new Intent(getContext(), AboutActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

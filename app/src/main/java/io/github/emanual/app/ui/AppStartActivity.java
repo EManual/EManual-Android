@@ -10,7 +10,7 @@ import io.github.emanual.app.R;
 /**
  * 启动页
  */
-public class AppStart extends Activity {
+public class AppStartActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class AppStart extends Activity {
             @Override
             public void run() {
                 if (!isFinishing()) {
-                    startActivity(new Intent(AppStart.this, Main.class));
+                    startActivity(new Intent(AppStartActivity.this, MainActivity.class));
                     finish();
                 }
             }

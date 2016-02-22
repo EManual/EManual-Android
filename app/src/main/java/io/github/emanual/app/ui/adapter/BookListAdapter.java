@@ -17,7 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.BookJSONEntity;
-import io.github.emanual.app.ui.Browser;
+import io.github.emanual.app.ui.BrowserActivity;
 import io.github.emanual.app.utils.AppPath;
 
 /**
@@ -51,9 +51,9 @@ public class BookListAdapter extends  RecyclerView.Adapter<BookListAdapter.ViewH
         holder.iv_icon.setImageURI(Uri.parse(item.getInfo().getIcon_url()));
         holder.layout_container.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Browser.class);
+                Intent intent = new Intent(getContext(), BrowserActivity.class);
                 //can be custom the index.html
-                intent.putExtra(Browser.EXTRA_URL, AppPath.getBookIndexURL(getContext(), item.getInfo().getName()));
+                intent.putExtra(BrowserActivity.EXTRA_URL, AppPath.getBookIndexURL(getContext(), item.getInfo().getName()));
                 getContext().startActivity(intent);
             }
         });

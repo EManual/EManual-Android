@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.github.emanual.app.ui.FeedsList"
+    tools:context=".ui.BookFeedsListActivity"
     >
 
     <io.github.emanual.app.widget.SwipeBackLayout

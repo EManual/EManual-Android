@@ -13,10 +13,10 @@ import com.umeng.update.UpdateStatus;
 
 import butterknife.OnClick;
 import io.github.emanual.app.R;
-import io.github.emanual.app.ui.About;
-import io.github.emanual.app.ui.Browser;
-import io.github.emanual.app.ui.Feedback;
-import io.github.emanual.app.ui.FeedsList;
+import io.github.emanual.app.ui.AboutActivity;
+import io.github.emanual.app.ui.BrowserActivity;
+import io.github.emanual.app.ui.FeedbackActivity;
+import io.github.emanual.app.ui.BookFeedsListActivity;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 
@@ -50,12 +50,12 @@ public class Explore extends BaseFragment {
     }
 
     @OnClick(R.id.btn_about) public void about() {
-        startActivity(new Intent(getActivity(), About.class));
+        startActivity(new Intent(getActivity(), AboutActivity.class));
     }
 
     @OnClick(R.id.btn_feedback) public void feedback() {
-        Intent intent = new Intent(getActivity(), Feedback.class);
-        intent.putExtra(Feedback.EXTRA_TYPE, Feedback.TYPE_ADVICE);
+        Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+        intent.putExtra(FeedbackActivity.EXTRA_TYPE, FeedbackActivity.TYPE_ADVICE);
         startActivity(intent);
     }
 
@@ -80,25 +80,25 @@ public class Explore extends BaseFragment {
     }
 
     @OnClick(R.id.btn_usage) public void usage() {
-        Intent intent = new Intent(getActivity(), Browser.class);
-        intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_USAGE);
+        Intent intent = new Intent(getActivity(), BrowserActivity.class);
+        intent.putExtra(BrowserActivity.EXTRA_URL, EManualUtils.URL_USAGE);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_sponsor) public void sponsor() {
-        Intent intent = new Intent(getActivity(), Browser.class);
-        intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_SPONSOR);
+        Intent intent = new Intent(getActivity(), BrowserActivity.class);
+        intent.putExtra(BrowserActivity.EXTRA_URL, EManualUtils.URL_SPONSOR);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_opensource) public void opensource() {
-        Intent intent = new Intent(getActivity(), Browser.class);
-        intent.putExtra(Browser.EXTRA_URL, EManualUtils.URL_OPENSOURCE);
+        Intent intent = new Intent(getActivity(), BrowserActivity.class);
+        intent.putExtra(BrowserActivity.EXTRA_URL, EManualUtils.URL_OPENSOURCE);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_feeds) public void feeds(){
-        Intent intent = new Intent(getActivity(), FeedsList.class);
+        Intent intent = new Intent(getActivity(), BookFeedsListActivity.class);
         startActivity(intent);
     }
 

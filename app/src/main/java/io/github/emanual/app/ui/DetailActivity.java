@@ -41,7 +41,7 @@ import timber.log.Timber;
  * @author jayin
  */
 @SuppressLint("SetJavaScriptEnabled")
-public class Detail extends SwipeBackActivity
+public class DetailActivity extends SwipeBackActivity
         implements OnRefreshListener {
     public static final String EXTRA_LINK = "link";
     public static final String EXTRA_TITLE = "title";
@@ -206,9 +206,9 @@ public class Detail extends SwipeBackActivity
                 finish();
                 return true;
             case R.id.action_feedback_report:
-                Intent intent = new Intent(this, Feedback.class);
-                intent.putExtra(Feedback.EXTRA_TYPE, Feedback.TYPE_REPORT);
-                intent.putExtra(Feedback.EXTRA_CONTENT, feedback_content);
+                Intent intent = new Intent(this, FeedbackActivity.class);
+                intent.putExtra(FeedbackActivity.EXTRA_TYPE, FeedbackActivity.TYPE_REPORT);
+                intent.putExtra(FeedbackActivity.EXTRA_CONTENT, feedback_content);
                 startActivity(intent);
                 return true;
             default:

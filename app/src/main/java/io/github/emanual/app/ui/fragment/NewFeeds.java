@@ -24,7 +24,7 @@ import io.github.emanual.app.R;
 import io.github.emanual.app.api.NewFeedsAPI;
 import io.github.emanual.app.api.RestClient;
 import io.github.emanual.app.entity.NewsFeedsEntity;
-import io.github.emanual.app.ui.Detail;
+import io.github.emanual.app.ui.DetailActivity;
 import io.github.emanual.app.ui.adapter.NewFeedsAdapter;
 import io.github.emanual.app.ui.base.fragment.SwipeRefreshFragment;
 import io.github.emanual.app.utils.EManualUtils;
@@ -79,11 +79,11 @@ public class NewFeeds extends SwipeRefreshFragment {
 
                 onUmengAnalytics(title);
 
-                Intent intent = new Intent(getActivity(), Detail.class);
-                intent.putExtra(Detail.EXTRA_LINK, link);
-                intent.putExtra(Detail.EXTRA_TITLE, title);
-                intent.putExtra(Detail.EXTRA_SHARE_PATH, EManualUtils.genSharePath(data.get(position).getPath()));
-                intent.putExtra(Detail.EXTRA_FEEDBACK_CONTENT, String.format(Detail.FEEDBACK_CONTENT_TPL, title, "/新鲜事/" + title));
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_LINK, link);
+                intent.putExtra(DetailActivity.EXTRA_TITLE, title);
+                intent.putExtra(DetailActivity.EXTRA_SHARE_PATH, EManualUtils.genSharePath(data.get(position).getPath()));
+                intent.putExtra(DetailActivity.EXTRA_FEEDBACK_CONTENT, String.format(DetailActivity.FEEDBACK_CONTENT_TPL, title, "/新鲜事/" + title));
                 startActivity(intent);
             }
         });

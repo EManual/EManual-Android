@@ -27,7 +27,7 @@ import cz.msebera.android.httpclient.Header;
 import io.github.emanual.app.R;
 import io.github.emanual.app.api.EmanualAPI;
 import io.github.emanual.app.entity.FileTreeEntity;
-import io.github.emanual.app.ui.FileTree;
+import io.github.emanual.app.ui.FileTreeActivity;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.ZipUtils;
@@ -157,7 +157,7 @@ public class ResourceCenter extends BaseFragment {
         }
         if (_.exists(MD_PATH+File.separator+lang)) {
             // 已下载
-            Intent intent = new Intent(getActivity(), FileTree.class);
+            Intent intent = new Intent(getActivity(), FileTreeActivity.class);
             intent.putExtra("LANG_PATH", MD_PATH + File.separator + lang);
             getActivity().startActivity(intent);
         } else {

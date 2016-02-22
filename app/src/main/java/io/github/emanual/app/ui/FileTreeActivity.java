@@ -29,7 +29,7 @@ import timber.log.Timber;
 /**
  * 文件目录
  */
-public class FileTree extends SwipeBackActivity {
+public class FileTreeActivity extends SwipeBackActivity {
     private String root = ""; //根目录
     private String cur_path = "";  //当前路径
     private FileTreeEntity mFileTreeObject;
@@ -133,12 +133,12 @@ public class FileTree extends SwipeBackActivity {
 
                 onUmengAnalytics(null, _path);
 
-                Intent intent = new Intent(this, Detail.class);
-                intent.putExtra(Detail.EXTRA_LINK, link);
-                intent.putExtra(Detail.EXTRA_TITLE, title);
-                intent.putExtra(Detail.EXTRA_SHARE_PATH,
+                Intent intent = new Intent(this, DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_LINK, link);
+                intent.putExtra(DetailActivity.EXTRA_TITLE, title);
+                intent.putExtra(DetailActivity.EXTRA_SHARE_PATH,
                         EManualUtils.genSharePath(data.get(position).getPath()));
-                intent.putExtra(Detail.EXTRA_FEEDBACK_CONTENT, String.format(Detail.FEEDBACK_CONTENT_TPL, title, _path));
+                intent.putExtra(DetailActivity.EXTRA_FEEDBACK_CONTENT, String.format(DetailActivity.FEEDBACK_CONTENT_TPL, title, _path));
 
                 startActivity(intent);
             }

@@ -25,7 +25,7 @@ import timber.log.Timber;
 /**
  * 通用浏览器页
  */
-public class Browser extends SwipeBackActivity {
+public class BrowserActivity extends SwipeBackActivity {
 
     public static final String EXTRA_URL = "url";
 
