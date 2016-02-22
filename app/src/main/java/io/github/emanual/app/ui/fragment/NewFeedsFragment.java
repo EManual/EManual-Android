@@ -31,7 +31,7 @@ import io.github.emanual.app.utils.EManualUtils;
 import io.github.emanual.app.utils.SwipeRefreshLayoutUtils;
 import io.github.emanual.app.utils.UmengAnalytics;
 
-public class NewFeeds extends SwipeRefreshFragment {
+public class NewFeedsFragment extends SwipeRefreshFragment {
     @Bind(R.id.lv_newfeeds) ListView lv;
     @Bind(R.id.swipeRefreshLayout) SwipeRefreshLayout swipeRefreshLayout;
     boolean hasMore = true;

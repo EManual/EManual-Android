@@ -18,9 +18,9 @@ import butterknife.Bind;
 import io.github.emanual.app.R;
 import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
 import io.github.emanual.app.ui.base.activity.BaseActivity;
-import io.github.emanual.app.ui.fragment.BookList;
-import io.github.emanual.app.ui.fragment.Explore;
-import io.github.emanual.app.ui.fragment.NewFeeds;
+import io.github.emanual.app.ui.fragment.BookListFragment;
+import io.github.emanual.app.ui.fragment.ExploreFragment;
+import io.github.emanual.app.ui.fragment.NewFeedsFragment;
 import io.github.emanual.app.widget.NewVersionDialog;
 
 public class MainActivity extends BaseActivity {
@@ -55,9 +55,9 @@ public class MainActivity extends BaseActivity {
 
         dialog = new NewVersionDialog(getContext());
 
-        fragments.add(new NewFeeds());
-        fragments.add(new BookList());
-        fragments.add(new Explore());
+        fragments.add(new NewFeedsFragment());
+        fragments.add(new BookListFragment());
+        fragments.add(new ExploreFragment());
         viewPager.setAdapter(new MainFragmentPagerAdapter(
                 getSupportFragmentManager(), fragments, titles));
         tabs.setViewPager(viewPager);

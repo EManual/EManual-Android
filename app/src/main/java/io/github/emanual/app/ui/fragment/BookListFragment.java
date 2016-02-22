@@ -22,11 +22,11 @@ import io.github.emanual.app.utils.BookResource;
 import timber.log.Timber;
 
 
-public class BookList extends BaseFragment {
+public class BookListFragment extends BaseFragment {
     @Bind(R.id.recyclerView) RecyclerView recyclerView;
 
-    public static BookList newInstance(String param1, String param2) {
-        BookList fragment = new BookList();
+    public static BookListFragment newInstance(String param1, String param2) {
+        BookListFragment fragment = new BookListFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

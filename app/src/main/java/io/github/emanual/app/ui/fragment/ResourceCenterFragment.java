@@ -34,7 +34,7 @@ import io.github.emanual.app.utils.ZipUtils;
 import io.github.emanual.app.utils._;
 import io.github.emanual.app.widget.DownloadConfirmDialog;
 
-public class ResourceCenter extends BaseFragment {
+public class ResourceCenterFragment extends BaseFragment {
     @Bind({R.id.btn_java, R.id.btn_android, R.id.btn_php, R.id.btn_python, R.id.btn_javascript, R.id.btn_c, R.id.btn_angular, R.id.btn_scala, R.id.btn_http2}) List<View> names;
 
     public String ROOT_PATH;

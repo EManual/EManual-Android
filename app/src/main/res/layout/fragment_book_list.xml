@@ -3,7 +3,7 @@
 
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="io.github.emanual.app.ui.fragment.BookList">
+             tools:context=".ui.fragment.BookListFragment">
 
 
     <android.support.v7.widget.RecyclerView

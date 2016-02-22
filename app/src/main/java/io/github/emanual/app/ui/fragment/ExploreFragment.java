@@ -20,7 +20,7 @@ import io.github.emanual.app.ui.BookFeedsListActivity;
 import io.github.emanual.app.ui.base.fragment.BaseFragment;
 import io.github.emanual.app.utils.EManualUtils;
 
-public class Explore extends BaseFragment {
+public class ExploreFragment extends BaseFragment {
 
     ProgressDialog mProgressDialog;
 
