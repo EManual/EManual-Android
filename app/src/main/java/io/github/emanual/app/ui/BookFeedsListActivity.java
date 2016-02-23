@@ -137,7 +137,7 @@ public class BookFeedsListActivity extends SwipeRefreshActivity {
                 try {
                     List<FeedsItemEntity> feeds = FeedsItemEntity.createByJSONArray(new String(responseBody), FeedsItemEntity.class);
                     Timber.d(feeds.toString());
-                    recyclerView.setAdapter(new FeedsListAdapter(getContext(), feeds));
+                    recyclerView.setAdapter(new FeedsListAdapter(getContext(), feeds, FeedsListAdapter.TYPE_BOOK));
                 } catch (Exception e) {
                     toast("哎呀,网络异常!");
                 }

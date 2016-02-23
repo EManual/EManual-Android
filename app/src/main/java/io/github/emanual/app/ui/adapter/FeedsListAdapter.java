@@ -25,6 +25,10 @@ import io.github.emanual.app.ui.event.BookDownloadEndEvent;
 import io.github.emanual.app.ui.event.BookDownloadFaildEvent;
 import io.github.emanual.app.ui.event.BookDownloadProgressEvent;
 import io.github.emanual.app.ui.event.BookDownloadStartEvent;
+import io.github.emanual.app.ui.event.InterviewDownloadEndEvent;
+import io.github.emanual.app.ui.event.InterviewDownloadFaildEvent;
+import io.github.emanual.app.ui.event.InterviewDownloadProgressEvent;
+import io.github.emanual.app.ui.event.InterviewDownloadStartEvent;
 import io.github.emanual.app.utils.AppPath;
 import timber.log.Timber;
 
@@ -35,10 +39,15 @@ import timber.log.Timber;
 public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.ViewHolder> {
     Context context;
     List<FeedsItemEntity> data;
+    int feedType = 1;
 
-    public FeedsListAdapter(Context context, List<FeedsItemEntity> data) {
+    public final static int TYPE_BOOK = 1;
+    public final static int TYPE_INTERVIEW = 2;
+
+    public FeedsListAdapter(Context context, List<FeedsItemEntity> data, int feedType) {
         this.context = context;
         this.data = data;
+        this.feedType = feedType;
     }
 
     public Context getContext() {
@@ -47,6 +56,10 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
 
     public List<FeedsItemEntity> getData() {
         return data;
+    }
+
+    public int getFeedType() {
+        return feedType;
     }
 
     @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -63,18 +76,30 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
                 RestClient.getHttpClient().get(item.getDownloadUrl(), new FileAsyncHttpResponseHandler(new File(AppPath.getDownloadPath(getContext()), tarFileName)) {
                     @Override public void onStart() {
                         super.onStart();
-                        EventBus.getDefault().post(new BookDownloadStartEvent());
-
+                        if(getFeedType()==TYPE_BOOK){
+                            EventBus.getDefault().post(new BookDownloadStartEvent());
+                        }else{
+                            EventBus.getDefault().post(new InterviewDownloadStartEvent());
+                        }
                     }
 
                     @Override public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                        EventBus.getDefault().post(new BookDownloadFaildEvent(statusCode, headers, throwable));
+                        if(getFeedType()==TYPE_BOOK){
+                            EventBus.getDefault().post(new BookDownloadFaildEvent(statusCode, headers, throwable));
+                        }else{
+                            EventBus.getDefault().post(new InterviewDownloadFaildEvent(statusCode, headers, throwable));
+                        }
+
                     }
 
                     @Override public void onSuccess(int statusCode, Header[] headers, File file) {
                         Timber.d("下载完成");
                         //发消息通知下载完毕，继续解压
-                        EventBus.getDefault().post(new BookDownloadEndEvent(file, item));
+                        if(getFeedType()==TYPE_BOOK){
+                            EventBus.getDefault().post(new BookDownloadEndEvent(file, item));
+                        }else{
+                            EventBus.getDefault().post(new InterviewDownloadEndEvent(file, item));
+                        }
                     }
 
                     @Override public void onFinish() {
@@ -83,8 +108,11 @@ public class FeedsListAdapter extends RecyclerView.Adapter<FeedsListAdapter.View
 
                     @Override public void onProgress(long bytesWritten, long totalSize) {
                         super.onProgress(bytesWritten, totalSize);
-
-                        EventBus.getDefault().post(new BookDownloadProgressEvent(bytesWritten, totalSize));
+                        if(getFeedType()==TYPE_BOOK){
+                            EventBus.getDefault().post(new BookDownloadProgressEvent(bytesWritten, totalSize));
+                        }else{
+                            EventBus.getDefault().post(new InterviewDownloadProgressEvent(bytesWritten, totalSize));
+                        }
                     }
                 });
             }

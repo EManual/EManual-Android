@@ -34,6 +34,15 @@ public class AppPath {
         return getAppFilesPath(context) + File.separator + "books";
     }
 
+    /**
+     * 获取文档目录,/data/data/<App Name>/files/interviews
+     * @param context
+     * @return
+     */
+    public static String getInterviewsPath(Context context){
+        return getAppFilesPath(context) + File.separator + "interviews";
+    }
+
 
 
     /**
