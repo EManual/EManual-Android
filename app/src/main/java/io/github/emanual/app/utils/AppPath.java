@@ -43,7 +43,7 @@ public class AppPath {
         return getAppFilesPath(context) + File.separator + "interviews";
     }
 
-
+    //========Book
 
     /**
      * 获取教程的根目录/data/data/<App Name>/files/books/<bookName>
@@ -72,6 +72,38 @@ public class AppPath {
     public static String getBookJSONFilePath(Context context, String bookName){
         return getBookPath(context, bookName) + File.separator + "book.json";
     }
+
+    //=========== Interview
+
+    /**
+     * 获取Interview的根目录/data/data/<App Name>/files/interviews/<interviewName>
+     * @param context
+     * @param interviewName
+     * @return
+     */
+    public static String getInterviewRootPath(Context context, String interviewName){
+        return getInterviewsPath(context) + File.separator + interviewName;
+    }
+
+    /**
+     * 获取Interview的Interview目录：/data/data/<App Name>/files/books/<bookName>/interview
+     * @param context
+     * @param interviewName
+     * @return
+     */
+    public static String getInterviewPath(Context context, String interviewName) {
+        return getInterviewRootPath(context, interviewName) + File.separator + "interview";
+    }
+    /**
+     * 获取教程的interview.json /data/data/<App Name>/files/books/<bookName>/interview/interview.json
+     * @param context
+     * @param interviewName
+     * @return
+     */
+    public static String getInterviewJSONFilePath(Context context, String interviewName){
+        return getInterviewPath(context, interviewName) + File.separator + "interview.json";
+    }
+
 
     /**
      * 获取教程的入口文件(index.html)

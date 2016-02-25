@@ -30,7 +30,7 @@ public class BookResource {
     }
 
     /**
-     * 获取所有books/<bookName>/book.json
+     * 获取所有books/<bookName>/book/book.json
      * @param context
      * @return
      */

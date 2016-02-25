@@ -20,6 +20,7 @@ import io.github.emanual.app.ui.adapter.MainFragmentPagerAdapter;
 import io.github.emanual.app.ui.base.activity.BaseActivity;
 import io.github.emanual.app.ui.fragment.BookListFragment;
 import io.github.emanual.app.ui.fragment.ExploreFragment;
+import io.github.emanual.app.ui.fragment.InterviewListFragment;
 import io.github.emanual.app.ui.fragment.NewFeedsFragment;
 import io.github.emanual.app.widget.NewVersionDialog;
 
@@ -57,6 +58,7 @@ public class MainActivity extends BaseActivity {
 
         fragments.add(new NewFeedsFragment());
         fragments.add(new BookListFragment());
+        fragments.add(new InterviewListFragment());
         fragments.add(new ExploreFragment());
         viewPager.setAdapter(new MainFragmentPagerAdapter(
                 getSupportFragmentManager(), fragments, titles));
