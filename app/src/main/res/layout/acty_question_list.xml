@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.github.emanual.app.widget.SwipeBackLayout
+    android:id="@+id/swipBackLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.emanual.app.ui.QuestionListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        >
+
+        <include layout="@layout/toolbar"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/adapter_questionlist">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</io.github.emanual.app.widget.SwipeBackLayout>
