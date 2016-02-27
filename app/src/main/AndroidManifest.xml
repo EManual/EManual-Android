@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="io.github.emanual.app"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest
+    package="io.github.emanual.app"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -62,6 +63,21 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.TransparentActivity">
         </activity>
+        <activity
+            android:name=".ui.InterviewFeedsActivity"
+            android:label="@string/acty_interview_feeds"
+            android:theme="@style/AppTheme.TransparentActivity">
+        </activity>
+        <activity
+            android:name=".ui.QuestionDetailActivity"
+            android:label="@string/acty_interview_detail"
+            android:theme="@style/AppTheme.TransparentActivity">
+        </activity>
+        <activity
+            android:name=".ui.QuestionListActivity"
+            android:label="@string/acty_question_list"
+            android:theme="@style/AppTheme.TransparentActivity">
+        </activity>
 
         <service android:name=".CoreService">
         </service>
@@ -85,11 +101,6 @@
             android:value="${UMENG_CHANNEL_VALUE}"/>
         <!-- Umeng End -->
 
-        <activity
-            android:name=".ui.InterviewFeedsActivity"
-            android:label="@string/title_activity_interview_feeds"
-            android:theme="@style/AppTheme">
-        </activity>
     </application>
 
 </manifest>
