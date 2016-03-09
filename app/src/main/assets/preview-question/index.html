@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Question Preview</title>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="css/weui.min.css" />
+	<script type="text/javascript" src="script/zepto.min.js"></script>
+	<script type="text/javascript" src="script/bridge.js"></script>
+	<script type="text/javascript" src="script/main.js"></script>
+
+</head>
+
+<body>
+<div>
+	<article class="weui_article">
+		<h1 id="question_description"></h1>
+	</article>
+
+	<div class="weui_cells weui_cells_checkbox" id="option-container">
+
+	</div>
+</div>
+<article class="weui_article">
+	<section>
+		<section>
+			<h3 id="question_answer"></h3>
+		</section>
+	</section>
+</article>
+<script type="text/html" id="tpl_option">
+	<label class="weui_cell weui_check_label" for="{{option_id}}">
+		<div class="weui_cell_hd">
+			<input type="checkbox" name="checkbox1" class="weui_check" id="{{option_id}}">
+			<i class="weui_icon_checked"></i>
+		</div>
+		<div class="weui_cell_bd weui_cell_primary">
+			<p>{{option_description}}</p>
+		</div>
+	</label>
+</script>
+<script>
+		// mock
+	  	// $(document).ready(function(){
+        // var q = {
+			  //  "type": "choice",
+				// "tag": "android",
+				// "difficulty": "1",
+				// "from": "网络整理",
+				// "description": "\n在android中使用Menu时可能需要重写的方法有（）。(多选)\n",
+				// "answer": "答案：AC",
+				// "options": [
+				// 	"A、onCreateOptionsMenu()",
+				// 	"B、onCreateMenu()",
+				// 	"C、onOptionsItemSelected()",
+				// 	"D、onItemSelected()"
+				// ]
+		  	// };
+        // console.log('window.updateQuestion(%s)'.replace(JSON.stringifyq))
+        // Bridge.callByNative({
+        //   token: new Date().getTime(),
+        //   script: 'window.updateQuestion(%s)'.replace('%s',JSON.stringify(q))
+        // })
+        
+      //  Bridge.callByNative({
+      //     token: new Date().getTime(),
+      //     script: 'window.getUserAnswer()'
+      //   })
+		  // })
+	</script>
+</body>
+
+</html>

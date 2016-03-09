@@ -1,12 +1,12 @@
 package io.github.emanual.app.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.github.emanual.app.R;
 import io.github.emanual.app.entity.QuestionEntity;
+import io.github.emanual.app.ui.QuestionDetailActivity;
 
 /**
  * Author: jayin
@@ -45,11 +46,9 @@ public class QuestionListAdapter extends  RecyclerView.Adapter<QuestionListAdapt
         holder.tv_name.setText(item.getDescription());
         holder.layout_container.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Toast.makeText(getContext(), item.getDescription(), Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), QuestionListActivity.class);
-//                intent.putExtra(QuestionDetailActivity.EXTRA_INTERVIEW, item);
-//                intent.putExtra(QuestionDetailActivity.EXTRA_INTERVIEW, item);
-//                getContext().startActivity(intent);
+                Intent intent = new Intent(getContext(), QuestionDetailActivity.class);
+                intent.putExtra(QuestionDetailActivity.EXTRA_INTERVIEW, item);
+                getContext().startActivity(intent);
             }
         });
     }
