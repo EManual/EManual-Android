@@ -3,6 +3,7 @@ package io.github.emanual.app.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,7 @@ public class QuestionListAdapter extends  RecyclerView.Adapter<QuestionListAdapt
 
     @Override public void onBindViewHolder(ViewHolder holder, int position) {
         final QuestionEntity item = data.get(position);
-        holder.tv_name.setText(item.getDescription());
+        holder.tv_name.setText(Html.fromHtml(item.getDescription()));
         holder.layout_container.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent intent = new Intent(getContext(), QuestionDetailActivity.class);

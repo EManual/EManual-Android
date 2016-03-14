@@ -2,77 +2,97 @@
 <html lang="zh-CN">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Question Preview</title>
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<meta name="apple-mobile-web-app-capable" content="no" />
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" type="text/css" href="css/weui.min.css" />
-	<script type="text/javascript" src="script/zepto.min.js"></script>
-	<script type="text/javascript" src="script/bridge.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>
-
+    <meta charset="UTF-8">
+    <title>详情</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="css/weui.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/github-markdown.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript" src="script/zepto.min.js"></script>
+    <script type="text/javascript" src="script/bridge.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
+    
 </head>
 
 <body>
-<div>
-	<article class="weui_article">
-		<h1 id="question_description"></h1>
-	</article>
+    <div>
+        <article class="weui_article">
+            <div id="question_description" class="markdown-body"></div>
+        </article>
 
-	<div class="weui_cells weui_cells_checkbox" id="option-container">
+        <div class="weui_cells weui_cells_checkbox" id="option-container">
 
-	</div>
-</div>
-<article class="weui_article">
-	<section>
-		<section>
-			<h3 id="question_answer"></h3>
-		</section>
-	</section>
-</article>
-<script type="text/html" id="tpl_option">
-	<label class="weui_cell weui_check_label" for="{{option_id}}">
-		<div class="weui_cell_hd">
-			<input type="checkbox" name="checkbox1" class="weui_check" id="{{option_id}}">
-			<i class="weui_icon_checked"></i>
-		</div>
-		<div class="weui_cell_bd weui_cell_primary">
-			<p>{{option_description}}</p>
-		</div>
-	</label>
-</script>
-<script>
-		// mock
-	  	// $(document).ready(function(){
-        // var q = {
-			  //  "type": "choice",
-				// "tag": "android",
-				// "difficulty": "1",
-				// "from": "网络整理",
-				// "description": "\n在android中使用Menu时可能需要重写的方法有（）。(多选)\n",
-				// "answer": "答案：AC",
-				// "options": [
-				// 	"A、onCreateOptionsMenu()",
-				// 	"B、onCreateMenu()",
-				// 	"C、onOptionsItemSelected()",
-				// 	"D、onItemSelected()"
-				// ]
-		  	// };
-        // console.log('window.updateQuestion(%s)'.replace(JSON.stringifyq))
-        // Bridge.callByNative({
-        //   token: new Date().getTime(),
-        //   script: 'window.updateQuestion(%s)'.replace('%s',JSON.stringify(q))
-        // })
-        
-      //  Bridge.callByNative({
-      //     token: new Date().getTime(),
-      //     script: 'window.getUserAnswer()'
-      //   })
-		  // })
-	</script>
+        </div>
+    </div>
+    <article class="weui_article">
+        <section>
+            <section>
+                <div id="question_answer" class="markdown-body"></div>
+            </section>
+        </section>
+    </article>
+    <script type="text/html" id="tpl_option">
+        <label class="weui_cell weui_check_label" for="{{option_id}}">
+            <div class="weui_cell_hd">
+                <input type="checkbox" name="checkbox1" class="weui_check" id="{{option_id}}">
+                <i class="weui_icon_checked"></i>
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+                <div class="markdown-body">{{option_description}}</div>
+            </div>
+        </label>
+    </script>
+    <script>
+        // mock
+	  	$(document).ready(function(){
+            // var q = {
+            //     "type": "choice",
+            //         "tag": "android",
+            //         "difficulty": "1",
+            //         "from": "网络整理",
+            //         "description": "\n在android中使用Menu时可能需要重写的方法有（）。(多选)\n",
+            //         "answer": "答案：AC",
+            //         "options": [
+            //             "A、onCreateOptionsMenu()",
+            //             "B、onCreateMenu()",
+            //             "C、onOptionsItemSelected()",
+            //             "D、onItemSelected()"
+            //         ]
+            //     }
+            // var q = {
+            //     "type": "reply",
+            //     "tag": "css",
+            //     "difficulty": "1",
+            //     "from": "https://github.com/qiu-deqing/fe-interview",
+            //     "description": "<p>容器包含若干浮动元素时如何清理(包含)浮动</p>\n",
+            //     "answer": "<ol>\n<li>容器元素闭合标签前添加额外元素并设置<code>clear: both</code></li>\n<li>父元素触发块级格式化上下文(见块级可视化上下文部分)</li>\n<li>设置容器元素伪元素进行清理<a href=\"http://nicolasgallagher.com/micro-clearfix-hack/\">推荐的清理浮动方法</a></li>\n</ol>\n<pre><code>/**\n* 在标准浏览器下使用\n* 1 content内容为空格用于修复opera下文档中出现\n*   contenteditable属性时在清理浮动元素上下的空白\n* 2 使用display使用table而不是block：可以防止容器和\n*   子元素top-margin折叠,这样能使清理效果与BFC，IE6/7\n*   zoom: 1;一致\n**/\n\n.clearfix:before,\n.clearfix:after {\n    content: &quot; &quot;; /* 1 */\n    display: table; /* 2 */\n}\n\n.clearfix:after {\n    clear: both;\n}\n\n/**\n* IE 6/7下使用\n* 通过触发hasLayout实现包含浮动\n**/\n.clearfix {\n    *zoom: 1;\n}\n</code></pre>",
+            //     "options": []
+            // }
+            // var q = {
+            //     "type": "reply",
+            //     "tag": "android",
+            //     "difficulty": "1",
+            //     "from": "网络整理",
+            //     "description": "<p>android 的四大组件是<strong>_</strong>，<strong>_</strong>，<strong>_</strong>和<strong>_</strong>。</p>\n",
+            //     "answer": "<p>答案：activiey，service，broadcast和contentprovide</p>\n",
+            //     "options": []
+            // }
+            // console.log('window.updateQuestion(%s)'.replace(JSON.stringifyq))
+            // Bridge.callByNative({
+            //     token: new Date().getTime(),
+            //     script: 'window.updateQuestion(%s)'.replace('%s',JSON.stringify(q))
+            // })
+            
+            // Bridge.callByNative({
+            //     token: new Date().getTime(),
+            //     script: 'window.getUserAnswer()'
+            // })
+		  })
+    </script>
 </body>
 
 </html>

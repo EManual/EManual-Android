@@ -1,0 +1,11 @@
+/*https://github.com/sindresorhus/github-markdown-css*/
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+/*让段落铺满再换行*/
+p {
+  word-break: break-all;
+}
