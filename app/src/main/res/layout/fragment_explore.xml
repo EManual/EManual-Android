@@ -12,6 +12,28 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/btn_forum"
+            style="@style/Linerlayout.explore">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/AndroidBootstrap.FontAwesomeText"
+                app:fontAwesomeIcon="fa_comments"
+                />
+
+            <TextView
+                style="@style/TextView.newfeed"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="问答社区"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/ic_line_1"/>
+
+        <LinearLayout
             android:id="@+id/btn_feeds"
             style="@style/Linerlayout.explore">
 
@@ -25,7 +47,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="教程资源下载"/>
+                android:text="教程文档"/>
         </LinearLayout>
 
         <View
@@ -47,7 +69,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="笔试资源下载"/>
+                android:text="笔试面试"/>
         </LinearLayout>
 
         <View

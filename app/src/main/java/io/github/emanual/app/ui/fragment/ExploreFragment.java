@@ -108,4 +108,11 @@ public class ExploreFragment extends BaseFragment {
         Intent intent = new Intent(getActivity(), InterviewFeedsActivity.class);
         startActivity(intent);
     }
+
+    @OnClick(R.id.btn_forum)
+    public void forum(){
+        Intent intent = new Intent(getActivity(), BrowserActivity.class);
+        intent.putExtra(BrowserActivity.EXTRA_URL, "file:///android_asset/forum/index.html");
+        startActivity(intent);
+    }
 }
