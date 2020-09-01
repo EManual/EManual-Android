@@ -2,11 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '26.0.2'
+
+    flavorDimensions "iemanual"
 
     defaultConfig {
         applicationId "io.github.emanual.app"
-        minSdkVersion 15
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 17
         versionName "2.3.2"
@@ -19,10 +21,10 @@ android {
 
         releaseConfig {
             // relase签名
-            storeFile file(properties.getProperty("keystroe_storeFile"))
-            storePassword properties.getProperty("keystroe_storePassword")
-            keyAlias properties.getProperty("keystroe_keyAlias")
-            keyPassword properties.getProperty("keystroe_keyPassword")
+//            storeFile file(properties.getProperty("keystroe_storeFile"))
+//            storePassword properties.getProperty("keystroe_storePassword")
+//            keyAlias properties.getProperty("keystroe_keyAlias")
+//            keyPassword properties.getProperty("keystroe_keyPassword")
         }
     }
     //多渠道
@@ -30,7 +32,7 @@ android {
         xiaomi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
         }
-        _360 {
+        sll360 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
         }
         wandoujia {
@@ -48,7 +50,7 @@ android {
 
 
         debug{
-            signingConfig signingConfigs.releaseConfig
+//            signingConfig signingConfigs.releaseConfig
             // 显示Log
             buildConfigField "boolean", "LOG_DEBUG", "true"
 
@@ -110,4 +112,12 @@ dependencies {
     //https://github.com/JakeWharton/timber
     compile 'com.jakewharton.timber:timber:4.1.0'
     compile project(':extras:umeng-update')
+
+
+    //        See https://developer.android.com/r/tools/annotation-processor-error-message.html for more details.
+    // Adds the annotation processor dependency to the annotation processor classpath.
+    // Adds libraries defining annotations to only the compile classpath.
+    compileOnly 'com.jakewharton:butterknife:7.0.1'
+    // Adds the annotation processor dependency to the annotation processor classpath.
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 }
